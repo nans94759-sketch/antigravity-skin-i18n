@@ -1,0 +1,12 @@
+{
+  "name": "antigravity-skin-i18n",
+  "displayName": "反重力皮肤与汉化中心 (Antigravity Skin & i18n)",
+  "version": "1.0.0",
+  "description": "Google Antigravity 主题皮肤与全量中文汉化插件套件：内置 12 款高定反重力主题皮肤、1036+ 词条无损实时中文汉化/中英双语对照、自定义背景壁纸与毛玻璃特效工坊。",
+  "logo": "assets/logo.svg",
+  "suggestedPrompts": [
+    "打开反重力皮肤与汉化可视化工作台预览 12 款主题皮肤",
+    "查看当前 Antigravity 皮肤与中文汉化补丁安装状态",
+    "为 Antigravity IDE 安装反重力高定主题皮肤与汉化扩展 (.vsix)"
+  ]
+}

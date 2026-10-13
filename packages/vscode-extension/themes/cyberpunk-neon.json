@@ -1,0 +1,162 @@
+{
+  "$schema": "vscode://schemas/color-theme",
+  "name": "Antigravity · 赛博霓虹 (Cyberpunk Matrix)",
+  "type": "dark",
+  "semanticHighlighting": true,
+  "colors": {
+    "editor.background": "#08070F",
+    "editor.foreground": "#F0EEFF",
+    "sideBar.background": "#05040A",
+    "sideBar.foreground": "#F0EEFF",
+    "sideBar.border": "#2B2254",
+    "sideBarSectionHeader.background": "#100D22",
+    "sideBarSectionHeader.foreground": "#F0EEFF",
+    "activityBar.background": "#05040A",
+    "activityBar.foreground": "#FF2A85",
+    "activityBar.inactiveForeground": "#7A72B0",
+    "activityBar.border": "#2B2254",
+    "activityBarBadge.background": "#FF2A85",
+    "activityBarBadge.foreground": "#FFFFFF",
+    "titleBar.activeBackground": "#05040A",
+    "titleBar.activeForeground": "#F0EEFF",
+    "titleBar.inactiveBackground": "#05040A",
+    "titleBar.inactiveForeground": "#7A72B0",
+    "titleBar.border": "#2B2254",
+    "statusBar.background": "#05040A",
+    "statusBar.foreground": "#B8B2E6",
+    "statusBar.border": "#2B2254",
+    "statusBar.noFolderBackground": "#05040A",
+    "tab.activeBackground": "#08070F",
+    "tab.activeForeground": "#F0EEFF",
+    "tab.activeBorderTop": "#FF2A85",
+    "tab.inactiveBackground": "#05040A",
+    "tab.inactiveForeground": "#7A72B0",
+    "tab.border": "#2B2254",
+    "editorGroupHeader.tabsBackground": "#05040A",
+    "editorGroupHeader.tabsBorder": "#2B2254",
+    "editorWidget.background": "#120F24",
+    "editorWidget.border": "#2B2254",
+    "input.background": "#100D22",
+    "input.foreground": "#F0EEFF",
+    "input.border": "#2B2254",
+    "input.placeholderForeground": "#564E8A",
+    "button.background": "#FF2A85",
+    "button.foreground": "#FFFFFF",
+    "button.hoverBackground": "#00F0FF",
+    "button.secondaryBackground": "#1B1636",
+    "button.secondaryForeground": "#B8B2E6",
+    "dropdown.background": "#120F24",
+    "dropdown.foreground": "#F0EEFF",
+    "dropdown.border": "#2B2254",
+    "list.activeSelectionBackground": "#1B1636",
+    "list.activeSelectionForeground": "#F0EEFF",
+    "list.hoverBackground": "#100D22",
+    "list.inactiveSelectionBackground": "#100D22",
+    "panel.background": "#05040A",
+    "panel.border": "#2B2254",
+    "terminal.background": "#08070F",
+    "terminal.foreground": "#F0EEFF",
+    "focusBorder": "#FF2A85",
+    "textLink.foreground": "#00F0FF",
+    "errorForeground": "#FF3366",
+    "editorWarning.foreground": "#FFE600",
+    "editorError.foreground": "#FF3366",
+    "gitDecoration.addedResourceForeground": "#00FF9D",
+    "gitDecoration.modifiedResourceForeground": "#FF2A85",
+    "gitDecoration.deletedResourceForeground": "#FF3366"
+  },
+  "tokenColors": [
+    {
+      "scope": [
+        "comment",
+        "punctuation.definition.comment"
+      ],
+      "settings": {
+        "foreground": "#6E66A6",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "scope": [
+        "keyword",
+        "storage.type",
+        "storage.modifier"
+      ],
+      "settings": {
+        "foreground": "#FF2A85"
+      }
+    },
+    {
+      "scope": [
+        "entity.name.function",
+        "support.function"
+      ],
+      "settings": {
+        "foreground": "#00F0FF"
+      }
+    },
+    {
+      "scope": [
+        "entity.name.type",
+        "entity.name.class",
+        "support.class"
+      ],
+      "settings": {
+        "foreground": "#FFE600"
+      }
+    },
+    {
+      "scope": [
+        "string",
+        "punctuation.definition.string"
+      ],
+      "settings": {
+        "foreground": "#00FF9D"
+      }
+    },
+    {
+      "scope": [
+        "constant.numeric",
+        "constant.language",
+        "constant.character"
+      ],
+      "settings": {
+        "foreground": "#FFE600"
+      }
+    },
+    {
+      "scope": [
+        "variable",
+        "support.variable"
+      ],
+      "settings": {
+        "foreground": "#FFE600"
+      }
+    },
+    {
+      "scope": [
+        "entity.name.tag",
+        "punctuation.definition.tag"
+      ],
+      "settings": {
+        "foreground": "#FF2A85"
+      }
+    },
+    {
+      "scope": [
+        "entity.other.attribute-name"
+      ],
+      "settings": {
+        "foreground": "#00F0FF"
+      }
+    },
+    {
+      "scope": [
+        "keyword.operator"
+      ],
+      "settings": {
+        "foreground": "#FF2A85"
+      }
+    }
+  ]
+}

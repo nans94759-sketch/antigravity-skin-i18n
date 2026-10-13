@@ -1,0 +1,162 @@
+{
+  "$schema": "vscode://schemas/color-theme",
+  "name": "Antigravity · 东方水墨·宣纸 (Oriental Ink & Rice Paper)",
+  "type": "light",
+  "semanticHighlighting": true,
+  "colors": {
+    "editor.background": "#F7F4ED",
+    "editor.foreground": "#262626",
+    "sideBar.background": "#EFECE4",
+    "sideBar.foreground": "#262626",
+    "sideBar.border": "#E0DBD0",
+    "sideBarSectionHeader.background": "#E6E1D5",
+    "sideBarSectionHeader.foreground": "#262626",
+    "activityBar.background": "#EFECE4",
+    "activityBar.foreground": "#C83C23",
+    "activityBar.inactiveForeground": "#787267",
+    "activityBar.border": "#E0DBD0",
+    "activityBarBadge.background": "#C83C23",
+    "activityBarBadge.foreground": "#FFFFFF",
+    "titleBar.activeBackground": "#EFECE4",
+    "titleBar.activeForeground": "#262626",
+    "titleBar.inactiveBackground": "#EFECE4",
+    "titleBar.inactiveForeground": "#787267",
+    "titleBar.border": "#E0DBD0",
+    "statusBar.background": "#EFECE4",
+    "statusBar.foreground": "#4A463F",
+    "statusBar.border": "#E0DBD0",
+    "statusBar.noFolderBackground": "#EFECE4",
+    "tab.activeBackground": "#F7F4ED",
+    "tab.activeForeground": "#262626",
+    "tab.activeBorderTop": "#C83C23",
+    "tab.inactiveBackground": "#EFECE4",
+    "tab.inactiveForeground": "#787267",
+    "tab.border": "#E0DBD0",
+    "editorGroupHeader.tabsBackground": "#EFECE4",
+    "editorGroupHeader.tabsBorder": "#E0DBD0",
+    "editorWidget.background": "#FCFBF8",
+    "editorWidget.border": "#E0DBD0",
+    "input.background": "#EFECE4",
+    "input.foreground": "#262626",
+    "input.border": "#E0DBD0",
+    "input.placeholderForeground": "#9E978B",
+    "button.background": "#C83C23",
+    "button.foreground": "#FFFFFF",
+    "button.hoverBackground": "#2B5F75",
+    "button.secondaryBackground": "#E8E3D8",
+    "button.secondaryForeground": "#4A463F",
+    "dropdown.background": "#FCFBF8",
+    "dropdown.foreground": "#262626",
+    "dropdown.border": "#E0DBD0",
+    "list.activeSelectionBackground": "#E8E3D8",
+    "list.activeSelectionForeground": "#262626",
+    "list.hoverBackground": "#EFECE4",
+    "list.inactiveSelectionBackground": "#EFECE4",
+    "panel.background": "#EFECE4",
+    "panel.border": "#E0DBD0",
+    "terminal.background": "#F7F4ED",
+    "terminal.foreground": "#262626",
+    "focusBorder": "#C83C23",
+    "textLink.foreground": "#2B5F75",
+    "errorForeground": "#C83C23",
+    "editorWarning.foreground": "#B87314",
+    "editorError.foreground": "#C83C23",
+    "gitDecoration.addedResourceForeground": "#2E7D5B",
+    "gitDecoration.modifiedResourceForeground": "#C83C23",
+    "gitDecoration.deletedResourceForeground": "#C83C23"
+  },
+  "tokenColors": [
+    {
+      "scope": [
+        "comment",
+        "punctuation.definition.comment"
+      ],
+      "settings": {
+        "foreground": "#8A8377",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "scope": [
+        "keyword",
+        "storage.type",
+        "storage.modifier"
+      ],
+      "settings": {
+        "foreground": "#C83C23"
+      }
+    },
+    {
+      "scope": [
+        "entity.name.function",
+        "support.function"
+      ],
+      "settings": {
+        "foreground": "#2B5F75"
+      }
+    },
+    {
+      "scope": [
+        "entity.name.type",
+        "entity.name.class",
+        "support.class"
+      ],
+      "settings": {
+        "foreground": "#6B4C9A"
+      }
+    },
+    {
+      "scope": [
+        "string",
+        "punctuation.definition.string"
+      ],
+      "settings": {
+        "foreground": "#2E7D5B"
+      }
+    },
+    {
+      "scope": [
+        "constant.numeric",
+        "constant.language",
+        "constant.character"
+      ],
+      "settings": {
+        "foreground": "#B87314"
+      }
+    },
+    {
+      "scope": [
+        "variable",
+        "support.variable"
+      ],
+      "settings": {
+        "foreground": "#B87314"
+      }
+    },
+    {
+      "scope": [
+        "entity.name.tag",
+        "punctuation.definition.tag"
+      ],
+      "settings": {
+        "foreground": "#C83C23"
+      }
+    },
+    {
+      "scope": [
+        "entity.other.attribute-name"
+      ],
+      "settings": {
+        "foreground": "#2B5F75"
+      }
+    },
+    {
+      "scope": [
+        "keyword.operator"
+      ],
+      "settings": {
+        "foreground": "#8F4B28"
+      }
+    }
+  ]
+}

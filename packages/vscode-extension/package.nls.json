@@ -1,0 +1,7 @@
+{
+  "displayName": "Antigravity Skin & Chinese Localization Suite (反重力皮肤与汉化套件)",
+  "description": "12 designer Anti-Gravity themes + full Simplified Chinese / Bilingual UI localization for Antigravity & Antigravity IDE.",
+  "cmd.openStudio": "Open Skin & Chinese Localization Studio (打开反重力皮肤与汉化控制台)",
+  "cmd.switchSkin": "Switch Anti-Gravity Theme Skin (切换反重力主题皮肤)",
+  "cmd.switchLanguage": "Switch UI Language Mode (切换界面汉化模式: 中文/双语/英文)"
+}

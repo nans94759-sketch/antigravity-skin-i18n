@@ -1,0 +1,36 @@
+{
+  "name": "antigravity-skin-i18n",
+  "version": "1.0.0",
+  "description": "Google Antigravity (反重力) 主题皮肤与全量中文汉化插件套件 — 支持 Antigravity 2.0 桌面端、Antigravity IDE (.vsix) 与原生 Plugin/Skill，内置 12 款高定反重力皮肤、1100+ 词条无损实时汉化/双语对照与背景壁纸工坊",
+  "type": "module",
+  "bin": {
+    "agy-skin-i18n": "./bin/agy-skin-i18n.mjs"
+  },
+  "scripts": {
+    "build": "node ./src/runtime/build-runtime.mjs && node ./src/runtime/build-vscode-ext.mjs && node ./src/runtime/build-studio.mjs",
+    "test": "node ./tests/sandbox-test.mjs",
+    "sandbox-test": "node ./tests/sandbox-test.mjs",
+    "status": "node ./bin/agy-skin-i18n.mjs status",
+    "install-app": "node ./bin/agy-skin-i18n.mjs install",
+    "restore-app": "node ./bin/agy-skin-i18n.mjs restore",
+    "install-ide": "node ./bin/agy-skin-i18n.mjs install-ide",
+    "install-plugin": "node ./bin/agy-skin-i18n.mjs install-plugin",
+    "studio": "node ./bin/agy-skin-i18n.mjs studio"
+  },
+  "keywords": [
+    "antigravity",
+    "google-antigravity",
+    "agy",
+    "theme",
+    "skin",
+    "i18n",
+    "zh-CN",
+    "chinese",
+    "localization",
+    "反重力",
+    "汉化",
+    "皮肤插件"
+  ],
+  "author": "combob (nans94759-sketch)",
+  "license": "MIT"
+}

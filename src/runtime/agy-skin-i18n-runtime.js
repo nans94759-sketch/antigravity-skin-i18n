@@ -1,0 +1,3250 @@
+/**
+ * ============================================================================
+ * Antigravity Skin & Chinese Localization Runtime (反重力主题皮肤与全量汉化运行时引擎)
+ * Version: 1.0.0
+ * Supports:
+ *   - Google Antigravity 2.0 Desktop App (Electron preload / webContents injection)
+ *   - Antigravity IDE (Cascade Webview & Workbench)
+ *   - Standalone Browser Preview Studio
+ * ============================================================================
+ */
+(function () {
+  'use strict';
+
+  if (typeof window !== 'undefined' && window.__AGY_SKIN_I18N_LOADED__) {
+    return;
+  }
+  if (typeof window !== 'undefined') {
+    window.__AGY_SKIN_I18N_LOADED__ = true;
+  }
+
+  const STORAGE_KEY = 'antigravity.skin.i18n.config.v1';
+
+  const SKIN_PRESETS = [
+  {
+    "id": "nebula-zero-g",
+    "name": "深空反重力",
+    "nameEn": "Nebula Zero-G",
+    "category": "dark",
+    "badge": "旗舰推荐",
+    "description": "深邃宇宙靛蓝底色搭配悬浮星云毛玻璃卡片与极光青蓝高亮，专为沉浸式 AI 结对编程打造。",
+    "preview": {
+      "bg": "#090D16",
+      "sidebar": "#060911",
+      "card": "#111827",
+      "primary": "#38BDF8",
+      "accent": "#818CF8",
+      "text": "#E2E8F0"
+    },
+    "effects": {
+      "ambientBg": "radial-gradient(circle at 18% 12%, rgba(56, 189, 248, 0.10) 0%, transparent 42%), radial-gradient(circle at 85% 82%, rgba(129, 140, 248, 0.10) 0%, transparent 45%)",
+      "glassBlur": "16px",
+      "cardGlow": "0 8px 32px -4px rgba(2, 6, 23, 0.65), 0 0 0 1px rgba(56, 189, 248, 0.12)"
+    },
+    "tokens": {
+      "--background": "#090D16",
+      "--foreground": "#E2E8F0",
+      "--primary": "#38BDF8",
+      "--primary-foreground": "#030712",
+      "--secondary": "#1E293B",
+      "--secondary-foreground": "#94A3B8",
+      "--muted": "#0F172A",
+      "--muted-foreground": "#64748B",
+      "--placeholder": "#475569",
+      "--sidebar": "#060911",
+      "--sidebar-secondary": "#0F172A",
+      "--sidebar-muted": "#1E293B",
+      "--content": "#090D16",
+      "--card": "#111827",
+      "--card-border": "#1E293B",
+      "--border": "rgba(148, 163, 184, 0.14)",
+      "--accent": "#818CF8",
+      "--error": "#F87171",
+      "--warning": "#FBBF24",
+      "--link": "#38BDF8",
+      "--success": "#34D399",
+      "--code-foreground": "#7DD3FC",
+      "--syntax-default-fg": "#E2E8F0",
+      "--syntax-comment": "#64748B",
+      "--syntax-punctuation": "#94A3B8",
+      "--syntax-property": "#7DD3FC",
+      "--syntax-deleted": "#F87171",
+      "--syntax-inserted": "#34D399",
+      "--syntax-tag": "#F472B6",
+      "--syntax-constant": "#C084FC",
+      "--syntax-number": "#FBBF24",
+      "--syntax-string": "#6EE7B7",
+      "--syntax-attr-name": "#93C5FD",
+      "--syntax-builtin": "#38BDF8",
+      "--syntax-operator": "#818CF8",
+      "--syntax-variable": "#FDE047",
+      "--syntax-attr-value": "#6EE7B7",
+      "--syntax-keyword": "#C084FC",
+      "--syntax-function": "#38BDF8",
+      "--syntax-class-name": "#F472B6",
+      "--syntax-regex": "#FBBF24"
+    }
+  },
+  {
+    "id": "cyberpunk-neon",
+    "name": "赛博霓虹",
+    "nameEn": "Cyberpunk Matrix",
+    "category": "dark",
+    "badge": "高能炫酷",
+    "description": "暗夜黑曜石底色碰撞电光洋红与赛博青，微发光能量边框带来未来感十足的终端体验。",
+    "preview": {
+      "bg": "#08070F",
+      "sidebar": "#05040A",
+      "card": "#120F24",
+      "primary": "#FF2A85",
+      "accent": "#00F0FF",
+      "text": "#F0EEFF"
+    },
+    "effects": {
+      "ambientBg": "radial-gradient(circle at 12% 20%, rgba(255, 42, 133, 0.12) 0%, transparent 40%), radial-gradient(circle at 88% 78%, rgba(0, 240, 255, 0.11) 0%, transparent 42%)",
+      "glassBlur": "14px",
+      "cardGlow": "0 8px 28px -4px rgba(0, 0, 0, 0.75), 0 0 12px rgba(255, 42, 133, 0.16)"
+    },
+    "tokens": {
+      "--background": "#08070F",
+      "--foreground": "#F0EEFF",
+      "--primary": "#FF2A85",
+      "--primary-foreground": "#FFFFFF",
+      "--secondary": "#1B1636",
+      "--secondary-foreground": "#B8B2E6",
+      "--muted": "#100D22",
+      "--muted-foreground": "#7A72B0",
+      "--placeholder": "#564E8A",
+      "--sidebar": "#05040A",
+      "--sidebar-secondary": "#100D22",
+      "--sidebar-muted": "#1B1636",
+      "--content": "#08070F",
+      "--card": "#120F24",
+      "--card-border": "#2B2254",
+      "--border": "rgba(0, 240, 255, 0.18)",
+      "--accent": "#00F0FF",
+      "--error": "#FF3366",
+      "--warning": "#FFE600",
+      "--link": "#00F0FF",
+      "--success": "#00FF9D",
+      "--code-foreground": "#00F0FF",
+      "--syntax-default-fg": "#F0EEFF",
+      "--syntax-comment": "#6E66A6",
+      "--syntax-punctuation": "#A59CE0",
+      "--syntax-property": "#00F0FF",
+      "--syntax-deleted": "#FF3366",
+      "--syntax-inserted": "#00FF9D",
+      "--syntax-tag": "#FF2A85",
+      "--syntax-constant": "#BD93F9",
+      "--syntax-number": "#FFE600",
+      "--syntax-string": "#00FF9D",
+      "--syntax-attr-name": "#00F0FF",
+      "--syntax-builtin": "#FF79C6",
+      "--syntax-operator": "#FF2A85",
+      "--syntax-variable": "#FFE600",
+      "--syntax-attr-value": "#00FF9D",
+      "--syntax-keyword": "#FF2A85",
+      "--syntax-function": "#00F0FF",
+      "--syntax-class-name": "#FFE600",
+      "--syntax-regex": "#BD93F9"
+    }
+  },
+  {
+    "id": "aurora-glass",
+    "name": "极光琉璃",
+    "nameEn": "Aurora Glassmorphism",
+    "category": "dark",
+    "badge": "毛玻璃高透",
+    "description": "北欧极光翡翠绿与冰川蓝交织的通透毛玻璃界面，呼吸感十足，轻盈如失重悬浮。",
+    "preview": {
+      "bg": "#0A131A",
+      "sidebar": "#070E14",
+      "card": "#11212D",
+      "primary": "#10B981",
+      "accent": "#38BDF8",
+      "text": "#ECFDF5"
+    },
+    "effects": {
+      "ambientBg": "radial-gradient(circle at 20% 10%, rgba(16, 185, 129, 0.14) 0%, transparent 45%), radial-gradient(circle at 80% 85%, rgba(56, 189, 248, 0.12) 0%, transparent 45%)",
+      "glassBlur": "20px",
+      "cardGlow": "0 8px 32px -4px rgba(4, 12, 18, 0.7), 0 0 0 1px rgba(16, 185, 129, 0.16)"
+    },
+    "tokens": {
+      "--background": "#0A131A",
+      "--foreground": "#E6F4F1",
+      "--primary": "#10B981",
+      "--primary-foreground": "#022C22",
+      "--secondary": "#162B3A",
+      "--secondary-foreground": "#99C2B9",
+      "--muted": "#0E1C26",
+      "--muted-foreground": "#618985",
+      "--placeholder": "#436663",
+      "--sidebar": "#070E14",
+      "--sidebar-secondary": "#0E1C26",
+      "--sidebar-muted": "#162B3A",
+      "--content": "#0A131A",
+      "--card": "#11212D",
+      "--card-border": "#1E3A4C",
+      "--border": "rgba(52, 211, 153, 0.16)",
+      "--accent": "#38BDF8",
+      "--error": "#FB7185",
+      "--warning": "#FBBF24",
+      "--link": "#38BDF8",
+      "--success": "#34D399",
+      "--code-foreground": "#6EE7B7",
+      "--syntax-default-fg": "#E6F4F1",
+      "--syntax-comment": "#5E8582",
+      "--syntax-punctuation": "#8AB0AB",
+      "--syntax-property": "#38BDF8",
+      "--syntax-deleted": "#FB7185",
+      "--syntax-inserted": "#34D399",
+      "--syntax-tag": "#34D399",
+      "--syntax-constant": "#A78BFA",
+      "--syntax-number": "#FBBF24",
+      "--syntax-string": "#6EE7B7",
+      "--syntax-attr-name": "#7DD3FC",
+      "--syntax-builtin": "#2DD4BF",
+      "--syntax-operator": "#38BDF8",
+      "--syntax-variable": "#FDE047",
+      "--syntax-attr-value": "#6EE7B7",
+      "--syntax-keyword": "#2DD4BF",
+      "--syntax-function": "#38BDF8",
+      "--syntax-class-name": "#A78BFA",
+      "--syntax-regex": "#FBBF24"
+    }
+  },
+  {
+    "id": "tokyo-night",
+    "name": "东京夜色",
+    "nameEn": "Tokyo Night Pro",
+    "category": "dark",
+    "badge": "极客最爱",
+    "description": "致敬经典 Tokyo Night 风暴蓝紫配色，低对比度柔和语法高亮，深夜长效编码不伤眼。",
+    "preview": {
+      "bg": "#1A1B26",
+      "sidebar": "#16161E",
+      "card": "#24283B",
+      "primary": "#7AA2F7",
+      "accent": "#BB9AF7",
+      "text": "#C0CAF5"
+    },
+    "effects": {
+      "ambientBg": "radial-gradient(circle at 80% 15%, rgba(122, 162, 247, 0.08) 0%, transparent 45%)",
+      "glassBlur": "12px",
+      "cardGlow": "0 4px 20px rgba(0, 0, 0, 0.45)"
+    },
+    "tokens": {
+      "--background": "#1A1B26",
+      "--foreground": "#C0CAF5",
+      "--primary": "#7AA2F7",
+      "--primary-foreground": "#15161E",
+      "--secondary": "#292E42",
+      "--secondary-foreground": "#A9B1D6",
+      "--muted": "#1F2335",
+      "--muted-foreground": "#565F89",
+      "--placeholder": "#414868",
+      "--sidebar": "#16161E",
+      "--sidebar-secondary": "#1F2335",
+      "--sidebar-muted": "#292E42",
+      "--content": "#1A1B26",
+      "--card": "#24283B",
+      "--card-border": "#3B4261",
+      "--border": "rgba(169, 177, 214, 0.14)",
+      "--accent": "#BB9AF7",
+      "--error": "#F7768E",
+      "--warning": "#E0AF68",
+      "--link": "#7DCFFF",
+      "--success": "#9ECE6A",
+      "--code-foreground": "#FF9E64",
+      "--syntax-default-fg": "#C0CAF5",
+      "--syntax-comment": "#565F89",
+      "--syntax-punctuation": "#89DDFF",
+      "--syntax-property": "#73DACA",
+      "--syntax-deleted": "#F7768E",
+      "--syntax-inserted": "#9ECE6A",
+      "--syntax-tag": "#F7768E",
+      "--syntax-constant": "#FF9E64",
+      "--syntax-number": "#FF9E64",
+      "--syntax-string": "#9ECE6A",
+      "--syntax-attr-name": "#BB9AF7",
+      "--syntax-builtin": "#2AC3DE",
+      "--syntax-operator": "#89DDFF",
+      "--syntax-variable": "#E0AF68",
+      "--syntax-attr-value": "#9ECE6A",
+      "--syntax-keyword": "#BB9AF7",
+      "--syntax-function": "#7AA2F7",
+      "--syntax-class-name": "#2AC3DE",
+      "--syntax-regex": "#B4F9F8"
+    }
+  },
+  {
+    "id": "catppuccin-mocha",
+    "name": "猫爪摩卡",
+    "nameEn": "Catppuccin Mocha",
+    "category": "dark",
+    "badge": "温润舒适",
+    "description": "温暖丝滑的摩卡可可暗色调搭配薰衣草紫与奶油蜜桃色，兼顾颜值与长时间阅读舒适度。",
+    "preview": {
+      "bg": "#1E1E2E",
+      "sidebar": "#181825",
+      "card": "#313244",
+      "primary": "#CBA6F7",
+      "accent": "#89B4FA",
+      "text": "#CDD6F4"
+    },
+    "effects": {
+      "ambientBg": "radial-gradient(circle at 25% 15%, rgba(203, 166, 247, 0.08) 0%, transparent 45%)",
+      "glassBlur": "12px",
+      "cardGlow": "0 4px 20px rgba(17, 17, 27, 0.5)"
+    },
+    "tokens": {
+      "--background": "#1E1E2E",
+      "--foreground": "#CDD6F4",
+      "--primary": "#CBA6F7",
+      "--primary-foreground": "#11111B",
+      "--secondary": "#313244",
+      "--secondary-foreground": "#BAC2DE",
+      "--muted": "#181825",
+      "--muted-foreground": "#6C7086",
+      "--placeholder": "#585B70",
+      "--sidebar": "#181825",
+      "--sidebar-secondary": "#1E1E2E",
+      "--sidebar-muted": "#313244",
+      "--content": "#1E1E2E",
+      "--card": "#313244",
+      "--card-border": "#45475A",
+      "--border": "rgba(205, 214, 244, 0.13)",
+      "--accent": "#89B4FA",
+      "--error": "#F38BA8",
+      "--warning": "#F9E2AF",
+      "--link": "#89B4FA",
+      "--success": "#A6E3A1",
+      "--code-foreground": "#FAB387",
+      "--syntax-default-fg": "#CDD6F4",
+      "--syntax-comment": "#6C7086",
+      "--syntax-punctuation": "#9399B2",
+      "--syntax-property": "#89DCEB",
+      "--syntax-deleted": "#F38BA8",
+      "--syntax-inserted": "#A6E3A1",
+      "--syntax-tag": "#CBA6F7",
+      "--syntax-constant": "#FAB387",
+      "--syntax-number": "#FAB387",
+      "--syntax-string": "#A6E3A1",
+      "--syntax-attr-name": "#F9E2AF",
+      "--syntax-builtin": "#F38BA8",
+      "--syntax-operator": "#89DCEB",
+      "--syntax-variable": "#F5E0DC",
+      "--syntax-attr-value": "#A6E3A1",
+      "--syntax-keyword": "#CBA6F7",
+      "--syntax-function": "#89B4FA",
+      "--syntax-class-name": "#F9E2AF",
+      "--syntax-regex": "#F5C2E7"
+    }
+  },
+  {
+    "id": "morandi-forest",
+    "name": "莫兰迪森系",
+    "nameEn": "Morandi Emerald",
+    "category": "dark",
+    "badge": "深度护眼",
+    "description": "低饱和度松针墨绿与苔藓灰绿交融，辅以暖羊皮纸文字，极大缓解视觉疲劳。",
+    "preview": {
+      "bg": "#101815",
+      "sidebar": "#0B110F",
+      "card": "#182420",
+      "primary": "#52B788",
+      "accent": "#95D5B2",
+      "text": "#E8F0EC"
+    },
+    "effects": {
+      "ambientBg": "radial-gradient(circle at 15% 20%, rgba(82, 183, 136, 0.09) 0%, transparent 45%)",
+      "glassBlur": "14px",
+      "cardGlow": "0 6px 24px rgba(5, 10, 8, 0.55)"
+    },
+    "tokens": {
+      "--background": "#101815",
+      "--foreground": "#E8F0EC",
+      "--primary": "#52B788",
+      "--primary-foreground": "#081C15",
+      "--secondary": "#20302A",
+      "--secondary-foreground": "#B7CEC4",
+      "--muted": "#141E1A",
+      "--muted-foreground": "#708C80",
+      "--placeholder": "#4E665C",
+      "--sidebar": "#0B110F",
+      "--sidebar-secondary": "#141E1A",
+      "--sidebar-muted": "#20302A",
+      "--content": "#101815",
+      "--card": "#182420",
+      "--card-border": "#293D36",
+      "--border": "rgba(149, 213, 178, 0.14)",
+      "--accent": "#95D5B2",
+      "--error": "#E07A5F",
+      "--warning": "#E9C46A",
+      "--link": "#74C69D",
+      "--success": "#52B788",
+      "--code-foreground": "#E9C46A",
+      "--syntax-default-fg": "#E8F0EC",
+      "--syntax-comment": "#6A877B",
+      "--syntax-punctuation": "#9AB5A9",
+      "--syntax-property": "#74C69D",
+      "--syntax-deleted": "#E07A5F",
+      "--syntax-inserted": "#52B788",
+      "--syntax-tag": "#E07A5F",
+      "--syntax-constant": "#E9C46A",
+      "--syntax-number": "#F4A261",
+      "--syntax-string": "#95D5B2",
+      "--syntax-attr-name": "#E9C46A",
+      "--syntax-builtin": "#52B788",
+      "--syntax-operator": "#74C69D",
+      "--syntax-variable": "#F4A261",
+      "--syntax-attr-value": "#95D5B2",
+      "--syntax-keyword": "#52B788",
+      "--syntax-function": "#74C69D",
+      "--syntax-class-name": "#E9C46A",
+      "--syntax-regex": "#F4A261"
+    }
+  },
+  {
+    "id": "obsidian-gold",
+    "name": "黑金尊享",
+    "nameEn": "Obsidian Champagne Gold",
+    "category": "dark",
+    "badge": "奢华质感",
+    "description": "碳纤黑丝绒质感机身搭配香槟流金高亮，沉稳内敛的旗舰商务美学。",
+    "preview": {
+      "bg": "#0E0E10",
+      "sidebar": "#09090B",
+      "card": "#18181C",
+      "primary": "#D4AF37",
+      "accent": "#F3E5AB",
+      "text": "#F4F4F6"
+    },
+    "effects": {
+      "ambientBg": "radial-gradient(circle at 80% 10%, rgba(212, 175, 55, 0.09) 0%, transparent 40%)",
+      "glassBlur": "14px",
+      "cardGlow": "0 6px 26px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(212, 175, 55, 0.14)"
+    },
+    "tokens": {
+      "--background": "#0E0E10",
+      "--foreground": "#F4F4F6",
+      "--primary": "#D4AF37",
+      "--primary-foreground": "#111111",
+      "--secondary": "#242429",
+      "--secondary-foreground": "#C8C5BC",
+      "--muted": "#141417",
+      "--muted-foreground": "#7E7C75",
+      "--placeholder": "#57554F",
+      "--sidebar": "#09090B",
+      "--sidebar-secondary": "#141417",
+      "--sidebar-muted": "#242429",
+      "--content": "#0E0E10",
+      "--card": "#18181C",
+      "--card-border": "#2E2C26",
+      "--border": "rgba(212, 175, 55, 0.16)",
+      "--accent": "#E5C158",
+      "--error": "#E5534B",
+      "--warning": "#D4AF37",
+      "--link": "#E5C158",
+      "--success": "#6BC46D",
+      "--code-foreground": "#F3E5AB",
+      "--syntax-default-fg": "#F4F4F6",
+      "--syntax-comment": "#78756E",
+      "--syntax-punctuation": "#A8A49B",
+      "--syntax-property": "#E5C158",
+      "--syntax-deleted": "#E5534B",
+      "--syntax-inserted": "#6BC46D",
+      "--syntax-tag": "#E07A5F",
+      "--syntax-constant": "#F3E5AB",
+      "--syntax-number": "#D4AF37",
+      "--syntax-string": "#A3BE8C",
+      "--syntax-attr-name": "#EBCB8B",
+      "--syntax-builtin": "#D4AF37",
+      "--syntax-operator": "#E5C158",
+      "--syntax-variable": "#F3E5AB",
+      "--syntax-attr-value": "#A3BE8C",
+      "--syntax-keyword": "#D4AF37",
+      "--syntax-function": "#E5C158",
+      "--syntax-class-name": "#F3E5AB",
+      "--syntax-regex": "#D08770"
+    }
+  },
+  {
+    "id": "retro-amber",
+    "name": "复古琥珀终端",
+    "nameEn": "Retro CRT Amber",
+    "category": "dark",
+    "badge": "复古极客",
+    "description": "致敬 80 年代 IBM 琥珀磷光显像管终端，温暖复古的纯正 Hacker 氛围。",
+    "preview": {
+      "bg": "#120D07",
+      "sidebar": "#0C0804",
+      "card": "#1C140B",
+      "primary": "#FFB000",
+      "accent": "#FFCC66",
+      "text": "#FFD885"
+    },
+    "effects": {
+      "ambientBg": "radial-gradient(circle at 50% 25%, rgba(255, 176, 0, 0.08) 0%, transparent 55%)",
+      "glassBlur": "8px",
+      "cardGlow": "0 0 18px rgba(255, 176, 0, 0.12)"
+    },
+    "tokens": {
+      "--background": "#120D07",
+      "--foreground": "#FFD885",
+      "--primary": "#FFB000",
+      "--primary-foreground": "#140E05",
+      "--secondary": "#291E10",
+      "--secondary-foreground": "#E0B45C",
+      "--muted": "#171109",
+      "--muted-foreground": "#99732C",
+      "--placeholder": "#6E501A",
+      "--sidebar": "#0C0804",
+      "--sidebar-secondary": "#171109",
+      "--sidebar-muted": "#291E10",
+      "--content": "#120D07",
+      "--card": "#1C140B",
+      "--card-border": "#3D2C16",
+      "--border": "rgba(255, 176, 0, 0.2)",
+      "--accent": "#FFCC66",
+      "--error": "#FF5F56",
+      "--warning": "#FFB000",
+      "--link": "#FFCC66",
+      "--success": "#A8E063",
+      "--code-foreground": "#FFB000",
+      "--syntax-default-fg": "#FFD885",
+      "--syntax-comment": "#8C6723",
+      "--syntax-punctuation": "#CCA047",
+      "--syntax-property": "#FFCC66",
+      "--syntax-deleted": "#FF5F56",
+      "--syntax-inserted": "#A8E063",
+      "--syntax-tag": "#FF8C42",
+      "--syntax-constant": "#FFB000",
+      "--syntax-number": "#FFB000",
+      "--syntax-string": "#FFE099",
+      "--syntax-attr-name": "#FFCC66",
+      "--syntax-builtin": "#FFB000",
+      "--syntax-operator": "#FF8C42",
+      "--syntax-variable": "#FFD885",
+      "--syntax-attr-value": "#FFE099",
+      "--syntax-keyword": "#FF8C42",
+      "--syntax-function": "#FFB000",
+      "--syntax-class-name": "#FFCC66",
+      "--syntax-regex": "#FF8C42"
+    }
+  },
+  {
+    "id": "oriental-ink",
+    "name": "东方水墨·宣纸",
+    "nameEn": "Oriental Ink & Rice Paper",
+    "category": "light",
+    "badge": "国风浅色",
+    "description": "宋式温润宣纸底色配松烟墨字与朱砂印泥红点缀，书卷气十足的日间阅读与创作体验。",
+    "preview": {
+      "bg": "#F7F4ED",
+      "sidebar": "#EFECE4",
+      "card": "#FFFFFF",
+      "primary": "#C83C23",
+      "accent": "#2B5F75",
+      "text": "#262626"
+    },
+    "effects": {
+      "ambientBg": "radial-gradient(circle at 85% 12%, rgba(200, 60, 35, 0.05) 0%, transparent 45%), radial-gradient(circle at 12% 85%, rgba(43, 95, 117, 0.05) 0%, transparent 45%)",
+      "glassBlur": "12px",
+      "cardGlow": "0 4px 16px rgba(43, 38, 30, 0.06)"
+    },
+    "tokens": {
+      "--background": "#F7F4ED",
+      "--foreground": "#262626",
+      "--primary": "#C83C23",
+      "--primary-foreground": "#FFFFFF",
+      "--secondary": "#E8E3D8",
+      "--secondary-foreground": "#4A463F",
+      "--muted": "#EFECE4",
+      "--muted-foreground": "#787267",
+      "--placeholder": "#9E978B",
+      "--sidebar": "#EFECE4",
+      "--sidebar-secondary": "#E6E1D5",
+      "--sidebar-muted": "#DDD7C8",
+      "--content": "#F7F4ED",
+      "--card": "#FCFBF8",
+      "--card-border": "#E0DBD0",
+      "--border": "rgba(38, 38, 38, 0.10)",
+      "--accent": "#2B5F75",
+      "--error": "#C83C23",
+      "--warning": "#B87314",
+      "--link": "#2B5F75",
+      "--success": "#2E7D5B",
+      "--code-foreground": "#9E2A2B",
+      "--syntax-default-fg": "#262626",
+      "--syntax-comment": "#8A8377",
+      "--syntax-punctuation": "#5C574F",
+      "--syntax-property": "#2B5F75",
+      "--syntax-deleted": "#C83C23",
+      "--syntax-inserted": "#2E7D5B",
+      "--syntax-tag": "#C83C23",
+      "--syntax-constant": "#8F4B28",
+      "--syntax-number": "#B87314",
+      "--syntax-string": "#2E7D5B",
+      "--syntax-attr-name": "#2B5F75",
+      "--syntax-builtin": "#6B4C9A",
+      "--syntax-operator": "#8F4B28",
+      "--syntax-variable": "#B87314",
+      "--syntax-attr-value": "#2E7D5B",
+      "--syntax-keyword": "#C83C23",
+      "--syntax-function": "#2B5F75",
+      "--syntax-class-name": "#6B4C9A",
+      "--syntax-regex": "#B87314"
+    }
+  },
+  {
+    "id": "sakura-breeze",
+    "name": "樱花微风",
+    "nameEn": "Sakura Breeze",
+    "category": "light",
+    "badge": "清新浅色",
+    "description": "春日柔光象牙白与樱花粉渐变卡片，轻柔明亮，让高强度工作也拥有好心情。",
+    "preview": {
+      "bg": "#FDF8FA",
+      "sidebar": "#F8EFF3",
+      "card": "#FFFFFF",
+      "primary": "#E14D7B",
+      "accent": "#9B5DE5",
+      "text": "#3B2830"
+    },
+    "effects": {
+      "ambientBg": "radial-gradient(circle at 20% 15%, rgba(225, 77, 123, 0.07) 0%, transparent 45%)",
+      "glassBlur": "14px",
+      "cardGlow": "0 4px 18px rgba(225, 77, 123, 0.08)"
+    },
+    "tokens": {
+      "--background": "#FDF8FA",
+      "--foreground": "#3B2830",
+      "--primary": "#E14D7B",
+      "--primary-foreground": "#FFFFFF",
+      "--secondary": "#F4E5EC",
+      "--secondary-foreground": "#694A57",
+      "--muted": "#F8EFF3",
+      "--muted-foreground": "#8F6D7B",
+      "--placeholder": "#B596A3",
+      "--sidebar": "#F8EFF3",
+      "--sidebar-secondary": "#F2E2E9",
+      "--sidebar-muted": "#EBD5DF",
+      "--content": "#FDF8FA",
+      "--card": "#FFFFFF",
+      "--card-border": "#F0D9E3",
+      "--border": "rgba(225, 77, 123, 0.14)",
+      "--accent": "#9B5DE5",
+      "--error": "#E11D48",
+      "--warning": "#D97706",
+      "--link": "#D6336C",
+      "--success": "#059669",
+      "--code-foreground": "#C026D3",
+      "--syntax-default-fg": "#3B2830",
+      "--syntax-comment": "#9E7B89",
+      "--syntax-punctuation": "#785664",
+      "--syntax-property": "#0284C7",
+      "--syntax-deleted": "#E11D48",
+      "--syntax-inserted": "#059669",
+      "--syntax-tag": "#E14D7B",
+      "--syntax-constant": "#9333EA",
+      "--syntax-number": "#D97706",
+      "--syntax-string": "#059669",
+      "--syntax-attr-name": "#0284C7",
+      "--syntax-builtin": "#9333EA",
+      "--syntax-operator": "#E14D7B",
+      "--syntax-variable": "#D97706",
+      "--syntax-attr-value": "#059669",
+      "--syntax-keyword": "#E14D7B",
+      "--syntax-function": "#7C3AED",
+      "--syntax-class-name": "#0284C7",
+      "--syntax-regex": "#D97706"
+    }
+  },
+  {
+    "id": "cupertino-light",
+    "name": "果味极简·云母白",
+    "nameEn": "Cupertino Studio Light",
+    "category": "light",
+    "badge": "macOS 原生感",
+    "description": "遵循 Apple HIG 视觉规范的云母暖灰白与经典系统蓝，干净利落，层次分明。",
+    "preview": {
+      "bg": "#F5F5F7",
+      "sidebar": "#EBEBED",
+      "card": "#FFFFFF",
+      "primary": "#0066CC",
+      "accent": "#5856D6",
+      "text": "#1D1D1F"
+    },
+    "effects": {
+      "ambientBg": "none",
+      "glassBlur": "16px",
+      "cardGlow": "0 2px 12px rgba(0, 0, 0, 0.05)"
+    },
+    "tokens": {
+      "--background": "#F5F5F7",
+      "--foreground": "#1D1D1F",
+      "--primary": "#0066CC",
+      "--primary-foreground": "#FFFFFF",
+      "--secondary": "#E5E5EA",
+      "--secondary-foreground": "#3A3A3C",
+      "--muted": "#EBEBED",
+      "--muted-foreground": "#6E6E73",
+      "--placeholder": "#8E8E93",
+      "--sidebar": "#EBEBED",
+      "--sidebar-secondary": "#E2E2E7",
+      "--sidebar-muted": "#D8D8DE",
+      "--content": "#F5F5F7",
+      "--card": "#FFFFFF",
+      "--card-border": "#E0E0E5",
+      "--border": "rgba(0, 0, 0, 0.09)",
+      "--accent": "#5856D6",
+      "--error": "#FF3B30",
+      "--warning": "#FF9500",
+      "--link": "#0066CC",
+      "--success": "#28CD41",
+      "--code-foreground": "#AF52DE",
+      "--syntax-default-fg": "#1D1D1F",
+      "--syntax-comment": "#707F8D",
+      "--syntax-punctuation": "#48484A",
+      "--syntax-property": "#0066CC",
+      "--syntax-deleted": "#FF3B30",
+      "--syntax-inserted": "#28CD41",
+      "--syntax-tag": "#AF52DE",
+      "--syntax-constant": "#5856D6",
+      "--syntax-number": "#D16D00",
+      "--syntax-string": "#1A7F37",
+      "--syntax-attr-name": "#0066CC",
+      "--syntax-builtin": "#5856D6",
+      "--syntax-operator": "#CF222E",
+      "--syntax-variable": "#953800",
+      "--syntax-attr-value": "#1A7F37",
+      "--syntax-keyword": "#AF52DE",
+      "--syntax-function": "#0066CC",
+      "--syntax-class-name": "#5856D6",
+      "--syntax-regex": "#D16D00"
+    }
+  },
+  {
+    "id": "native-default",
+    "name": "原生经典",
+    "nameEn": "Antigravity Native",
+    "category": "dark",
+    "badge": "官方原版",
+    "description": "保持 Antigravity 官方默认深/浅色外观，仅开启全量中文汉化或自定义背景壁纸。",
+    "preview": {
+      "bg": "#101010",
+      "sidebar": "#151515",
+      "card": "#191919",
+      "primary": "#007ACC",
+      "accent": "#007ACC",
+      "text": "#CCCCCC"
+    },
+    "effects": {
+      "ambientBg": "none",
+      "glassBlur": "0px",
+      "cardGlow": "none"
+    },
+    "tokens": {}
+  }
+];
+
+  const EXACT_DICT = {
+  "New Conversation": "新建对话",
+  "New conversation": "新建对话",
+  "New Window": "新建窗口",
+  "New Editor Window": "新建编辑器窗口",
+  "New Tab": "新建标签页",
+  "New Terminal": "新建终端",
+  "New Terminal Tab": "新建终端标签页",
+  "New Project": "新建项目",
+  "New Workspace": "新建工作区",
+  "New Group": "新建分组",
+  "New Automation": "新建自动化任务",
+  "New Agent Script": "新建智能体脚本",
+  "New Worktree": "新建工作树 (Worktree)",
+  "New worktree": "新建工作树",
+  "Conversations": "对话列表",
+  "Conversation": "对话",
+  "Pinned Conversations": "置顶对话",
+  "Projects": "项目空间",
+  "Project": "项目",
+  "Workspaces": "工作区",
+  "Workspace": "工作区",
+  "All Workspaces": "全部工作区",
+  "Current workspace": "当前工作区",
+  "Scheduled Tasks": "定时任务",
+  "Automations": "自动化任务",
+  "Automation": "自动化",
+  "Skills & Customizations": "技能与扩展定制",
+  "Customizations & Skills": "扩展定制与技能",
+  "Skills & Rules": "技能与规则",
+  "Customizations": "扩展定制",
+  "Skills": "技能库 (Skills)",
+  "Skill": "技能",
+  "Plugins": "插件中心 (Plugins)",
+  "Rules": "规则 (Rules)",
+  "Hooks": "生命周期钩子 (Hooks)",
+  "MCP Servers": "MCP 服务",
+  "MCP servers": "MCP 服务",
+  "MCP Tools": "MCP 工具",
+  "MCP": "MCP 协议",
+  "Subagents": "子智能体 (Subagents)",
+  "Agents": "智能体 (Agents)",
+  "Custom Agents": "自定义智能体",
+  "Background Tasks": "后台任务",
+  "Artifacts": "产物文档 (Artifacts)",
+  "Files Changed": "文件变更",
+  "Modified Files": "已修改文件",
+  "Recent Files": "最近文件",
+  "Recent files": "最近文件",
+  "Files": "文件",
+  "File": "文件",
+  "Folder": "文件夹",
+  "Terminals": "终端列表",
+  "Terminal": "终端",
+  "Standalone Terminals": "独立终端",
+  "Browser": "内置浏览器",
+  "Marketplace": "插件市场",
+  "Settings": "设置中心",
+  "Open Settings": "打开设置",
+  "Close Settings": "关闭设置",
+  "Account": "账户与配额",
+  "General": "常规设置",
+  "Appearance": "外观与视觉",
+  "Editor Settings": "编辑器设置",
+  "Chat Settings": "对话设置",
+  "Permission Settings": "权限设置",
+  "Permissions": "权限管理",
+  "Global Permissions": "全局权限",
+  "Local Permissions": "本地权限",
+  "Notification Preferences": "通知偏好设置",
+  "Notification Settings": "通知设置",
+  "Notifications": "系统通知",
+  "Shortcuts": "键盘快捷键",
+  "Keyboard shortcuts": "键盘快捷键",
+  "Open Keyboard Shortcuts": "打开键盘快捷键",
+  "Application": "应用程序",
+  "Developer": "开发者选项",
+  "Advanced": "高级选项",
+  "Advanced Settings": "高级设置",
+  "Danger Zone": "危险操作区",
+  "About": "关于 Antigravity",
+  "Version Info": "版本信息",
+  "Version": "版本",
+  "App version": "应用版本",
+  "Changelog": "更新日志",
+  "Open Changelog": "打开更新日志",
+  "Docs": "官方文档",
+  "View documentation": "查看文档",
+  "Click to Open Docs": "点击打开文档",
+  "Provide Feedback": "提交反馈",
+  "Send Feedback": "发送反馈",
+  "Feedback": "意见反馈",
+  "Command Palette": "命令面板",
+  "Open Command Palette": "打开命令面板",
+  "Command Center": "命令中心",
+  "Chief of Staff": "幕僚长 (Chief of Staff)",
+  "Chief of Staff Dashboard": "幕僚长控制台",
+  "Welcome to your Chief of Staff": "欢迎使用幕僚长总控台",
+  "Model Selection": "模型选择",
+  "Select Model": "选择模型",
+  "Select another model": "选择其他模型",
+  "Select Model to Send Message": "选择发送消息所使用的模型",
+  "No Model Selected": "未选择模型",
+  "No Models Available": "暂无可用模型",
+  "No models available": "暂无可用模型",
+  "Edit Model": "编辑模型",
+  "Model": "模型",
+  "Model Quota": "模型配额",
+  "Model Credits": "模型积分额度",
+  "Quota": "配额",
+  "Usage": "用量统计",
+  "View Usage": "查看用量",
+  "Token Usage": "Token 用量",
+  "Tokens": "Tokens",
+  "Purchase Credits": "购买额度",
+  "Enable AI Credit Overages": "启用 AI 额度超额计费",
+  "Enable Overages": "允许超额使用",
+  "Pay As You Go": "按量付费",
+  "Insufficient AI Credits": "AI 积分额度不足",
+  "Model quota reached": "已达模型配额上限",
+  "Baseline model quota reached": "已达基础模型配额上限",
+  "Refresh quota and credits data": "刷新配额与积分数据",
+  "Theme": "主题模式",
+  "Dark Theme": "深色主题",
+  "Light Theme": "浅色主题",
+  "Toggle Between Light/Dark Themes": "切换深色/浅色主题",
+  "Contrast": "对比度",
+  "Accent": "强调色",
+  "Background": "背景色",
+  "Foreground": "前景色",
+  "Color": "颜色",
+  "Display": "显示设置",
+  "Display Options": "显示选项",
+  "Conversation Width": "对话面板宽度",
+  "Markdown Artifact Width": "Markdown 产物文档宽度",
+  "Narrow": "紧凑 (Narrow)",
+  "Default": "默认 (Default)",
+  "Wide": "宽屏 (Wide)",
+  "Fill": "铺满 (Fill)",
+  "Verbose Agent Chat": "显示详细思考过程",
+  "Custom Context Menus": "自定义右键快捷菜单",
+  "Inline Actions": "行内悬浮快捷操作",
+  "Auto-Expand Changes Overview": "自动展开变更总览栏",
+  "Auto-Open Edited Files": "自动在后台打开被编辑文件",
+  "Open Agent on Reload": "重载窗口时自动打开智能体面板",
+  "Agent Behavior": "智能体行为",
+  "Agent security mode": "智能体安全模式",
+  "Security Preset": "安全预设等级",
+  "Permission Preset": "权限预设方案",
+  "Tool Execution Policy": "工具执行策略",
+  "Tool Execution": "工具执行",
+  "Tool Permissions": "工具权限",
+  "Terminal & Tooling Permissions": "终端与工具权限",
+  "Terminal Command Auto Execution": "终端命令自动执行策略",
+  "Terminal Commands": "终端命令",
+  "Allow List Terminal Commands": "终端命令白名单 (Allowlist)",
+  "Deny List Terminal Commands": "终端命令黑名单 (Denylist)",
+  "Commands Outside Sandbox": "沙箱外命令执行权限",
+  "Enable Terminal Sandbox": "启用终端安全沙箱",
+  "Enable Sandbox Mode (Preview)": "启用沙箱模式 (预览版)",
+  "Sandbox Allow Network": "允许沙箱内访问网络",
+  "Sandboxed": "已沙箱隔离",
+  "Enable Shell Integration": "启用 Shell 终端集成",
+  "Command Setup Script": "命令前置初始化脚本",
+  "Agent Non-Workspace File Access": "非工作区文件访问策略",
+  "Outside of folders file access policy": "工作区外部文件访问策略",
+  "Workspace File Access": "工作区文件访问",
+  "Workspace Command Access": "工作区命令访问",
+  "Workspace Web Access": "工作区网络访问",
+  "File Access": "文件访问",
+  "File Access Rules": "文件访问规则",
+  "File Permissions": "文件权限",
+  "File Reads": "文件读取",
+  "File Writes": "文件写入",
+  "Read Files": "读取文件",
+  "Write Files": "写入文件",
+  "Network Access Rules": "网络访问规则",
+  "Network Permissions": "网络权限",
+  "Read URLs": "读取网页链接",
+  "Execute URLs": "执行网页操作",
+  "Enable Browser Tools": "启用内置浏览器工具",
+  "Browser Javascript Execution Policy": "浏览器 JS 脚本执行策略",
+  "Browser Actuation Rules": "浏览器自动化操控规则",
+  "Browser Actuation Permissions": "浏览器自动化权限",
+  "Chrome Binary Path": "Chrome 浏览器可执行文件路径",
+  "Browser User Profile Path": "浏览器用户配置目录路径",
+  "Browser CDP Port": "浏览器 CDP 远程调试端口",
+  "Artifact Review Policy": "产物文档审阅策略",
+  "Plan Review Policy": "计划审阅策略",
+  "Review Policy": "审阅策略",
+  "Always Proceed": "始终自动执行 (Always Proceed)",
+  "Always Allow": "始终允许 (Always Allow)",
+  "Always Ask": "每次询问 (Always Ask)",
+  "Always run": "始终运行",
+  "Request Review": "请求人工审阅 (Request Review)",
+  "Require Review": "需要人工审阅",
+  "Proceed in Sandbox": "在安全沙箱中执行",
+  "Ask first": "先询问我",
+  "Allow": "允许",
+  "Allow Once": "允许一次",
+  "Allow once": "允许一次",
+  "Deny": "拒绝",
+  "Block": "拦截",
+  "Blocked": "已拦截",
+  "Disabled": "已禁用",
+  "Strict": "严格模式 (Strict)",
+  "Strict Mode": "严格安全模式",
+  "Turbo": "极速自动模式 (Turbo)",
+  "Autonomous Mode": "全自主运行模式 (Autonomous)",
+  "Inherit Global": "继承全局设置",
+  "Full access": "完全访问权限",
+  "Read access": "只读访问权限",
+  "Tab": "Tab 补全",
+  "Suggestions in Editor": "编辑器内联代码补全建议",
+  "Tab to Jump": "Tab 预测跳转下一编辑点",
+  "Tab to Import": "Tab 自动补充导入语句",
+  "Tab Speed": "Tab 补全响应速度",
+  "Highlight After Accept": "采纳补全后高亮新插入文本",
+  "Tab Gitignore Access": "允许 Tab 补全访问 .gitignore 文件",
+  "Show Selection Actions": "选中文本时显示快捷操作浮窗",
+  "Selection Actions": "选区快捷操作",
+  "Agent Auto-Fix Lints": "智能体自动修复 Lint 报错",
+  "Fast": "快速 (Fast)",
+  "Slow": "标准 (Slow)",
+  "Prevent Sleep": "运行时防止电脑休眠",
+  "Keep In Menu Bar": "关闭窗口后保留在菜单栏后台运行",
+  "Automatic Check for Updates": "自动检查版本更新",
+  "Check for Updates": "检查更新",
+  "Update Available": "发现新版本",
+  "Downloading Update": "正在下载更新...",
+  "Installing Update": "正在安装更新...",
+  "Install Update": "安装更新",
+  "Restart to Update": "重启以完成更新",
+  "Enable Notifications for Agent": "启用智能体任务完成系统通知",
+  "Enable Notifications": "启用系统通知",
+  "Enable Sounds for Agent": "启用智能体完成提示音",
+  "Sound": "提示音",
+  "Volume": "音量大小",
+  "Enable Remote Control": "启用远程控制 (Remote Control)",
+  "Remote Control": "远程控制",
+  "Nickname": "设备昵称",
+  "Device Name": "设备名称",
+  "Enable Telemetry": "启用遥测数据统计",
+  "Telemetry": "遥测统计",
+  "Conversation History": "历史对话记忆",
+  "Include Jetski Default Customizations": "包含内置默认技能与扩展",
+  "Default Customizations": "默认扩展定制",
+  "Customize Global Skills": "自定义全局技能",
+  "Skill Custom Paths": "技能自定义加载路径",
+  "Pick a suggestion below to get started, or ask me anything.": "在下方选择一个建议快速开始，或直接向我提问任何问题。",
+  "Build new features": "开发新功能特性",
+  "Debug and fix": "调试与修复 Bug",
+  "Research anything": "深度调研任何课题",
+  "Write and edit docs": "撰写与润色文档",
+  "Thinking": "深度思考中",
+  "Thinking...": "正在思考...",
+  "Exploring": "正在探索代码库",
+  "Planning": "正在规划方案",
+  "Running": "正在运行",
+  "Running command": "正在执行命令",
+  "Starting": "正在启动",
+  "Stopped": "已停止",
+  "Agent Stopped": "智能体已停止",
+  "Completed": "已完成",
+  "Skipped": "已跳过",
+  "Pending": "等待中",
+  "Waiting": "等待响应",
+  "Canceling": "正在取消",
+  "Errored": "执行出错",
+  "Error": "错误",
+  "Errors": "错误列表",
+  "Ready": "就绪",
+  "Idle": "空闲",
+  "In Progress": "进行中",
+  "Action Required": "需要您的确认",
+  "Action required": "需要您的操作",
+  "Input required": "需要输入",
+  "Blocked, needs input": "已暂停，等待输入",
+  "Confirmation required to execute this step": "执行此步骤需要您的确认",
+  "Accept Step": "接受此步骤",
+  "Reject Step": "拒绝此步骤",
+  "Cancel Step": "取消此步骤",
+  "Proceed with Plan": "批准并执行计划",
+  "Proceed Anyway": "仍然继续执行",
+  "Continue Response": "继续生成回复",
+  "Send Now": "立即发送",
+  "Send Immediately": "立即插队发送",
+  "Queue": "加入发送队列",
+  "Queued Messages": "排队中的消息",
+  "Sends after agent finishes working": "将在智能体完成当前任务后自动发送",
+  "Interrupt the agent and send immediately.": "中断当前执行并立即发送此消息。",
+  "Queue until after the current turn.": "加入队列，等待当前轮次结束后发送。",
+  "Cancel Sending Message": "取消发送消息",
+  "Start Voice Recording": "开始语音输入",
+  "Stop Voice Recording": "停止语音输入",
+  "Stop Recording and Send": "停止录音并发送",
+  "Toggle Voice Recording": "切换语音输入",
+  "Finalizing transcription...": "正在生成语音转写文本...",
+  "Sending transcribed message...": "正在发送语音消息...",
+  "Upload Files": "上传文件",
+  "Uploads": "上传列表",
+  "Media": "多媒体附件",
+  "Images": "图片",
+  "Screenshot": "屏幕截图",
+  "Capture screenshot": "截取屏幕画面",
+  "Screen Recording": "屏幕录制",
+  "Add to Chat": "添加到对话",
+  "Add to Chat/Quote": "添加到对话 / 引用",
+  "Quote Selection": "引用选中内容",
+  "Quote": "引用",
+  "Comment on Selection": "对选中内容添加评论",
+  "Add inline comment": "添加行内批注",
+  "Explain and Fix in Current Conversation": "在当前对话中解释并修复",
+  "Good Response": "回答很棒",
+  "Bad Response": "回答不佳",
+  "Copy": "复制",
+  "Copied": "已复制",
+  "Copy Content": "复制内容",
+  "Copy Path": "复制路径",
+  "Copy path": "复制路径",
+  "Copy File Path": "复制文件路径",
+  "Copy File Name": "复制文件名",
+  "Copy Link": "复制链接",
+  "Copy Image": "复制图片",
+  "Copy command": "复制命令",
+  "Copy output": "复制输出内容",
+  "Copy thinking": "复制思考过程",
+  "Copy Conversation Markdown": "复制对话为 Markdown",
+  "Copy Conversation ID": "复制对话 ID",
+  "Copy Trajectory ID": "复制轨迹 ID",
+  "Conversation copied as Markdown to clipboard": "对话已作为 Markdown 复制到剪贴板",
+  "Path copied!": "路径已复制！",
+  "Paste": "粘贴",
+  "Cut": "剪切",
+  "Select All": "全选",
+  "Undo": "撤销",
+  "Undo To Here": "回滚到此步骤",
+  "Confirm Undo": "确认回滚撤销",
+  "Revert file changes": "还原文件修改",
+  "Redo": "重做",
+  "Rename": "重命名",
+  "Rename Conversation": "重命名对话",
+  "Rename This Conversation": "重命名此对话",
+  "Rename Group": "重命名分组",
+  "Pin This Conversation": "置顶此对话",
+  "Unpin This Conversation": "取消置顶此对话",
+  "Archive": "归档",
+  "Archived": "已归档",
+  "Archive This Conversation": "归档此对话",
+  "Conversation Archived": "对话已归档",
+  "Archive Workspace": "归档工作区",
+  "Archive project": "归档项目",
+  "Archive / Restore": "归档 / 恢复",
+  "Restore": "恢复",
+  "Delete": "删除",
+  "Delete Conversation": "删除对话",
+  "Delete Permanently": "永久删除",
+  "Delete Task": "删除任务",
+  "Delete Skill": "删除技能",
+  "Delete Hook": "删除钩子",
+  "Delete MCP Server": "删除 MCP 服务",
+  "Delete Terminal": "删除终端",
+  "Delete workspace": "删除工作区",
+  "Are you sure you want to delete this conversation? This action cannot be undone.": "确定要删除此对话吗？此操作不可撤销。",
+  "This cannot be undone.": "此操作不可撤销。",
+  "Fork": "创建分支对话 (Fork)",
+  "Fork conversation in this folder": "在当前文件夹分叉此对话",
+  "Create fork in new workspace": "在新工作区中分叉对话",
+  "Create fork in shared workspace": "在共享工作区中分叉对话",
+  "Share": "分享",
+  "Share Conversation (Preview)": "分享对话 (预览版)",
+  "Export as PDF": "导出为 PDF",
+  "Download PDF": "下载 PDF",
+  "Download SVG": "下载 SVG",
+  "Download": "下载",
+  "Refresh": "刷新",
+  "Reload": "重新加载",
+  "Reload Window": "重新加载窗口",
+  "Reload this window.": "重新加载当前窗口。",
+  "Confirm Window Reload": "确认重载窗口",
+  "Retry": "重试",
+  "Try Again": "再试一次",
+  "Cancel": "取消",
+  "Confirm": "确认",
+  "Submit": "提交",
+  "Submitting...": "正在提交...",
+  "Save": "保存",
+  "Done": "完成",
+  "Close": "关闭",
+  "Close (Esc)": "关闭 (Esc)",
+  "Close (Escape)": "关闭 (Esc)",
+  "Close Tab": "关闭标签页",
+  "Close tab": "关闭标签页",
+  "Close other tabs": "关闭其他标签页",
+  "Close tabs to the right": "关闭右侧标签页",
+  "Close Terminal Tab": "关闭终端标签页",
+  "Back": "返回",
+  "Go Back": "后退",
+  "Go Forward": "前进",
+  "Forward": "前进",
+  "Next": "下一步",
+  "Previous": "上一步",
+  "Skip": "跳过",
+  "Dismiss": "忽略",
+  "Got it": "知道了",
+  "Learn more": "了解更多",
+  "Learn more.": "了解更多。",
+  "See all": "查看全部",
+  "See more results": "查看更多结果",
+  "Show more": "展开更多",
+  "Show details": "显示详情",
+  "More": "更多",
+  "More Actions": "更多操作",
+  "More actions": "更多操作",
+  "Options": "选项",
+  "Filter": "筛选",
+  "Search": "搜索",
+  "Clear": "清空",
+  "Clear Search": "清空搜索",
+  "Clear search (Esc)": "清空搜索 (Esc)",
+  "Reset": "重置",
+  "Reset State": "重置状态",
+  "Reset Zoom": "重置缩放",
+  "Zoom In": "放大",
+  "Zoom Out": "缩小",
+  "Zoom in": "放大",
+  "Zoom out": "缩小",
+  "Maximize": "最大化",
+  "Minimize": "最小化",
+  "Toggle Fullscreen": "切换全屏",
+  "Toggle Sidebar": "切换侧边栏",
+  "Toggle sidebar": "切换侧边栏",
+  "Toggle Auxiliary Pane": "切换右侧辅助面板",
+  "Toggle Overview Panel": "切换总览面板",
+  "Toggle Terminal": "切换终端面板",
+  "Toggle Editor": "切换编辑器",
+  "Toggle File Viewer": "切换文件查看器",
+  "Toggle Model Selector": "切换模型选择器",
+  "Toggle Project Selector": "切换项目选择器",
+  "Split": "分屏",
+  "Split Right": "向右分屏",
+  "Split Down": "向下分屏",
+  "Split Terminal": "拆分终端",
+  "Split Conversation Horizontally": "水平分屏对话",
+  "Split Conversation Vertically": "垂直分屏对话",
+  "Side-by-Side": "并排视图",
+  "Side-by-side layout": "左右并排布局",
+  "Stacked": "堆叠视图",
+  "Stacked layout": "上下堆叠布局",
+  "Equalize Split Panes": "均分分屏面板宽度",
+  "Remove From Split": "退出分屏",
+  "Remove from Split": "退出分屏",
+  "Auxiliary Pane": "辅助面板",
+  "Artifact Viewer": "产物查看器",
+  "File Viewer": "文件查看器",
+  "Virtual File Viewer": "虚拟文件查看器",
+  "Sidecar View": "扩展视图 (Sidecar)",
+  "Web Preview": "网页预览",
+  "Embedded web preview": "内置网页预览",
+  "Preview": "预览",
+  "Open Preview": "打开预览",
+  "Open in Preview": "在预览中打开",
+  "Open in Preview Pane": "在预览面板中打开",
+  "Open in Preview Tab": "在预览标签页中打开",
+  "Open in Built-in Browser": "在内置浏览器中打开",
+  "Open with External Browser": "使用外部浏览器打开",
+  "Open in external browser": "在外部浏览器中打开",
+  "Open in Antigravity IDE": "在 Antigravity IDE 中打开",
+  "Open Antigravity IDE": "打开 Antigravity IDE",
+  "Open IDE": "打开 IDE",
+  "Reveal in Finder": "在访达 (Finder) 中显示",
+  "Show in File Explorer": "在文件资源管理器中显示",
+  "Show in File Manager": "在文件管理器中显示",
+  "Open Folder": "打开文件夹",
+  "Open folder": "打开文件夹",
+  "Open File": "打开文件",
+  "Open Workspace": "打开工作区",
+  "Open Diff": "打开差异对比 (Diff)",
+  "Review Changes": "审阅代码变更",
+  "Changes": "变更",
+  "Staged Changes": "已暂存变更 (Staged)",
+  "Branch Changes": "分支变更",
+  "Uncommitted": "未提交变更",
+  "Untracked (Unstaged)": "未跟踪文件 (未暂存)",
+  "Added (Staged)": "新增文件 (已暂存)",
+  "Modified": "已修改",
+  "Deleted": "已删除",
+  "Renamed": "已重命名",
+  "Stage change": "暂存此变更",
+  "Unstage change": "取消暂存此变更",
+  "Discard unstaged changes": "放弃未暂存的修改",
+  "Discard": "放弃修改",
+  "Include unstaged changes": "包含未暂存的修改",
+  "Commit": "提交 (Commit)",
+  "Amend": "追加提交 (Amend)",
+  "Push": "推送 (Push)",
+  "Branch": "分支",
+  "Remote branches": "远程分支",
+  "Configure Branches": "配置分支",
+  "Open Commit Graph": "打开提交历史图 (Commit Graph)",
+  "Generate Commit Message": "AI 生成提交信息",
+  "Commit succeeded": "提交成功",
+  "Amend succeeded": "追加提交成功",
+  "Push succeeded": "推送成功",
+  "Code Change Summary": "代码变更摘要",
+  "No changes to review": "暂无需要审阅的变更",
+  "No file changes": "暂无文件变更",
+  "No active terminals": "暂无活动终端",
+  "No active terminals. Click + to create one.": "暂无活动终端，点击 + 新建终端。",
+  "No background tasks": "暂无后台任务",
+  "No subagents": "暂无运行中的子智能体",
+  "Stop Subagent": "停止子智能体",
+  "Stop All Subagents": "停止全部子智能体",
+  "Cancel Task": "取消任务",
+  "Cancel All Tasks": "取消全部任务",
+  "Task Logs": "任务日志",
+  "Background Task Output": "后台任务输出",
+  "Console logs": "控制台日志",
+  "Logs": "日志",
+  "Output": "输出",
+  "Output:": "输出：",
+  "Input:": "输入：",
+  "Installed": "已安装",
+  "Built In": "系统内置",
+  "Recommended": "推荐",
+  "Explore the plugin marketplace": "探索插件市场",
+  "Discover helpful skills & plugins": "发现实用的技能与插件",
+  "Search and discover customizations to extend your Agent's capabilities.": "搜索并发现扩展定制，增强智能体的能力边界。",
+  "Skills are instructions that extend what Agent can do.": "技能 (Skills) 是扩展智能体专业工作流的指令包。",
+  "Each plugin can be managed on its own.": "每个插件都可以独立启用、禁用或管理。",
+  "Create a Plugin with the Agent": "让智能体帮你创建插件",
+  "Add MCP Server": "添加 MCP 服务",
+  "Add MCP Servers": "添加 MCP 服务",
+  "Installed MCP Servers": "已安装的 MCP 服务",
+  "Installed Skills": "已安装的技能",
+  "Manage Skills": "管理技能",
+  "Manage Hooks": "管理钩子 (Hooks)",
+  "Add Hook Card": "添加钩子卡片",
+  "Refresh MCP servers": "刷新 MCP 服务",
+  "Refresh Skills": "刷新技能列表",
+  "Refresh skills paths": "刷新技能路径",
+  "Open MCP Config": "打开 MCP 配置文件",
+  "Copy Config File Path": "复制配置文件路径",
+  "There are no customizations enabled.": "当前没有启用任何扩展定制。",
+  "No skills available": "暂无可用技能",
+  "No skills loaded.": "暂未加载任何技能。",
+  "No plugins available": "暂无可用插件",
+  "No plugins available.": "暂无可用插件。",
+  "No MCP servers installed": "暂未安装任何 MCP 服务",
+  "No automations configured.": "暂未配置任何自动化定时任务。",
+  "No conversations yet": "暂无历史对话",
+  "No results found.": "未找到匹配结果。",
+  "No matching results": "无匹配结果",
+  "No matching items": "无匹配项",
+  "Loading...": "加载中...",
+  "Loading skills...": "正在加载技能...",
+  "Loading plugins...": "正在加载插件...",
+  "Loading MCP servers...": "正在加载 MCP 服务...",
+  "Loading customizations...": "正在加载扩展定制...",
+  "Loading models...": "正在加载模型列表...",
+  "Loading conversations...": "正在加载对话...",
+  "Searching...": "正在搜索...",
+  "Refreshing...": "正在刷新...",
+  "Creating terminal...": "正在创建终端...",
+  "Connecting to terminal...": "正在连接终端...",
+  "Group By": "分组方式",
+  "Group By Project": "按项目分组",
+  "Group By Workspace": "按工作区分组",
+  "Sort By": "排序方式",
+  "Last Updated": "最近更新",
+  "Last Used": "最近使用",
+  "Custom Order": "自定义排序",
+  "Only Unread": "仅看未读",
+  "Mark as Read": "标为已读",
+  "Mark as Unread": "标为未读",
+  "Mark This Conversation as Read": "将此对话标为已读",
+  "Mark This Conversation as Unread": "将此对话标为未读",
+  "Move to Group": "移动到分组",
+  "Move to New Group": "移动到新分组",
+  "Remove from Group": "从分组中移除",
+  "Collapse All Folders": "折叠全部文件夹",
+  "Expand All Folders": "展开全部文件夹",
+  "Daily": "每天",
+  "Weekly": "每周",
+  "Hourly": "每小时",
+  "Monday": "周一",
+  "Tuesday": "周二",
+  "Wednesday": "周三",
+  "Thursday": "周四",
+  "Friday": "周五",
+  "Saturday": "周六",
+  "Sunday": "周日",
+  "Search...": "搜索...",
+  "Search conversations...": "搜索对话...",
+  "Search for conversations...": "搜索历史对话...",
+  "Search conversations (by name or Cascade ID)": "搜索对话（按名称或 Cascade ID）",
+  "Search projects...": "搜索项目...",
+  "Search workspaces...": "搜索工作区...",
+  "Search customizations...": "搜索技能、插件、规则与 MCP...",
+  "Search MCP servers by name": "按名称搜索 MCP 服务...",
+  "Search for commands...": "搜索命令...",
+  "Search across files...": "跨文件全局搜索...",
+  "Search file contents...": "搜索文件内容...",
+  "Search steps...": "搜索执行步骤...",
+  "Search tabs, files, plugins, subagents, artifacts, tasks...": "搜索标签页、文件、插件、子智能体、产物或任务...",
+  "Filter resources...": "筛选资源...",
+  "Enter a prompt for the agent to run...": "输入指令让智能体执行...",
+  "Prompt to execute on schedule...": "输入定时执行的指令内容...",
+  "Prompt to run when triggered...": "输入触发时执行的指令内容...",
+  "Write a comment...": "输入评论或批注...",
+  "Conversation name": "输入对话名称",
+  "Group name": "输入分组名称",
+  "Enter project name...": "输入项目名称...",
+  "Enter workspace name (e.g., my-feature)": "输入工作区名称（例如：my-feature）",
+  "Enter file or directory path...": "输入文件或目录路径...",
+  "Enter directory path...": "输入目录路径...",
+  "Enter command (e.g., git, blaze)...": "输入命令（例如：git, npm）...",
+  "Enter URL pattern...": "输入 URL 匹配规则...",
+  "Other (write your answer)": "其他（请填写您的回答）",
+  "Select an option...": "请选择一个选项...",
+  "Select workspace": "选择工作区",
+  "Select branch": "选择分支",
+  "Find": "查找",
+  "Configure the agent's visual theme and display preferences.": "配置智能体界面的视觉主题、皮肤与显示偏好。",
+  "Configure the maximum width of the conversation panel.": "配置主对话画布面板的最大显示宽度。",
+  "Configure the default width of markdown artifacts.": "配置 Markdown 产物文档的默认展开宽度。",
+  "Display and preserve intermediate thinking steps.": "在对话流中展示并保留智能体的中间推理思考步骤。",
+  "Replace the default browser right-click menu with quick actions.": "使用内置快捷菜单替换默认的浏览器右键菜单。",
+  "Controls whether terminal commands require your approval before running.": "控制智能体在执行终端命令前是否需要经过您的批准。",
+  "Run terminal commands with sandbox restrictions.": "在受限的安全沙箱环境中运行终端命令。",
+  "Allow sandboxed commands to make network requests.": "允许沙箱内的命令发起外部网络请求。",
+  "Allows the agent to access files outside of your current workspace.": "允许智能体读写当前工作区目录以外的文件。",
+  "Let the agent access past conversations to inform its responses.": "允许智能体检索过往历史对话以提供更精准的上下文回答。",
+  "Open files in the background if the agent creates or edits them": "当智能体创建或修改文件时，自动在后台标签页中打开。",
+  "Automatically expand the Changes Overview toolbar when the agent finishes generating a response.": "当智能体完成回复时，自动展开文件变更总览工具栏。",
+  "Prevent the computer from sleeping while the app is running.": "在应用运行及任务执行期间防止电脑进入休眠状态。",
+  "Keep the app accessible from the menu bar and running in the background when all windows are closed.": "关闭所有窗口后仍保留在顶部菜单栏并在后台常驻运行。",
+  "Automatically prompt you to restart the app when a new update is available. When disabled, you can check for updates manually from the app menu.": "发现新版本时自动提醒重启更新；关闭后可通过顶部菜单手动检查更新。",
+  "Show suggestions when typing in the editor": "在编辑器中输入代码时实时提供 AI 自动补全建议。",
+  "Predict the location of your next edit and navigate you there with a tab keypress.": "智能预测下一个代码编辑位置，按 Tab 键即可一键跳转。",
+  "Quickly add and update imports with a tab keypress.": "按 Tab 键快速自动补充或更新模块导入语句 (import)。",
+  "Play a sound when the agent finishes generating a response.": "当智能体完成回复生成或任务结束时播放提示音。",
+  "Show browser notifications when your action is needed or execution finishes.": "当需要您审批操作或后台任务执行完毕时发送系统通知。",
+  "Configure external tools via Model Context Protocol.": "通过模型上下文协议 (MCP) 配置并接入外部工具服务。",
+  "Configure hooks that run on agent lifecycle events.": "配置在智能体生命周期事件（如工具调用前后）自动触发的脚本钩子。",
+  "Log in to IDE": "登录 Antigravity IDE",
+  "Provide Auth Token (Backup Login)": "提供认证 Token（备用登录）",
+  "Import VS Code settings": "导入 VS Code 设置",
+  "Import VS Code extensions": "导入 VS Code 扩展插件",
+  "Import VS Code recent workspaces": "导入 VS Code 最近工作区",
+  "Import Cursor settings": "导入 Cursor 设置",
+  "Import Cursor extensions": "导入 Cursor 扩展插件",
+  "Import Windsurf settings": "导入 Windsurf 设置",
+  "Import Windsurf extensions": "导入 Windsurf 扩展插件",
+  "Restart Language Server": "重启语言服务器 (Language Server)",
+  "Kill Language Server and Reload Window": "强制结束语言服务器并重载窗口",
+  "Toggle Persistent Language Server and Reload Window": "切换常驻语言服务器并重载窗口",
+  "Open Persistent Language Server Log": "打开常驻语言服务器日志",
+  "Copy API Key to Clipboard": "复制 API Key 到剪贴板",
+  "Open Browser": "打开内置浏览器",
+  "Show Browser Allowlist": "显示浏览器域名白名单",
+  "Workflow Editor": "工作流编辑器",
+  "Rule Editor": "规则编辑器",
+  "Access grants": "访问授权列表",
+  "Access rules": "访问规则",
+  "Actions": "操作",
+  "Activity": "活动记录",
+  "Active Tasks & Conversations:": "当前活跃任务与对话：",
+  "Add": "添加",
+  "Add Context": "添加上下文",
+  "Add Handler": "添加处理器",
+  "Add Model": "添加模型",
+  "Administrator access (UAC)": "管理员权限 (UAC)",
+  "Advanced Command Access": "高级命令访问权限",
+  "Advanced File Access": "高级文件访问权限",
+  "Advanced Web Access": "高级网络访问权限",
+  "After": "之后",
+  "Before": "之前",
+  "Agent Edits": "智能体代码编辑",
+  "Agent Host Address": "智能体主机地址",
+  "Agent Hooks Configuration": "智能体钩子 (Hooks) 配置",
+  "Agent Market Search Results": "智能体市场搜索结果",
+  "Agent Script Command Configuration": "智能体脚本命令配置",
+  "Agent can": "智能体可以",
+  "Agent can run": "智能体可运行",
+  "Agent data is not available": "智能体数据暂不可用",
+  "Agent is analyzing videos": "智能体正在分析视频",
+  "Agent terminated due to error": "智能体因错误已终止",
+  "Agent will always ask to review in strict mode.": "严格模式下智能体将始终请求人工审阅。",
+  "Agents have full access to your machine and external resources.": "智能体拥有对本机及外部资源的完全访问权限。",
+  "All": "全部",
+  "All tools (*)": "所有工具 (*)",
+  "Allow full browser script execution without prompting.": "允许直接执行所有浏览器脚本而无需弹窗确认。",
+  "Block all browser JavaScript execution.": "拦截所有浏览器 JavaScript 脚本执行。",
+  "Prompt for approval before running browser scripts.": "运行浏览器脚本前弹窗请求批准。",
+  "Attach Antigravity server logs": "附带 Antigravity 服务端日志",
+  "Attach a screenshot (optional)": "附带屏幕截图（可选）",
+  "Authentication Required": "需要身份认证",
+  "Authorization Required": "需要授权许可",
+  "Auto": "自动 (Auto)",
+  "Auto (Preview)": "自动 (预览版)",
+  "Auto (detected)": "自动 (已检测)",
+  "Avatar URL": "头像链接 (Avatar URL)",
+  "Bot Name": "机器人名称",
+  "Build With Google Plugins": "Google 官方构建插件集",
+  "Build with Google": "由 Google 构建",
+  "Bundles": "插件包 (Bundles)",
+  "By kind": "按类别",
+  "By phase": "按阶段",
+  "By step type": "按步骤类型",
+  "CHECKPOINT": "检查点",
+  "Checkpoint": "检查点 (Checkpoint)",
+  "Cache": "缓存",
+  "Cache:": "缓存：",
+  "Capture console logs": "捕获控制台日志",
+  "Capturing": "正在捕获",
+  "Cascade Config": "Cascade 配置",
+  "Cascade ID": "Cascade ID",
+  "Choose Region": "选择地区",
+  "Choose a License": "选择许可证",
+  "Select License": "选择许可证",
+  "Select your license": "选择您的许可证",
+  "Code Search": "代码搜索",
+  "Open in Code Search": "在代码搜索中打开",
+  "Open File Search": "打开文件搜索",
+  "Open Search": "打开搜索",
+  "Command": "命令",
+  "Command:": "命令：",
+  "Commands": "命令列表",
+  "Comment": "评论",
+  "Comments": "评论列表",
+  "Artifact Comments": "产物文档评论",
+  "File Comments": "文件评论",
+  "File Diff Comments": "文件差异批注",
+  "Delete comment": "删除评论",
+  "Edit comment": "编辑评论",
+  "Complete Onboarding Step": "完成新手引导步骤",
+  "Complete verification": "完成验证",
+  "Verification required": "需要验证",
+  "Configure": "配置",
+  "Configure Worktree Branches": "配置工作树 (Worktree) 分支",
+  "Configured servers": "已配置的服务",
+  "Connect Google Drive": "连接 Google Drive",
+  "Connect to Remote Workspace": "连接到远程工作区",
+  "Continue with Google": "使用 Google 账号继续",
+  "Continue with Google Cloud": "使用 Google Cloud 继续",
+  "Continue with different account": "使用其他账号继续",
+  "Sign in with a different account": "使用其他账号登录",
+  "Sign-in required": "需要登录",
+  "Not Signed In": "未登录",
+  "Account connected.": "账号已连接。",
+  "Context": "上下文",
+  "Context Menus": "右键菜单",
+  "Conversation ID": "对话 ID",
+  "Conversation Name": "对话名称",
+  "Conversation Log": "对话日志",
+  "Conversation unavailable": "对话不可用",
+  "Open Conversation": "打开对话",
+  "Open Conversation History": "打开历史对话记录",
+  "Open Conversation Picker": "打开对话选择器",
+  "Select Next Conversation": "选择下一个对话",
+  "Select Previous Conversation": "选择上一个对话",
+  "Find in Conversation": "在对话中查找",
+  "Find in Pane": "在面板中查找",
+  "Focus Input": "聚焦输入框",
+  "Go Back in Pane": "在面板中后退",
+  "Go Forward in Pane": "在面板中前进",
+  "Next Aux Pane Tab": "下一个辅助面板标签页",
+  "Previous Aux Pane Tab": "上一个辅助面板标签页",
+  "Next Pane Tab": "下一个面板标签页",
+  "Previous Pane Tab": "上一个面板标签页",
+  "Copy debug info": "复制调试信息",
+  "Copy description": "复制描述",
+  "Copy email address": "复制邮箱地址",
+  "Copy error to clipboard": "复制错误信息到剪贴板",
+  "Copy full URL to clipboard": "复制完整链接到剪贴板",
+  "Copy raw string value": "复制原始字符串值",
+  "Copy schema JSON": "复制 Schema JSON",
+  "Copy section content": "复制章节内容",
+  "Copy this subtree JSON": "复制此子树 JSON",
+  "Copy trajectory ID": "复制轨迹 ID",
+  "Copy value": "复制值",
+  "Click to copy URL": "点击复制链接",
+  "Click to copy full command": "点击复制完整命令",
+  "Click to view more": "点击查看更多",
+  "Click to view or edit comment": "点击查看或编辑评论",
+  "Create": "创建",
+  "Create New": "新建",
+  "Create Project": "创建项目",
+  "Create Cloud Project": "创建云端项目",
+  "Create a token": "创建访问令牌 (Token)",
+  "Create with Prompt": "通过提示词创建",
+  "Creating...": "正在创建...",
+  "Creating Sidecar": "正在创建扩展面板 (Sidecar)",
+  "Custom": "自定义",
+  "Custom Flags": "自定义实验标记 (Flags)",
+  "Custom View": "自定义视图",
+  "Debug Mode": "调试模式",
+  "View Debug": "查看调试信息",
+  "Trajectory Debug View": "执行轨迹调试视图",
+  "Open Trajectory Debug View": "打开执行轨迹调试视图",
+  "Trajectory ID": "轨迹 ID",
+  "Trajectory Metadata": "轨迹元数据",
+  "Trajectory Stats": "轨迹统计",
+  "Download Diagnostics": "下载诊断报告",
+  "Decline": "拒绝",
+  "Decorations": "视觉装饰",
+  "Definition:": "定义：",
+  "Denied Sites": "已拒绝访问的网站",
+  "Description": "描述",
+  "Details": "详情",
+  "Documents": "文档",
+  "Double-click to reset panel sizes": "双击重置面板尺寸",
+  "Drag to resize, double-click to reset": "拖拽调整大小，双击重置",
+  "Edit": "编辑",
+  "Email": "电子邮箱",
+  "Empty directory": "空目录",
+  "Empty log": "日志为空",
+  "Enable Chat": "启用对话",
+  "Enable Demo Mode (Beta)": "启用演示模式 (Beta)",
+  "Enable Recommended Skills": "启用推荐技能",
+  "Environment": "运行环境",
+  "Select Environment": "选择运行环境",
+  "Toggle Environment Selector": "切换环境选择器",
+  "Host Environment": "宿主环境",
+  "Operating System": "操作系统",
+  "Execution": "执行",
+  "Execution ID": "执行 ID",
+  "Execution Metadata": "执行元数据",
+  "Expected behavior": "预期行为",
+  "Actual behavior": "实际行为",
+  "Steps to Reproduce": "复现步骤",
+  "Steps to reproduce the issue": "请填写问题复现步骤",
+  "Extension": "扩展插件",
+  "Extensions": "扩展插件",
+  "UI Extensions": "界面扩展 (UI Extensions)",
+  "UI extensions": "界面扩展",
+  "UI Actions": "界面操作",
+  "Side Pane UI Available": "包含侧边栏可视化界面",
+  "Extension Is Loading": "扩展正在加载中",
+  "External": "外部",
+  "FAQ": "常见问题 (FAQ)",
+  "Features": "功能特性",
+  "Feedback Type": "反馈类型",
+  "File Picker": "文件选择器",
+  "File not found": "未找到文件",
+  "Files to edit:": "待编辑文件：",
+  "First": "第一项",
+  "Last": "最后一项",
+  "First Token": "首字响应 (First Token)",
+  "Time to First Token (TTFT)": "首 Token 响应耗时 (TTFT)",
+  "Streaming Generation": "流式生成耗时",
+  "Tool Call Generation": "工具调用生成耗时",
+  "Queue Wait": "队列等待耗时",
+  "Full Error": "完整错误信息",
+  "Full View": "完整视图",
+  "General work": "日常通用任务",
+  "Generate personalized rules": "生成个性化规则",
+  "Generations": "生成记录",
+  "GitHub Permissions": "GitHub 权限设置",
+  "GitHub Personal Access Token": "GitHub 个人访问令牌 (PAT)",
+  "GitHub Policies": "GitHub 访问策略",
+  "Global": "全局",
+  "Goal": "目标 (Goal)",
+  "Goals": "目标列表",
+  "Goal Verification": "目标完成度核验",
+  "History": "历史记录",
+  "Host": "主机",
+  "Host Endpoint": "主机端点 (Endpoint)",
+  "Import AI Studio Project": "导入 AI Studio 项目",
+  "Inline Widget": "行内小组件",
+  "Insert in Terminal": "插入到终端",
+  "Instances": "实例列表",
+  "Invalid Media": "无效的媒体文件",
+  "Invalid tool call": "无效的工具调用",
+  "Invocation": "调用记录",
+  "Issues": "问题 (Issues)",
+  "Issue creation": "创建 Issue",
+  "Pull requests": "拉取请求 (PR)",
+  "Pull request creation": "创建拉取请求 (PR)",
+  "Workflow runs": "工作流运行记录",
+  "Repositories": "代码仓库",
+  "Organizations": "组织机构",
+  "JavaScript Result": "JavaScript 执行结果",
+  "Knowledge Generation": "知识提炼生成",
+  "Labs": "实验室功能 (Labs)",
+  "Layout Controls": "布局控制",
+  "License:": "许可证：",
+  "Links": "链接",
+  "Local": "本地",
+  "Location": "位置",
+  "Manifest Changes": "清单文件变更",
+  "Mention": "提及 (@)",
+  "Mentions": "提及列表",
+  "Mention Page": "提及页面",
+  "Name": "名称",
+  "Navigation": "导航",
+  "Needs Attention": "需要关注",
+  "Needs attention": "需要关注",
+  "Needs re-auth": "需要重新认证",
+  "New": "新建",
+  "Next Match (Enter)": "下一个匹配项 (Enter)",
+  "Previous Match (Shift+Enter)": "上一个匹配项 (Shift+Enter)",
+  "Next match": "下一个匹配项",
+  "Previous match": "上一个匹配项",
+  "Next Page": "下一页",
+  "Previous Page": "上一页",
+  "Next question": "下一个问题",
+  "Previous question": "上一个问题",
+  "None": "无",
+  "Not Found": "未找到",
+  "Not available": "不可用",
+  "Not in Project": "未归属项目",
+  "Not scheduled": "未排期",
+  "Now": "刚刚 / 现在",
+  "Open": "打开",
+  "Open Launchpad": "打开启动台 (Launchpad)",
+  "Open Preferences": "打开偏好设置",
+  "Open System Preferences": "打开系统偏好设置",
+  "Open URL": "打开链接",
+  "Open allowlist": "打开白名单",
+  "Open in Hub": "在主控台 (Hub) 中打开",
+  "Open in Notebook View": "在笔记本视图中打开",
+  "Open in Remote Control": "在远程控制中打开",
+  "Open in Tab": "在标签页中打开",
+  "Open in new tab": "在新标签页中打开",
+  "Open in new window": "在新窗口中打开",
+  "Open in preview": "在预览面板中打开",
+  "Open project settings": "打开项目设置",
+  "Open side-by-side view": "打开左右分栏视图",
+  "Open Workspace Selector": "打开工作区选择器",
+  "Overview": "总览",
+  "Page contents": "页面内容",
+  "Parent Conversation": "父级对话",
+  "Root Conversation": "根对话",
+  "Permission Details": "权限详情",
+  "Plan": "规划方案 (Plan)",
+  "See Plans": "查看方案套餐",
+  "Preset": "预设",
+  "Project Name": "项目名称",
+  "Project Settings": "项目设置",
+  "Prompt": "提示词 (Prompt)",
+  "Quick Start": "快速开始",
+  "Recent Events": "最近事件",
+  "Remount workspace": "重新挂载工作区",
+  "Unmount workspace": "卸载工作区",
+  "Remove": "移除",
+  "Renew": "续期",
+  "Replace With New": "替换为新内容",
+  "Response": "回复",
+  "Restart Main Language Server": "重启主语言服务器",
+  "Review": "审阅",
+  "Review pending conversations": "审阅待处理对话",
+  "Schedule": "日程排期",
+  "Scope": "作用域",
+  "Scratchpad": "临时草稿本",
+  "Search Conversations": "搜索对话",
+  "Select Folder(s)": "选择文件夹",
+  "Select Project": "选择项目",
+  "Sender Agent": "发送方智能体",
+  "Setup": "初始化设置",
+  "Setup required": "需要初始化配置",
+  "Sidebar grouped by project": "侧边栏按项目分组",
+  "Sidebar grouped by workspace": "侧边栏按工作区分组",
+  "Size": "大小",
+  "Source": "来源",
+  "Source:": "来源：",
+  "Sources": "来源列表",
+  "Standalone": "独立模式",
+  "Start Snapshot": "开始快照",
+  "End Snapshot": "结束快照",
+  "Started": "已开始",
+  "Status": "状态",
+  "Step": "步骤",
+  "Steps": "步骤列表",
+  "Step Details": "步骤详情",
+  "Step Preview": "步骤预览",
+  "Step Timing": "步骤耗时",
+  "Step Type": "步骤类型",
+  "Stop": "停止",
+  "Suggestions": "建议",
+  "Switch IDE Workspace": "切换 IDE 工作区",
+  "Switch Roles": "切换角色",
+  "System": "系统",
+  "System Instruction": "系统指令 (System Instruction)",
+  "System Prompt": "系统提示词 (System Prompt)",
+  "Table options": "表格选项",
+  "Target Tools:": "目标工具：",
+  "Termination": "终止",
+  "Terms of Service": "服务条款",
+  "Terms of Service & Data Use": "服务条款与数据使用说明",
+  "Security Notice & Data Use": "安全须知与数据使用说明",
+  "Text": "文本",
+  "Timeout:": "超时时间：",
+  "Tip": "小贴士",
+  "Title:": "标题：",
+  "Toggle Thumbnails": "切换缩略图",
+  "Tool": "工具",
+  "Tool Call Ready": "工具调用已就绪",
+  "Tool Calls": "工具调用记录",
+  "Tool Defs": "工具定义",
+  "Tool Output": "工具输出",
+  "Tool arguments": "工具参数",
+  "Trigger": "触发器",
+  "Trigger Type": "触发类型",
+  "Type": "类型",
+  "Unknown": "未知",
+  "Unused": "未使用",
+  "Unused Capacity": "剩余可用容量",
+  "Updater": "更新程序",
+  "Uptime": "运行时长",
+  "Use Existing": "使用现有项",
+  "Use Regular Expression (.*)": "使用正则表达式 (.*)",
+  "User": "用户",
+  "User Data": "用户数据",
+  "User Intent": "用户意图",
+  "User Type": "用户类型",
+  "Validate": "校验",
+  "View": "视图",
+  "View Page": "查看页面",
+  "View child subagents": "查看子智能体列表",
+  "View network request": "查看网络请求",
+  "View network requests": "查看网络请求列表",
+  "Window": "窗口",
+  "Workspace Creation": "工作区创建",
+  "Workspace Name": "工作区名称",
+  "Worktree": "工作树 (Worktree)",
+  "Previous Worktrees": "历史工作树",
+  "Zoom": "缩放",
+  "Zoom in (+)": "放大 (+)",
+  "Zoom out (-)": "缩小 (-)",
+  "Reset zoom (0)": "重置缩放 (0)",
+  "Something went wrong": "出错了",
+  "Something went wrong!": "发生意外错误！",
+  "No internet. Agent features may not work.": "当前无网络连接，智能体功能可能无法正常工作。",
+  "User cancelled agent execution.": "用户已取消智能体执行。",
+  "The conversation was compacted to fit within the context window.": "对话已自动压缩总结以适配上下文窗口容量。"
+};
+
+  const NATIVE_MENU_DICT = {
+  "File": "文件",
+  "Edit": "编辑",
+  "View": "视图",
+  "Window": "窗口",
+  "Help": "帮助",
+  "New Window": "新建窗口",
+  "Check for Updates": "检查更新...",
+  "Check for Updates...": "检查更新...",
+  "Docs": "官方文档",
+  "Quit": "退出 Antigravity",
+  "Cancel": "取消",
+  "Confirm Quit": "确认退出",
+  "Are you sure you want to quit?": "确定要退出 Antigravity 吗？",
+  "There may be agents or background tasks running.": "当前可能仍有智能体或后台任务正在运行。",
+  "No agents running": "当前无运行中的智能体",
+  "Connect to WSL": "连接到 WSL",
+  "Reopen Locally": "在本地重新打开"
+};
+
+  const PATTERN_RULES = [
+  { pattern: /^No agents running$/i, replace: "当前无运行中的智能体" },
+  { pattern: /^(\d+)\s+agents?\s+running$/i, replace: "$1 个智能体正在运行" },
+  { pattern: /^Open\s+Antigravity$/i, replace: "打开 Antigravity" },
+  { pattern: /^less than a second$/i, replace: "不到 1 秒" },
+  { pattern: /^less than (\d+) seconds$/i, replace: "不到 $1 秒" },
+  { pattern: /^1 second$/i, replace: "1 秒" },
+  { pattern: /^(\d+) seconds$/i, replace: "$1 秒" },
+  { pattern: /^1 minute$/i, replace: "1 分钟" },
+  { pattern: /^(\d+) minutes$/i, replace: "$1 分钟" },
+  { pattern: /^about (\d+) hours?$/i, replace: "约 $1 小时" },
+  { pattern: /^(\d+) days?$/i, replace: "$1 天" },
+  { pattern: /^(\d+)m ago$/i, replace: "$1 分钟前" },
+  { pattern: /^(\d+)h ago$/i, replace: "$1 小时前" },
+  { pattern: /^(\d+)d ago$/i, replace: "$1 天前" },
+  { pattern: /^Just now$/i, replace: "刚刚" },
+  { pattern: /^Step (\d+)$/i, replace: "步骤 $1" },
+  { pattern: /^Conversation (\d+)$/i, replace: "对话 $1" },
+  { pattern: /^Forked from (.+)$/i, replace: "分叉自 $1" },
+  { pattern: /^Connect to WSL$/i, replace: "连接到 WSL" },
+  { pattern: /^Reopen Locally$/i, replace: "在本地重新打开" }
+];
+
+  const DEFAULT_CONFIG = {
+    skinId: 'nebula-zero-g',
+    langMode: 'zh-CN', // 'zh-CN' | 'bilingual' | 'en-US'
+    enableGlass: true,
+    enableGlow: true,
+    enableAmbientBg: true,
+    wallpaperUrl: '',
+    wallpaperOpacity: 0.18,
+    wallpaperBlur: 8,
+    wallpaperFit: 'cover',
+    fontFamily: '',
+    codeFontFamily: '',
+    fontScale: 100,
+    showFloatingButton: true,
+    customDict: {},
+  };
+
+  function loadConfig() {
+    try {
+      const raw = typeof localStorage !== 'undefined' ? localStorage.getItem(STORAGE_KEY) : null;
+      if (!raw) return { ...DEFAULT_CONFIG };
+      const parsed = JSON.parse(raw);
+      return {
+        ...DEFAULT_CONFIG,
+        ...parsed,
+        customDict: { ...(parsed.customDict || {}) },
+      };
+    } catch {
+      return { ...DEFAULT_CONFIG };
+    }
+  }
+
+  function saveConfig(cfg) {
+    try {
+      if (typeof localStorage !== 'undefined') {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(cfg));
+      }
+    } catch {
+      // ignore storage errors
+    }
+  }
+
+  let state = loadConfig();
+  let translatedNodeCount = 0;
+  let isPanelOpen = false;
+  let activeTab = 'skins'; // 'skins' | 'i18n' | 'effects' | 'about'
+  let skinCategoryFilter = 'all'; // 'all' | 'dark' | 'light'
+
+  // WeakMap storing original text of DOM Text nodes so switching back to en-US is 100% lossless
+  const originalTextMap = new WeakMap();
+  const lastTranslatedMap = new WeakMap();
+
+  const SKIP_TAGS = new Set([
+    'CODE',
+    'PRE',
+    'SCRIPT',
+    'STYLE',
+    'TEXTAREA',
+    'INPUT',
+    'SVG',
+    'PATH',
+    'NOSCRIPT',
+    'KBD',
+  ]);
+
+  const SKIP_SELECTOR =
+    'pre, code, .monaco-editor, .xterm, .cm-editor, .prism-code, [contenteditable="true"], [data-agy-no-translate="true"], #agy-skin-i18n-root';
+
+  function getSkinById(id) {
+    return SKIN_PRESETS.find((s) => s.id === id) || SKIN_PRESETS[0];
+  }
+
+  // ==========================================================================
+  // 1. 文本翻译核心函数 (Text Translation Core)
+  // ==========================================================================
+  function translateString(rawText, mode, customDict) {
+    if (!rawText || typeof rawText !== 'string') return null;
+    if (mode === 'en-US') return rawText;
+
+    const trimmed = rawText.trim();
+    if (!trimmed || trimmed.length > 260) return null;
+
+    // Skip strings that look like file paths, URLs, or pure numbers/symbols
+    if (
+      trimmed.startsWith('http://') ||
+      trimmed.startsWith('https://') ||
+      trimmed.startsWith('file://') ||
+      trimmed.startsWith('~/.') ||
+      !/[a-zA-Z]/.test(trimmed)
+    ) {
+      return null;
+    }
+
+    let zh = (customDict && customDict[trimmed]) || EXACT_DICT[trimmed];
+
+    if (!zh) {
+      for (let i = 0; i < PATTERN_RULES.length; i++) {
+        const rule = PATTERN_RULES[i];
+        if (rule.pattern.test(trimmed)) {
+          zh = trimmed.replace(rule.pattern, rule.replace);
+          break;
+        }
+      }
+    }
+
+    if (!zh) return null;
+
+    const leading = (rawText.match(/^\s*/) || [''])[0];
+    const trailing = (rawText.match(/\s*$/) || [''])[0];
+
+    if (mode === 'bilingual') {
+      if (trimmed.length <= 26 && zh !== trimmed) {
+        return leading + zh + ' · ' + trimmed + trailing;
+      }
+    }
+
+    return leading + zh + trailing;
+  }
+
+  function shouldSkipElement(el) {
+    if (!el || el.nodeType !== 1) return true;
+    if (SKIP_TAGS.has(el.tagName)) return true;
+    if (el.closest && el.closest(SKIP_SELECTOR)) return true;
+    return false;
+  }
+
+  function processTextNode(textNode) {
+    const parent = textNode.parentElement;
+    if (!parent || shouldSkipElement(parent)) return false;
+
+    const currentVal = textNode.nodeValue;
+    if (!currentVal || !currentVal.trim()) return false;
+
+    // Record original English text if not yet recorded or if underlying framework updated it
+    const lastTranslated = lastTranslatedMap.get(textNode);
+    if (!originalTextMap.has(textNode) || (lastTranslated && currentVal !== lastTranslated)) {
+      originalTextMap.set(textNode, currentVal);
+    }
+
+    const originalVal = originalTextMap.get(textNode);
+    if (state.langMode === 'en-US') {
+      if (currentVal !== originalVal) {
+        textNode.nodeValue = originalVal;
+        lastTranslatedMap.set(textNode, originalVal);
+        return true;
+      }
+      return false;
+    }
+
+    const target = translateString(originalVal, state.langMode, state.customDict);
+    if (target && target !== currentVal) {
+      textNode.nodeValue = target;
+      lastTranslatedMap.set(textNode, target);
+      translatedNodeCount++;
+      return true;
+    }
+    return false;
+  }
+
+  const TRANSLATABLE_ATTRS = ['placeholder', 'title', 'aria-label'];
+
+  function processElementAttributes(el) {
+    if (!el || el.nodeType !== 1 || shouldSkipElement(el)) return;
+    for (let i = 0; i < TRANSLATABLE_ATTRS.length; i++) {
+      const attr = TRANSLATABLE_ATTRS[i];
+      if (!el.hasAttribute(attr)) continue;
+      const currentAttr = el.getAttribute(attr);
+      if (!currentAttr) continue;
+
+      const origKey = 'data-agy-orig-' + attr;
+      const lastKey = 'data-agy-last-' + attr;
+      const lastAttr = el.getAttribute(lastKey);
+
+      if (!el.hasAttribute(origKey) || (lastAttr && currentAttr !== lastAttr)) {
+        el.setAttribute(origKey, currentAttr);
+      }
+
+      const originalAttr = el.getAttribute(origKey);
+      if (state.langMode === 'en-US') {
+        if (currentAttr !== originalAttr) {
+          el.setAttribute(attr, originalAttr);
+          el.setAttribute(lastKey, originalAttr);
+        }
+        continue;
+      }
+
+      const translated = translateString(originalAttr, state.langMode, state.customDict);
+      if (translated && translated !== currentAttr) {
+        el.setAttribute(attr, translated);
+        el.setAttribute(lastKey, translated);
+        translatedNodeCount++;
+      }
+    }
+  }
+
+  function translateSubtree(root) {
+    if (!root || typeof document === 'undefined') return;
+    if (root.nodeType === 3) {
+      processTextNode(root);
+      return;
+    }
+    if (root.nodeType !== 1 && root.nodeType !== 9 && root.nodeType !== 11) return;
+    if (root.nodeType === 1 && shouldSkipElement(root)) return;
+
+    if (root.nodeType === 1) {
+      processElementAttributes(root);
+    }
+
+    const walker = document.createTreeWalker(
+      root,
+      NodeFilter.SHOW_TEXT | NodeFilter.SHOW_ELEMENT,
+      {
+        acceptNode(node) {
+          if (node.nodeType === 1) {
+            if (SKIP_TAGS.has(node.tagName)) return NodeFilter.FILTER_REJECT;
+            if (node.id === 'agy-skin-i18n-root') return NodeFilter.FILTER_REJECT;
+            if (
+              node.classList &&
+              (node.classList.contains('monaco-editor') ||
+                node.classList.contains('xterm') ||
+                node.classList.contains('cm-editor'))
+            ) {
+              return NodeFilter.FILTER_REJECT;
+            }
+            if (node.getAttribute && node.getAttribute('contenteditable') === 'true') {
+              return NodeFilter.FILTER_REJECT;
+            }
+            return NodeFilter.FILTER_ACCEPT;
+          }
+          return NodeFilter.FILTER_ACCEPT;
+        },
+      }
+    );
+
+    let current = walker.nextNode();
+    while (current) {
+      if (current.nodeType === 3) {
+        processTextNode(current);
+      } else if (current.nodeType === 1) {
+        processElementAttributes(current);
+      }
+      current = walker.nextNode();
+    }
+  }
+
+  // ==========================================================================
+  // 2. 反重力主题皮肤引擎 (Anti-Gravity Skin & Visual Effects Engine)
+  // ==========================================================================
+  let isApplyingSkin = false;
+
+  function installStylePropertyGuard() {
+    if (typeof document === 'undefined' || !document.documentElement) return;
+    const docStyle = document.documentElement.style;
+    if (docStyle.__agyGuarded) return;
+
+    const origSetProperty = docStyle.setProperty.bind(docStyle);
+    docStyle.__agyOrigSetProperty = origSetProperty;
+    docStyle.__agyGuarded = true;
+
+    docStyle.setProperty = function (prop, value, priority) {
+      if (!isApplyingSkin && state.skinId !== 'native-default') {
+        const activeSkin = getSkinById(state.skinId);
+        if (activeSkin && activeSkin.tokens && activeSkin.tokens[prop]) {
+          return origSetProperty(prop, activeSkin.tokens[prop], 'important');
+        }
+      }
+      return origSetProperty(prop, value, priority);
+    };
+  }
+
+  function applySkin() {
+    if (typeof document === 'undefined' || !document.documentElement) return;
+    installStylePropertyGuard();
+
+    const skin = getSkinById(state.skinId);
+    const isLight = skin.category === 'light';
+    const docEl = document.documentElement;
+    const origSetProperty = docEl.style.__agyOrigSetProperty || docEl.style.setProperty.bind(docEl.style);
+
+    let styleEl = document.getElementById('agy-skin-theme-vars');
+    if (!styleEl) {
+      styleEl = document.createElement('style');
+      styleEl.id = 'agy-skin-theme-vars';
+      (document.head || docEl).appendChild(styleEl);
+    }
+
+    if (skin.id === 'native-default' && !state.wallpaperUrl && !state.fontFamily && state.fontScale === 100) {
+      styleEl.textContent = '';
+      docEl.removeAttribute('data-agy-skin');
+      updateWallpaperLayer();
+      return;
+    }
+
+    docEl.setAttribute('data-agy-skin', skin.id);
+    docEl.setAttribute('data-agy-skin-category', skin.category);
+
+    // Sync body theme classes when body is ready
+    if (document.body && skin.id !== 'native-default') {
+      document.body.classList.toggle('dark', !isLight);
+      document.body.classList.toggle('dark-theme', !isLight);
+      document.body.classList.toggle('theme-dark', !isLight);
+      document.body.classList.toggle('theme-light', isLight);
+      docEl.style.colorScheme = isLight ? 'light' : 'dark';
+    }
+
+    isApplyingSkin = true;
+    try {
+      const tokenLines = [];
+      if (skin.tokens && Object.keys(skin.tokens).length > 0) {
+        for (const [k, v] of Object.entries(skin.tokens)) {
+          tokenLines.push(`  ${k}: ${v} !important;`);
+          origSetProperty(k, v, 'important');
+        }
+        // Mirror core tokens to --vscode-* and --sdk-* so embedded widgets match seamlessly
+        const bg = skin.tokens['--background'];
+        const fg = skin.tokens['--foreground'];
+        const sidebar = skin.tokens['--sidebar'];
+        const primary = skin.tokens['--primary'];
+        const primaryFg = skin.tokens['--primary-foreground'];
+        const card = skin.tokens['--card'];
+        const border = skin.tokens['--border'];
+        if (bg) {
+          tokenLines.push(`  --vscode-editor-background: ${bg} !important;`);
+          tokenLines.push(`  --sdk-background-base: ${bg} !important;`);
+          tokenLines.push(`  --sdk-background-primary: ${bg} !important;`);
+        }
+        if (fg) {
+          tokenLines.push(`  --vscode-foreground: ${fg} !important;`);
+          tokenLines.push(`  --sdk-color-text-base: ${fg} !important;`);
+        }
+        if (sidebar) {
+          tokenLines.push(`  --vscode-sideBar-background: ${sidebar} !important;`);
+          tokenLines.push(`  --vscode-titleBar-activeBackground: ${sidebar} !important;`);
+          tokenLines.push(`  --sdk-background-secondary: ${sidebar} !important;`);
+        }
+        if (card) {
+          tokenLines.push(`  --sdk-background-tertiary: ${card} !important;`);
+          tokenLines.push(`  --sdk-color-surface: ${card} !important;`);
+        }
+        if (primary) {
+          tokenLines.push(`  --vscode-button-background: ${primary} !important;`);
+          tokenLines.push(`  --sdk-primary-color: ${primary} !important;`);
+        }
+        if (primaryFg) {
+          tokenLines.push(`  --vscode-button-foreground: ${primaryFg} !important;`);
+        }
+        if (border) {
+          tokenLines.push(`  --sdk-border-color: ${border} !important;`);
+        }
+      }
+
+      if (state.fontFamily) {
+        tokenLines.push(`  --vscode-font-family: ${state.fontFamily} !important;`);
+        tokenLines.push(`  --font-sans: ${state.fontFamily} !important;`);
+      }
+      if (state.codeFontFamily) {
+        tokenLines.push(`  --vscode-editor-font-family: ${state.codeFontFamily} !important;`);
+        tokenLines.push(`  --editor-font-family: ${state.codeFontFamily} !important;`);
+        tokenLines.push(`  --font-mono: ${state.codeFontFamily} !important;`);
+      }
+
+      const ambientCss =
+        state.enableAmbientBg && skin.effects && skin.effects.ambientBg && skin.effects.ambientBg !== 'none'
+          ? `background-image: ${skin.effects.ambientBg} !important; background-attachment: fixed !important;`
+          : '';
+
+      const glassCss =
+        state.enableGlass && skin.effects && skin.effects.glassBlur && skin.effects.glassBlur !== '0px'
+          ? `
+  .bg-card, [class*="bg-card"], .sdk-card {
+    backdrop-filter: blur(${skin.effects.glassBlur}) saturate(140%) !important;
+    -webkit-backdrop-filter: blur(${skin.effects.glassBlur}) saturate(140%) !important;
+  }`
+          : '';
+
+      const glowCss =
+        state.enableGlow && skin.effects && skin.effects.cardGlow && skin.effects.cardGlow !== 'none'
+          ? `
+  .bg-card, .rounded-xl.border.border-border.shadow-lg {
+    box-shadow: ${skin.effects.cardGlow} !important;
+  }`
+          : '';
+
+      const fontZoomCss =
+        state.fontScale && state.fontScale !== 100
+          ? `html { font-size: ${(16 * state.fontScale) / 100}px !important; }`
+          : '';
+
+      styleEl.textContent = `
+:root, html, body, body.theme-standalone, body.theme-dark, body.theme-light, .dark, .light {
+${tokenLines.join('\n')}
+}
+body {
+  background-color: var(--background) !important;
+  color: var(--foreground) !important;
+  ${ambientCss}
+  ${state.fontFamily ? `font-family: ${state.fontFamily} !important;` : ''}
+  transition: background-color 0.25s ease, color 0.2s ease;
+}
+${glassCss}
+${glowCss}
+${fontZoomCss}
+`;
+    } finally {
+      isApplyingSkin = false;
+    }
+
+    updateWallpaperLayer();
+  }
+
+  function updateWallpaperLayer() {
+    if (typeof document === 'undefined' || !document.body) return;
+    let wp = document.getElementById('agy-skin-wallpaper-layer');
+    if (!state.wallpaperUrl) {
+      if (wp) wp.remove();
+      return;
+    }
+    if (!wp) {
+      wp = document.createElement('div');
+      wp.id = 'agy-skin-wallpaper-layer';
+      document.body.prepend(wp);
+    }
+    wp.style.cssText = `
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9990;
+      background-image: url("${state.wallpaperUrl.replace(/"/g, '%22')}");
+      background-size: ${state.wallpaperFit || 'cover'};
+      background-position: center center;
+      background-repeat: no-repeat;
+      opacity: ${Number(state.wallpaperOpacity ?? 0.18)};
+      filter: blur(${Number(state.wallpaperBlur ?? 8)}px);
+      transition: opacity 0.3s ease, filter 0.3s ease;
+    `;
+  }
+
+  // ==========================================================================
+  // 3. 悬浮控制面板 UI (In-App Floating Capsule & Studio Drawer)
+  // ==========================================================================
+  function ensureControlPanel() {
+    if (typeof document === 'undefined' || !document.body) return;
+    if (document.getElementById('agy-skin-i18n-root')) return;
+
+    const root = document.createElement('div');
+    root.id = 'agy-skin-i18n-root';
+    root.setAttribute('data-agy-no-translate', 'true');
+
+    const style = document.createElement('style');
+    style.textContent = `
+      #agy-skin-i18n-root {
+        position: fixed;
+        z-index: 2147483640;
+        font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Segoe UI", Roboto, sans-serif;
+        font-size: 13px;
+        line-height: 1.5;
+        color: #E2E8F0;
+        user-select: none;
+      }
+      .agy-fab {
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 7px 14px;
+        border-radius: 999px;
+        background: rgba(15, 23, 42, 0.88);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(56, 189, 248, 0.35);
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45), 0 0 14px rgba(56, 189, 248, 0.18);
+        color: #F8FAFC;
+        cursor: pointer;
+        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        z-index: 2147483641;
+      }
+      .agy-fab:hover {
+        transform: translateY(-2px) scale(1.02);
+        border-color: rgba(56, 189, 248, 0.75);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6), 0 0 20px rgba(56, 189, 248, 0.35);
+      }
+      .agy-fab-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #38BDF8;
+        box-shadow: 0 0 8px #38BDF8;
+      }
+      .agy-fab-badge {
+        padding: 1px 6px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 600;
+        background: rgba(56, 189, 248, 0.18);
+        color: #38BDF8;
+      }
+      .agy-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(2, 6, 23, 0.55);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        z-index: 2147483642;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.22s ease;
+      }
+      .agy-backdrop.open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .agy-drawer {
+        position: fixed;
+        top: 16px;
+        right: 16px;
+        bottom: 16px;
+        width: 440px;
+        max-width: calc(100vw - 32px);
+        background: rgba(13, 18, 30, 0.96);
+        backdrop-filter: blur(24px) saturate(160%);
+        -webkit-backdrop-filter: blur(24px) saturate(160%);
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        border-radius: 16px;
+        box-shadow: 0 24px 64px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(56, 189, 248, 0.12);
+        display: flex;
+        flex-direction: column;
+        z-index: 2147483643;
+        transform: translateX(480px);
+        transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+        overflow: hidden;
+      }
+      .agy-drawer.open {
+        transform: translateX(0);
+      }
+      .agy-header {
+        padding: 16px 20px;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.14);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: linear-gradient(135deg, rgba(56, 189, 248, 0.10), rgba(129, 140, 248, 0.06));
+      }
+      .agy-title-wrap {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .agy-logo {
+        width: 32px;
+        height: 32px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, #38BDF8, #818CF8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 17px;
+        box-shadow: 0 4px 12px rgba(56, 189, 248, 0.35);
+      }
+      .agy-title {
+        font-size: 15px;
+        font-weight: 700;
+        color: #F8FAFC;
+        margin: 0;
+      }
+      .agy-subtitle {
+        font-size: 11px;
+        color: #94A3B8;
+        margin: 0;
+      }
+      .agy-close-btn {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #CBD5E1;
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+      }
+      .agy-close-btn:hover {
+        background: rgba(255, 255, 255, 0.14);
+        color: #FFFFFF;
+      }
+      .agy-tabs {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 6px;
+        padding: 10px 16px;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+        background: rgba(9, 13, 22, 0.5);
+      }
+      .agy-tab {
+        padding: 7px 6px;
+        border-radius: 8px;
+        border: 1px solid transparent;
+        background: transparent;
+        color: #94A3B8;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        text-align: center;
+        transition: all 0.15s ease;
+      }
+      .agy-tab:hover {
+        color: #E2E8F0;
+        background: rgba(255, 255, 255, 0.04);
+      }
+      .agy-tab.active {
+        background: rgba(56, 189, 248, 0.15);
+        color: #38BDF8;
+        border-color: rgba(56, 189, 248, 0.35);
+      }
+      .agy-body {
+        flex: 1;
+        overflow-y: auto;
+        padding: 16px 20px;
+      }
+      .agy-section-title {
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: #94A3B8;
+        margin: 0 0 10px 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .agy-lang-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        margin-bottom: 16px;
+      }
+      .agy-lang-btn {
+        padding: 10px 8px;
+        border-radius: 10px;
+        border: 1px solid rgba(148, 163, 184, 0.18);
+        background: rgba(30, 41, 59, 0.55);
+        color: #E2E8F0;
+        cursor: pointer;
+        text-align: center;
+        transition: all 0.15s ease;
+      }
+      .agy-lang-btn:hover {
+        border-color: rgba(56, 189, 248, 0.45);
+      }
+      .agy-lang-btn.active {
+        background: linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(129, 140, 248, 0.18));
+        border-color: #38BDF8;
+        color: #FFFFFF;
+        box-shadow: 0 0 14px rgba(56, 189, 248, 0.22);
+      }
+      .agy-lang-btn-title {
+        font-size: 13px;
+        font-weight: 700;
+        display: block;
+      }
+      .agy-lang-btn-sub {
+        font-size: 10px;
+        color: #94A3B8;
+        margin-top: 2px;
+        display: block;
+      }
+      .agy-skin-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+      .agy-skin-card {
+        border-radius: 12px;
+        border: 1px solid rgba(148, 163, 184, 0.18);
+        background: rgba(15, 23, 42, 0.65);
+        padding: 10px;
+        cursor: pointer;
+        transition: all 0.18s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      .agy-skin-card:hover {
+        transform: translateY(-2px);
+        border-color: rgba(56, 189, 248, 0.5);
+      }
+      .agy-skin-card.active {
+        border-color: #38BDF8;
+        box-shadow: 0 0 0 1px #38BDF8, 0 8px 20px rgba(56, 189, 248, 0.2);
+      }
+      .agy-skin-preview {
+        height: 54px;
+        border-radius: 8px;
+        margin-bottom: 8px;
+        display: flex;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .agy-skin-preview-sidebar {
+        width: 28%;
+        height: 100%;
+        padding: 6px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .agy-skin-preview-main {
+        flex: 1;
+        padding: 6px 8px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .agy-skin-swatch-bar {
+        height: 6px;
+        border-radius: 3px;
+        width: 75%;
+      }
+      .agy-skin-swatch-pill {
+        height: 10px;
+        width: 45%;
+        border-radius: 4px;
+        align-self: flex-end;
+      }
+      .agy-skin-name-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 4px;
+      }
+      .agy-skin-name {
+        font-size: 12.5px;
+        font-weight: 700;
+        color: #F8FAFC;
+      }
+      .agy-skin-badge {
+        font-size: 10px;
+        padding: 1px 6px;
+        border-radius: 999px;
+        background: rgba(56, 189, 248, 0.16);
+        color: #7DD3FC;
+      }
+      .agy-skin-desc {
+        font-size: 11px;
+        color: #94A3B8;
+        margin-top: 4px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .agy-control-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 12px;
+        border-radius: 10px;
+        background: rgba(30, 41, 59, 0.45);
+        border: 1px solid rgba(148, 163, 184, 0.14);
+        margin-bottom: 10px;
+      }
+      .agy-input {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 8px 10px;
+        border-radius: 8px;
+        border: 1px solid rgba(148, 163, 184, 0.25);
+        background: rgba(15, 23, 42, 0.8);
+        color: #F8FAFC;
+        font-size: 12px;
+        outline: none;
+      }
+      .agy-input:focus {
+        border-color: #38BDF8;
+      }
+      .agy-btn {
+        padding: 7px 12px;
+        border-radius: 8px;
+        border: 1px solid rgba(56, 189, 248, 0.35);
+        background: rgba(56, 189, 248, 0.15);
+        color: #38BDF8;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.15s ease;
+      }
+      .agy-btn:hover {
+        background: rgba(56, 189, 248, 0.28);
+        color: #FFFFFF;
+      }
+      .agy-btn-secondary {
+        border-color: rgba(148, 163, 184, 0.25);
+        background: rgba(30, 41, 59, 0.6);
+        color: #CBD5E1;
+      }
+      .agy-footer {
+        padding: 12px 20px;
+        border-top: 1px solid rgba(148, 163, 184, 0.14);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 11px;
+        color: #64748B;
+        background: rgba(9, 13, 22, 0.65);
+      }
+    `;
+
+    root.appendChild(style);
+
+    const fab = document.createElement('button');
+    fab.className = 'agy-fab';
+    fab.id = 'agy-skin-i18n-fab';
+    fab.title = '打开反重力皮肤与汉化控制中心 (快捷键: Cmd/Ctrl + Shift + L)';
+    fab.addEventListener('click', () => {
+      togglePanel(true);
+    });
+
+    const backdrop = document.createElement('div');
+    backdrop.className = 'agy-backdrop';
+    backdrop.id = 'agy-skin-i18n-backdrop';
+    backdrop.addEventListener('click', () => {
+      togglePanel(false);
+    });
+
+    const drawer = document.createElement('div');
+    drawer.className = 'agy-drawer';
+    drawer.id = 'agy-skin-i18n-drawer';
+
+    root.appendChild(fab);
+    root.appendChild(backdrop);
+    root.appendChild(drawer);
+    document.body.appendChild(root);
+
+    renderControlPanel();
+  }
+
+  function togglePanel(open) {
+    isPanelOpen = typeof open === 'boolean' ? open : !isPanelOpen;
+    const backdrop = document.getElementById('agy-skin-i18n-backdrop');
+    const drawer = document.getElementById('agy-skin-i18n-drawer');
+    if (backdrop && drawer) {
+      backdrop.classList.toggle('open', isPanelOpen);
+      drawer.classList.toggle('open', isPanelOpen);
+    }
+    if (isPanelOpen) {
+      renderControlPanel();
+    }
+  }
+
+  function renderControlPanel() {
+    if (typeof document === 'undefined') return;
+    const fab = document.getElementById('agy-skin-i18n-fab');
+    const drawer = document.getElementById('agy-skin-i18n-drawer');
+    if (!fab || !drawer) return;
+
+    const currentSkin = getSkinById(state.skinId);
+    const langLabel =
+      state.langMode === 'zh-CN' ? '简体中文' : state.langMode === 'bilingual' ? '双语对照' : 'EN';
+
+    fab.style.display = state.showFloatingButton ? 'inline-flex' : 'none';
+    fab.innerHTML = `
+      <span class="agy-fab-dot" style="background:${currentSkin.preview.primary};box-shadow:0 0 8px ${currentSkin.preview.primary}"></span>
+      <span>🎨 ${currentSkin.name}</span>
+      <span class="agy-fab-badge">${langLabel}</span>
+    `;
+
+    const filteredSkins = SKIN_PRESETS.filter(
+      (s) => skinCategoryFilter === 'all' || s.category === skinCategoryFilter
+    );
+
+    let bodyHtml = '';
+
+    if (activeTab === 'skins') {
+      bodyHtml = `
+        <div class="agy-section-title">
+          <span>快速切换语言 (Instant i18n)</span>
+          <span style="color:#38BDF8;font-weight:600;">已汉化 ${translatedNodeCount} 处节点</span>
+        </div>
+        <div class="agy-lang-grid">
+          <button class="agy-lang-btn ${state.langMode === 'zh-CN' ? 'active' : ''}" data-action="set-lang" data-lang="zh-CN">
+            <span class="agy-lang-btn-title">🇨🇳 简体中文</span>
+            <span class="agy-lang-btn-sub">全量界面汉化</span>
+          </button>
+          <button class="agy-lang-btn ${state.langMode === 'bilingual' ? 'active' : ''}" data-action="set-lang" data-lang="bilingual">
+            <span class="agy-lang-btn-title">🌗 中英双语</span>
+            <span class="agy-lang-btn-sub">术语对照模式</span>
+          </button>
+          <button class="agy-lang-btn ${state.langMode === 'en-US' ? 'active' : ''}" data-action="set-lang" data-lang="en-US">
+            <span class="agy-lang-btn-title">🇺🇸 English</span>
+            <span class="agy-lang-btn-sub">还原官方英文</span>
+          </button>
+        </div>
+
+        <div class="agy-section-title" style="margin-top:8px;">
+          <span>反重力高定主题皮肤 (${SKIN_PRESETS.length} 款)</span>
+          <div style="display:flex;gap:4px;">
+            <button class="agy-btn ${skinCategoryFilter === 'all' ? '' : 'agy-btn-secondary'}" style="padding:2px 8px;font-size:11px;" data-action="filter-skin" data-filter="all">全部</button>
+            <button class="agy-btn ${skinCategoryFilter === 'dark' ? '' : 'agy-btn-secondary'}" style="padding:2px 8px;font-size:11px;" data-action="filter-skin" data-filter="dark">深色</button>
+            <button class="agy-btn ${skinCategoryFilter === 'light' ? '' : 'agy-btn-secondary'}" style="padding:2px 8px;font-size:11px;" data-action="filter-skin" data-filter="light">浅色</button>
+          </div>
+        </div>
+        <div class="agy-skin-grid">
+          ${filteredSkins
+            .map(
+              (s) => `
+            <div class="agy-skin-card ${state.skinId === s.id ? 'active' : ''}" data-action="select-skin" data-skin="${s.id}">
+              <div class="agy-skin-preview" style="background:${s.preview.bg}">
+                <div class="agy-skin-preview-sidebar" style="background:${s.preview.sidebar}">
+                  <div class="agy-skin-swatch-bar" style="background:${s.preview.primary};width:60%"></div>
+                  <div class="agy-skin-swatch-bar" style="background:${s.preview.text};opacity:0.35"></div>
+                  <div class="agy-skin-swatch-bar" style="background:${s.preview.text};opacity:0.2"></div>
+                </div>
+                <div class="agy-skin-preview-main">
+                  <div style="background:${s.preview.card};border-radius:5px;padding:5px;border:1px solid rgba(255,255,255,0.07)">
+                    <div class="agy-skin-swatch-bar" style="background:${s.preview.text};opacity:0.75;width:85%"></div>
+                  </div>
+                  <div class="agy-skin-swatch-pill" style="background:${s.preview.primary}"></div>
+                </div>
+              </div>
+              <div class="agy-skin-name-row">
+                <span class="agy-skin-name">${s.name}</span>
+                <span class="agy-skin-badge">${s.badge}</span>
+              </div>
+              <div class="agy-skin-desc">${s.description}</div>
+            </div>
+          `
+            )
+            .join('')}
+        </div>
+      `;
+    } else if (activeTab === 'i18n') {
+      const customEntries = Object.entries(state.customDict || {});
+      bodyHtml = `
+        <div class="agy-section-title">
+          <span>语言模式设置</span>
+        </div>
+        <div class="agy-lang-grid">
+          <button class="agy-lang-btn ${state.langMode === 'zh-CN' ? 'active' : ''}" data-action="set-lang" data-lang="zh-CN">
+            <span class="agy-lang-btn-title">🇨🇳 简体中文</span>
+            <span class="agy-lang-btn-sub">全量界面汉化</span>
+          </button>
+          <button class="agy-lang-btn ${state.langMode === 'bilingual' ? 'active' : ''}" data-action="set-lang" data-lang="bilingual">
+            <span class="agy-lang-btn-title">🌗 中英双语</span>
+            <span class="agy-lang-btn-sub">导航/按钮双语</span>
+          </button>
+          <button class="agy-lang-btn ${state.langMode === 'en-US' ? 'active' : ''}" data-action="set-lang" data-lang="en-US">
+            <span class="agy-lang-btn-title">🇺🇸 English</span>
+            <span class="agy-lang-btn-sub">原版英文界面</span>
+          </button>
+        </div>
+
+        <div class="agy-control-row">
+          <div>
+            <div style="font-weight:600;color:#F8FAFC;">内置词条库容量</div>
+            <div style="font-size:11px;color:#94A3B8;">精确词条 ${Object.keys(EXACT_DICT).length} 条 + 动态正则 ${PATTERN_RULES.length} 组</div>
+          </div>
+          <button class="agy-btn" data-action="rescan-dom">立即重扫页面</button>
+        </div>
+
+        <div class="agy-section-title" style="margin-top:16px;">
+          <span>自定义术语覆盖 (Custom Glossary)</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px;">
+          <input class="agy-input" id="agy-custom-en" placeholder="输入英文原词 (例如: New Conversation)" />
+          <div style="display:flex;gap:8px;">
+            <input class="agy-input" id="agy-custom-zh" placeholder="输入自定义中文翻译 (例如: 开启新脑暴)" />
+            <button class="agy-btn" style="white-space:nowrap;" data-action="add-custom-term">添加词条</button>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          ${
+            customEntries.length === 0
+              ? '<div style="text-align:center;padding:18px;color:#64748B;border:1px dashed rgba(148,163,184,0.2);border-radius:10px;">暂未添加自定义词条，添加后将优先覆盖内置翻译</div>'
+              : customEntries
+                  .map(
+                    ([en, zh]) => `
+                <div class="agy-control-row" style="margin-bottom:0;padding:8px 12px;">
+                  <div style="font-size:12px;">
+                    <span style="color:#94A3B8;">${en}</span>
+                    <span style="margin:0 6px;color:#38BDF8;">→</span>
+                    <span style="color:#F8FAFC;font-weight:600;">${zh}</span>
+                  </div>
+                  <button class="agy-btn agy-btn-secondary" style="padding:3px 8px;font-size:11px;" data-action="del-custom-term" data-en="${encodeURIComponent(en)}">删除</button>
+                </div>
+              `
+                  )
+                  .join('')
+          }
+        </div>
+      `;
+    } else if (activeTab === 'effects') {
+      bodyHtml = `
+        <div class="agy-section-title"><span>反重力视觉特效 (Visual Effects)</span></div>
+
+        <div class="agy-control-row">
+          <div>
+            <div style="font-weight:600;color:#F8FAFC;">毛玻璃高透卡片 (Frosted Glass)</div>
+            <div style="font-size:11px;color:#94A3B8;">为对话卡片与侧边栏启用 backdrop-filter 高斯模糊</div>
+          </div>
+          <input type="checkbox" ${state.enableGlass ? 'checked' : ''} data-action="toggle-glass" style="width:18px;height:18px;cursor:pointer;" />
+        </div>
+
+        <div class="agy-control-row">
+          <div>
+            <div style="font-weight:600;color:#F8FAFC;">能量微发光边框 (Neon Card Glow)</div>
+            <div style="font-size:11px;color:#94A3B8;">为悬浮面板与活动卡片注入主题色环境辉光</div>
+          </div>
+          <input type="checkbox" ${state.enableGlow ? 'checked' : ''} data-action="toggle-glow" style="width:18px;height:18px;cursor:pointer;" />
+        </div>
+
+        <div class="agy-control-row">
+          <div>
+            <div style="font-weight:600;color:#F8FAFC;">星云环境渐变光晕 (Ambient Nebula)</div>
+            <div style="font-size:11px;color:#94A3B8;">在窗口底层渲染柔和的双极光径向渐变</div>
+          </div>
+          <input type="checkbox" ${state.enableAmbientBg ? 'checked' : ''} data-action="toggle-ambient" style="width:18px;height:18px;cursor:pointer;" />
+        </div>
+
+        <div class="agy-section-title" style="margin-top:16px;">
+          <span>自定义背景壁纸图层 (Wallpaper Overlay)</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px;">
+          <input class="agy-input" id="agy-wallpaper-url" value="${state.wallpaperUrl || ''}" placeholder="输入图片 URL 或 Base64 数据地址..." />
+          <div style="display:flex;gap:8px;">
+            <button class="agy-btn" style="flex:1;" data-action="apply-wallpaper">应用壁纸</button>
+            <label class="agy-btn agy-btn-secondary" style="flex:1;text-align:center;">
+              上传本地图片
+              <input type="file" accept="image/*" id="agy-wallpaper-file" style="display:none;" />
+            </label>
+            <button class="agy-btn agy-btn-secondary" data-action="clear-wallpaper">清除</button>
+          </div>
+        </div>
+
+        <div class="agy-control-row">
+          <span>壁纸不透明度 (${Math.round((state.wallpaperOpacity || 0.18) * 100)}%)</span>
+          <input type="range" min="0.02" max="0.55" step="0.02" value="${state.wallpaperOpacity || 0.18}" data-action="wallpaper-opacity" />
+        </div>
+
+        <div class="agy-control-row">
+          <span>壁纸高斯模糊 (${state.wallpaperBlur ?? 8}px)</span>
+          <input type="range" min="0" max="32" step="1" value="${state.wallpaperBlur ?? 8}" data-action="wallpaper-blur" />
+        </div>
+
+        <div class="agy-section-title" style="margin-top:16px;">
+          <span>字体与界面缩放 (Typography & Scale)</span>
+        </div>
+        <div class="agy-control-row">
+          <span>全局字号缩放 (${state.fontScale || 100}%)</span>
+          <input type="range" min="85" max="125" step="5" value="${state.fontScale || 100}" data-action="font-scale" />
+        </div>
+      `;
+    } else {
+      bodyHtml = `
+        <div class="agy-section-title"><span>配置管理与快捷键</span></div>
+        <div class="agy-control-row">
+          <div>
+            <div style="font-weight:600;color:#F8FAFC;">显示右下角悬浮球</div>
+            <div style="font-size:11px;color:#94A3B8;">隐藏后仍可通过 Cmd/Ctrl + Shift + L 呼出面板</div>
+          </div>
+          <input type="checkbox" ${state.showFloatingButton ? 'checked' : ''} data-action="toggle-fab" style="width:18px;height:18px;cursor:pointer;" />
+        </div>
+
+        <div style="display:flex;gap:8px;margin-bottom:14px;">
+          <button class="agy-btn" style="flex:1;" data-action="export-config">导出配置 JSON</button>
+          <button class="agy-btn agy-btn-secondary" style="flex:1;" data-action="reset-config">恢复默认设置</button>
+        </div>
+
+        <div style="padding:12px;border-radius:10px;background:rgba(15,23,42,0.75);border:1px solid rgba(148,163,184,0.16);font-size:12px;color:#94A3B8;line-height:1.7;">
+          <div style="color:#F8FAFC;font-weight:700;margin-bottom:4px;">⌨️ 全局快捷键指南</div>
+          <div>• <b>Cmd/Ctrl + Shift + L</b>：打开 / 关闭反重力皮肤与汉化面板</div>
+          <div>• <b>Alt + Shift + Z</b>：一键在「简体中文 / 双语 / 英文」间循环切换</div>
+          <div>• <b>Alt + Shift + S</b>：一键切换下一款反重力主题皮肤</div>
+          <div style="margin-top:8px;color:#38BDF8;">🛡️ 代码安全隔离保护已开启：所有代码块 (&lt;pre&gt;/&lt;code&gt;)、Monaco 编辑器与 XTerm 终端内容均受严格保护，绝不被误翻译。</div>
+        </div>
+      `;
+    }
+
+    drawer.innerHTML = `
+      <div class="agy-header">
+        <div class="agy-title-wrap">
+          <div class="agy-logo">🚀</div>
+          <div>
+            <h3 class="agy-title">反重力皮肤与汉化中心</h3>
+            <p class="agy-subtitle">Antigravity Skin &amp; Localization Studio v1.0</p>
+          </div>
+        </div>
+        <button class="agy-close-btn" data-action="close-panel" title="关闭 (Esc)">✕</button>
+      </div>
+      <div class="agy-tabs">
+        <button class="agy-tab ${activeTab === 'skins' ? 'active' : ''}" data-action="switch-tab" data-tab="skins">🎨 主题皮肤</button>
+        <button class="agy-tab ${activeTab === 'i18n' ? 'active' : ''}" data-action="switch-tab" data-tab="i18n">🌐 界面汉化</button>
+        <button class="agy-tab ${activeTab === 'effects' ? 'active' : ''}" data-action="switch-tab" data-tab="effects">✨ 壁纸特效</button>
+        <button class="agy-tab ${activeTab === 'about' ? 'active' : ''}" data-action="switch-tab" data-tab="about">⚙️ 快捷键</button>
+      </div>
+      <div class="agy-body">
+        ${bodyHtml}
+      </div>
+      <div class="agy-footer">
+        <span>当前皮肤：<b style="color:#E2E8F0">${currentSkin.name}</b></span>
+        <span>快捷键：<b>⌘/Ctrl + Shift + L</b></span>
+      </div>
+    `;
+
+    bindDrawerEvents(drawer);
+  }
+
+  function bindDrawerEvents(drawer) {
+    drawer.querySelectorAll('[data-action]').forEach((el) => {
+      const action = el.getAttribute('data-action');
+      if (action === 'close-panel') {
+        el.onclick = () => togglePanel(false);
+      } else if (action === 'switch-tab') {
+        el.onclick = () => {
+          activeTab = el.getAttribute('data-tab');
+          renderControlPanel();
+        };
+      } else if (action === 'filter-skin') {
+        el.onclick = () => {
+          skinCategoryFilter = el.getAttribute('data-filter');
+          renderControlPanel();
+        };
+      } else if (action === 'select-skin') {
+        el.onclick = () => {
+          state.skinId = el.getAttribute('data-skin');
+          saveConfig(state);
+          applySkin();
+          renderControlPanel();
+        };
+      } else if (action === 'set-lang') {
+        el.onclick = () => {
+          state.langMode = el.getAttribute('data-lang');
+          saveConfig(state);
+          translatedNodeCount = 0;
+          translateSubtree(document.body);
+          renderControlPanel();
+        };
+      } else if (action === 'rescan-dom') {
+        el.onclick = () => {
+          translatedNodeCount = 0;
+          translateSubtree(document.body);
+          renderControlPanel();
+        };
+      } else if (action === 'add-custom-term') {
+        el.onclick = () => {
+          const enInput = drawer.querySelector('#agy-custom-en');
+          const zhInput = drawer.querySelector('#agy-custom-zh');
+          const en = enInput ? enInput.value.trim() : '';
+          const zh = zhInput ? zhInput.value.trim() : '';
+          if (en && zh) {
+            state.customDict[en] = zh;
+            saveConfig(state);
+            translateSubtree(document.body);
+            renderControlPanel();
+          }
+        };
+      } else if (action === 'del-custom-term') {
+        el.onclick = () => {
+          const en = decodeURIComponent(el.getAttribute('data-en') || '');
+          delete state.customDict[en];
+          saveConfig(state);
+          translateSubtree(document.body);
+          renderControlPanel();
+        };
+      } else if (action === 'toggle-glass') {
+        el.onchange = () => {
+          state.enableGlass = el.checked;
+          saveConfig(state);
+          applySkin();
+        };
+      } else if (action === 'toggle-glow') {
+        el.onchange = () => {
+          state.enableGlow = el.checked;
+          saveConfig(state);
+          applySkin();
+        };
+      } else if (action === 'toggle-ambient') {
+        el.onchange = () => {
+          state.enableAmbientBg = el.checked;
+          saveConfig(state);
+          applySkin();
+        };
+      } else if (action === 'apply-wallpaper') {
+        el.onclick = () => {
+          const input = drawer.querySelector('#agy-wallpaper-url');
+          state.wallpaperUrl = input ? input.value.trim() : '';
+          saveConfig(state);
+          applySkin();
+        };
+      } else if (action === 'clear-wallpaper') {
+        el.onclick = () => {
+          state.wallpaperUrl = '';
+          saveConfig(state);
+          applySkin();
+          renderControlPanel();
+        };
+      } else if (action === 'wallpaper-opacity') {
+        el.oninput = () => {
+          state.wallpaperOpacity = parseFloat(el.value);
+          saveConfig(state);
+          updateWallpaperLayer();
+          renderControlPanel();
+        };
+      } else if (action === 'wallpaper-blur') {
+        el.oninput = () => {
+          state.wallpaperBlur = parseInt(el.value, 10);
+          saveConfig(state);
+          updateWallpaperLayer();
+          renderControlPanel();
+        };
+      } else if (action === 'font-scale') {
+        el.oninput = () => {
+          state.fontScale = parseInt(el.value, 10);
+          saveConfig(state);
+          applySkin();
+          renderControlPanel();
+        };
+      } else if (action === 'toggle-fab') {
+        el.onchange = () => {
+          state.showFloatingButton = el.checked;
+          saveConfig(state);
+          renderControlPanel();
+        };
+      } else if (action === 'export-config') {
+        el.onclick = () => {
+          const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'antigravity-skin-i18n-config.json';
+          a.click();
+          URL.revokeObjectURL(url);
+        };
+      } else if (action === 'reset-config') {
+        el.onclick = () => {
+          state = { ...DEFAULT_CONFIG, customDict: {} };
+          saveConfig(state);
+          applySkin();
+          translateSubtree(document.body);
+          renderControlPanel();
+        };
+      }
+    });
+
+    const fileInput = drawer.querySelector('#agy-wallpaper-file');
+    if (fileInput) {
+      fileInput.onchange = (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = () => {
+          state.wallpaperUrl = String(reader.result || '');
+          saveConfig(state);
+          applySkin();
+          renderControlPanel();
+        };
+        reader.readAsDataURL(file);
+      };
+    }
+  }
+
+  // ==========================================================================
+  // 4. MutationObserver 实时监听与快捷键绑定 (Lifecycle & Observer)
+  // ==========================================================================
+  let pendingNodes = new Set();
+  let rafScheduled = false;
+
+  function scheduleFlush() {
+    if (rafScheduled) return;
+    rafScheduled = true;
+    const scheduler =
+      typeof requestAnimationFrame === 'function'
+        ? requestAnimationFrame
+        : (fn) => setTimeout(fn, 16);
+    scheduler(() => {
+      rafScheduled = false;
+      const nodes = Array.from(pendingNodes);
+      pendingNodes.clear();
+      for (let i = 0; i < nodes.length; i++) {
+        translateSubtree(nodes[i]);
+      }
+    });
+  }
+
+  function startObserver() {
+    if (typeof document === 'undefined' || !document.body) return;
+    const observer = new MutationObserver((mutations) => {
+      for (let i = 0; i < mutations.length; i++) {
+        const m = mutations[i];
+        if (m.type === 'childList') {
+          for (let j = 0; j < m.addedNodes.length; j++) {
+            pendingNodes.add(m.addedNodes[j]);
+          }
+        } else if (m.type === 'characterData') {
+          pendingNodes.add(m.target);
+        } else if (m.type === 'attributes') {
+          pendingNodes.add(m.target);
+        }
+      }
+      if (pendingNodes.size > 0) {
+        scheduleFlush();
+      }
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      characterData: true,
+      attributes: true,
+      attributeFilter: TRANSLATABLE_ATTRS,
+    });
+  }
+
+  function registerShortcuts() {
+    if (typeof window === 'undefined') return;
+    window.addEventListener(
+      'keydown',
+      (e) => {
+        // Cmd/Ctrl + Shift + L => Toggle Studio Panel
+        if ((e.metaKey || e.ctrlKey) && e.shiftKey && e.key.toLowerCase() === 'l') {
+          e.preventDefault();
+          togglePanel();
+        }
+        // Alt + Shift + Z => Cycle Language Mode
+        if (e.altKey && e.shiftKey && e.key.toLowerCase() === 'z') {
+          e.preventDefault();
+          const order = ['zh-CN', 'bilingual', 'en-US'];
+          const nextIdx = (order.indexOf(state.langMode) + 1) % order.length;
+          state.langMode = order[nextIdx];
+          saveConfig(state);
+          translateSubtree(document.body);
+          renderControlPanel();
+        }
+        // Alt + Shift + S => Cycle Skin Preset
+        if (e.altKey && e.shiftKey && e.key.toLowerCase() === 's') {
+          e.preventDefault();
+          const curIdx = SKIN_PRESETS.findIndex((s) => s.id === state.skinId);
+          const nextSkin = SKIN_PRESETS[(curIdx + 1) % SKIN_PRESETS.length];
+          state.skinId = nextSkin.id;
+          saveConfig(state);
+          applySkin();
+          renderControlPanel();
+        }
+        // Escape => Close Panel
+        if (e.key === 'Escape' && isPanelOpen) {
+          togglePanel(false);
+        }
+      },
+      true
+    );
+  }
+
+  function init() {
+    applySkin();
+    if (typeof document !== 'undefined' && document.body) {
+      ensureControlPanel();
+      translateSubtree(document.body);
+      startObserver();
+    }
+  }
+
+  if (typeof document !== 'undefined') {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init, { once: true });
+    } else {
+      init();
+    }
+    registerShortcuts();
+  }
+
+  // Expose programmatic API for Studio, Preload, and Automated Sandbox Tests
+  const api = {
+    version: '1.0.0',
+    SKIN_PRESETS,
+    EXACT_DICT,
+    NATIVE_MENU_DICT,
+    PATTERN_RULES,
+    getState: () => ({ ...state }),
+    setSkin: (skinId) => {
+      state.skinId = skinId;
+      saveConfig(state);
+      applySkin();
+      renderControlPanel();
+    },
+    setLangMode: (langMode) => {
+      state.langMode = langMode;
+      saveConfig(state);
+      translatedNodeCount = 0;
+      if (typeof document !== 'undefined' && document.body) {
+        translateSubtree(document.body);
+      }
+      renderControlPanel();
+    },
+    setWallpaper: (url, opacity = 0.18, blur = 8) => {
+      state.wallpaperUrl = url;
+      state.wallpaperOpacity = opacity;
+      state.wallpaperBlur = blur;
+      saveConfig(state);
+      applySkin();
+      renderControlPanel();
+    },
+    translateString: (text, mode) =>
+      translateString(text, mode || state.langMode, state.customDict),
+    translateSubtree,
+    applySkin,
+    togglePanel,
+  };
+
+  if (typeof window !== 'undefined') {
+    window.AntigravitySkinI18n = api;
+  }
+  if (typeof globalThis !== 'undefined') {
+    globalThis.AntigravitySkinI18n = api;
+  }
+})();

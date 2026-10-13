@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <defs>
+    <linearGradient id="nebulaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090D16" />
+      <stop offset="50%" stop-color="#111827" />
+      <stop offset="100%" stop-color="#1E1B4B" />
+    </linearGradient>
+    <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="50%" stop-color="#818CF8" />
+      <stop offset="100%" stop-color="#F472B6" />
+    </linearGradient>
+  </defs>
+  <!-- 10% safe margin square rounded icon -->
+  <rect x="24" y="24" width="208" height="208" rx="48" fill="url(#nebulaGrad)" stroke="url(#ringGrad)" stroke-width="6" />
+  <!-- Anti-gravity orbit ring -->
+  <ellipse cx="128" cy="132" rx="74" ry="28" fill="none" stroke="url(#ringGrad)" stroke-width="5" stroke-dasharray="12 6" transform="rotate(-22 128 132)" />
+  <!-- Central zero-gravity prism -->
+  <polygon points="128,58 172,138 128,120 84,138" fill="url(#ringGrad)" />
+  <polygon points="128,128 172,138 128,194 84,138" fill="#38BDF8" opacity="0.78" />
+  <!-- Chinese character badge '汉' -->
+  <circle cx="176" cy="176" r="28" fill="#090D16" stroke="#38BDF8" stroke-width="3.5" />
+  <text x="176" y="186" text-anchor="middle" fill="#F8FAFC" font-family="-apple-system, PingFang SC, sans-serif" font-size="26" font-weight="800">汉</text>
+</svg>

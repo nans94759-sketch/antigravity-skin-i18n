@@ -1,0 +1,123 @@
+{
+  "name": "antigravity-skin-i18n",
+  "displayName": "%displayName%",
+  "description": "%description%",
+  "version": "1.0.0",
+  "publisher": "combob",
+  "engines": {
+    "vscode": "^1.68.0"
+  },
+  "categories": [
+    "Themes",
+    "Language Packs",
+    "Other"
+  ],
+  "keywords": [
+    "antigravity",
+    "theme",
+    "skin",
+    "chinese",
+    "i18n",
+    "反重力",
+    "汉化",
+    "皮肤"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "*"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "id": "antigravity-skin-nebula-zero-g",
+        "label": "Antigravity · 深空反重力 (Nebula Zero-G)",
+        "uiTheme": "vs-dark",
+        "path": "./themes/nebula-zero-g.json"
+      },
+      {
+        "id": "antigravity-skin-cyberpunk-neon",
+        "label": "Antigravity · 赛博霓虹 (Cyberpunk Matrix)",
+        "uiTheme": "vs-dark",
+        "path": "./themes/cyberpunk-neon.json"
+      },
+      {
+        "id": "antigravity-skin-aurora-glass",
+        "label": "Antigravity · 极光琉璃 (Aurora Glassmorphism)",
+        "uiTheme": "vs-dark",
+        "path": "./themes/aurora-glass.json"
+      },
+      {
+        "id": "antigravity-skin-tokyo-night",
+        "label": "Antigravity · 东京夜色 (Tokyo Night Pro)",
+        "uiTheme": "vs-dark",
+        "path": "./themes/tokyo-night.json"
+      },
+      {
+        "id": "antigravity-skin-catppuccin-mocha",
+        "label": "Antigravity · 猫爪摩卡 (Catppuccin Mocha)",
+        "uiTheme": "vs-dark",
+        "path": "./themes/catppuccin-mocha.json"
+      },
+      {
+        "id": "antigravity-skin-morandi-forest",
+        "label": "Antigravity · 莫兰迪森系 (Morandi Emerald)",
+        "uiTheme": "vs-dark",
+        "path": "./themes/morandi-forest.json"
+      },
+      {
+        "id": "antigravity-skin-obsidian-gold",
+        "label": "Antigravity · 黑金尊享 (Obsidian Champagne Gold)",
+        "uiTheme": "vs-dark",
+        "path": "./themes/obsidian-gold.json"
+      },
+      {
+        "id": "antigravity-skin-retro-amber",
+        "label": "Antigravity · 复古琥珀终端 (Retro CRT Amber)",
+        "uiTheme": "vs-dark",
+        "path": "./themes/retro-amber.json"
+      },
+      {
+        "id": "antigravity-skin-oriental-ink",
+        "label": "Antigravity · 东方水墨·宣纸 (Oriental Ink & Rice Paper)",
+        "uiTheme": "vs",
+        "path": "./themes/oriental-ink.json"
+      },
+      {
+        "id": "antigravity-skin-sakura-breeze",
+        "label": "Antigravity · 樱花微风 (Sakura Breeze)",
+        "uiTheme": "vs",
+        "path": "./themes/sakura-breeze.json"
+      },
+      {
+        "id": "antigravity-skin-cupertino-light",
+        "label": "Antigravity · 果味极简·云母白 (Cupertino Studio Light)",
+        "uiTheme": "vs",
+        "path": "./themes/cupertino-light.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "antigravitySkinI18n.openStudio",
+        "title": "%cmd.openStudio%",
+        "category": "Antigravity 反重力"
+      },
+      {
+        "command": "antigravitySkinI18n.switchSkin",
+        "title": "%cmd.switchSkin%",
+        "category": "Antigravity 反重力"
+      },
+      {
+        "command": "antigravitySkinI18n.switchLanguage",
+        "title": "%cmd.switchLanguage%",
+        "category": "Antigravity 反重力"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "antigravitySkinI18n.openStudio",
+        "key": "ctrl+shift+l",
+        "mac": "cmd+shift+l"
+      }
+    ]
+  }
+}
