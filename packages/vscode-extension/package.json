@@ -30,7 +30,7 @@
     "themes": [
       {
         "id": "antigravity-skin-nebula-zero-g",
-        "label": "Antigravity · 深空反重力 (Nebula Zero-G)",
+        "label": "Antigravity · 深空蓝 (Nebula Zero-G)",
         "uiTheme": "vs-dark",
         "path": "./themes/nebula-zero-g.json"
       },
@@ -42,43 +42,43 @@
       },
       {
         "id": "antigravity-skin-aurora-glass",
-        "label": "Antigravity · 极光琉璃 (Aurora Glassmorphism)",
+        "label": "Antigravity · 极光琉璃 (Aurora Glass)",
         "uiTheme": "vs-dark",
         "path": "./themes/aurora-glass.json"
       },
       {
         "id": "antigravity-skin-tokyo-night",
-        "label": "Antigravity · 东京夜色 (Tokyo Night Pro)",
+        "label": "Antigravity · 东京夜色 (Tokyo Night)",
         "uiTheme": "vs-dark",
         "path": "./themes/tokyo-night.json"
       },
       {
         "id": "antigravity-skin-catppuccin-mocha",
-        "label": "Antigravity · 猫爪摩卡 (Catppuccin Mocha)",
+        "label": "Antigravity · 摩卡暖灰 (Catppuccin Mocha)",
         "uiTheme": "vs-dark",
         "path": "./themes/catppuccin-mocha.json"
       },
       {
         "id": "antigravity-skin-morandi-forest",
-        "label": "Antigravity · 莫兰迪森系 (Morandi Emerald)",
+        "label": "Antigravity · 莫兰迪绿 (Morandi Emerald)",
         "uiTheme": "vs-dark",
         "path": "./themes/morandi-forest.json"
       },
       {
         "id": "antigravity-skin-obsidian-gold",
-        "label": "Antigravity · 黑金尊享 (Obsidian Champagne Gold)",
+        "label": "Antigravity · 曜石黑金 (Obsidian Gold)",
         "uiTheme": "vs-dark",
         "path": "./themes/obsidian-gold.json"
       },
       {
         "id": "antigravity-skin-retro-amber",
-        "label": "Antigravity · 复古琥珀终端 (Retro CRT Amber)",
+        "label": "Antigravity · 琥珀终端 (Retro CRT Amber)",
         "uiTheme": "vs-dark",
         "path": "./themes/retro-amber.json"
       },
       {
         "id": "antigravity-skin-oriental-ink",
-        "label": "Antigravity · 东方水墨·宣纸 (Oriental Ink & Rice Paper)",
+        "label": "Antigravity · 水墨宣纸 (Oriental Ink)",
         "uiTheme": "vs",
         "path": "./themes/oriental-ink.json"
       },
@@ -90,7 +90,7 @@
       },
       {
         "id": "antigravity-skin-cupertino-light",
-        "label": "Antigravity · 果味极简·云母白 (Cupertino Studio Light)",
+        "label": "Antigravity · 云母浅白 (Cupertino Light)",
         "uiTheme": "vs",
         "path": "./themes/cupertino-light.json"
       }

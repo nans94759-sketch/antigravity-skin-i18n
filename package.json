@@ -1,7 +1,7 @@
 {
   "name": "antigravity-skin-i18n",
   "version": "1.0.0",
-  "description": "Google Antigravity (反重力) 主题皮肤与全量中文汉化插件套件 — 支持 Antigravity 2.0 桌面端、Antigravity IDE (.vsix) 与原生 Plugin/Skill，内置 12 款高定反重力皮肤、1100+ 词条无损实时汉化/双语对照与背景壁纸工坊",
+  "description": "Google Antigravity 主题皮肤与中文汉化插件 — 支持 Antigravity 2.0 桌面端、Antigravity IDE (.vsix) 与原生 Plugin/Skill，内置 12 款主题皮肤、1036+ 词条中文汉化/双语对照与背景壁纸设置",
   "type": "module",
   "bin": {
     "agy-skin-i18n": "./bin/agy-skin-i18n.mjs"

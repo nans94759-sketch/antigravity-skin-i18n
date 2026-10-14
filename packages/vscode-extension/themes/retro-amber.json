@@ -1,6 +1,6 @@
 {
   "$schema": "vscode://schemas/color-theme",
-  "name": "Antigravity · 复古琥珀终端 (Retro CRT Amber)",
+  "name": "Antigravity · 琥珀终端 (Retro CRT Amber)",
   "type": "dark",
   "semanticHighlighting": true,
   "colors": {

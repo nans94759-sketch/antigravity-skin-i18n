@@ -115,8 +115,8 @@ export function patchMenuAndTraySource(menuCode, trayCode) {
   if (menuCode && !menuCode.includes(PATCH_MARKER_START)) {
     patchedMenu =
       menuCode
-        .replace(/label:\s*'New Window'/g, "label: '新建窗口 (New Window)'")
-        .replace(/label:\s*'Docs'/g, "label: '官方文档 (Docs)'")
+        .replace(/label:\s*'New Window'/g, "label: '新建窗口'")
+        .replace(/label:\s*'Docs'/g, "label: '文档'")
         .replace(/label:\s*'Connect to WSL'/g, "label: '连接到 WSL'")
         .replace(/label:\s*'Reopen Locally'/g, "label: '在本地重新打开'") +
       `\n${PATCH_MARKER_START}\n${PATCH_MARKER_END}\n`;
@@ -126,8 +126,8 @@ export function patchMenuAndTraySource(menuCode, trayCode) {
   if (trayCode && !trayCode.includes(PATCH_MARKER_START)) {
     patchedTray =
       trayCode
-        .replace(/label:\s*'No agents running'/g, "label: '当前无运行中的智能体'")
-        .replace(/label:\s*'Quit'/g, "label: '退出 (Quit)'")
+        .replace(/label:\s*'No agents running'/g, "label: '无运行中的智能体'")
+        .replace(/label:\s*'Quit'/g, "label: '退出'")
         .replace(/label:\s*\`Open \$\{electron_1\.app\.getName\(\)\}\`/g, 'label: `打开 ${electron_1.app.getName()}`') +
       `\n${PATCH_MARKER_START}\n${PATCH_MARKER_END}\n`;
   }

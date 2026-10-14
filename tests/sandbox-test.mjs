@@ -19,15 +19,14 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT_DIR = path.resolve(__dirname, '..');
 
-console.log('======================================================================');
-console.log(' 🧪 Running Isolated Sandbox Test Suite (零侵入隔离沙箱自动化测试)');
-console.log(' 🛡️  安全保证：全程仅在 /tmp 虚拟沙箱中测试，绝不触碰正在运行的 Antigravity');
-console.log('======================================================================\n');
+console.log('----------------------------------------------------------------------');
+console.log(' 运行隔离沙箱自检测试 (仅在 /tmp 沙箱中执行，不修改宿主机软件)');
+console.log('----------------------------------------------------------------------\n');
 
 // ---------------------------------------------------------------------------
-// 1. 测试 12 款反重力高定皮肤预设完整性
+// 1. 测试 12 款皮肤预设完整性
 // ---------------------------------------------------------------------------
-console.log('▶ [1/5] 验证 12 款反重力高定主题皮肤预设与 VS Code 主题文件...');
+console.log('[1/5] 校验 12 款主题皮肤预设与 VS Code 主题文件...');
 assert.equal(SKIN_PRESETS.length, 12, '应包含 12 款预设皮肤');
 for (const skin of SKIN_PRESETS) {
   assert.ok(skin.id && skin.name && skin.nameEn, `皮肤缺少基本标识: ${skin.id}`);
@@ -49,17 +48,17 @@ for (const skin of SKIN_PRESETS) {
   }
 }
 assert.equal(getSkinById('cyberpunk-neon').name, '赛博霓虹');
-console.log('  ✅ 12 款反重力皮肤与 11 个 VS Code 主题 JSON 全部校验通过！\n');
+console.log('  通过: 12 款皮肤与 11 个 VS Code 主题文件校验完成。\n');
 
 // ---------------------------------------------------------------------------
-// 2. 测试全量汉化词典、双语模式与动态正则匹配
+// 2. 测试汉化词典、双语模式与动态正则匹配
 // ---------------------------------------------------------------------------
-console.log('▶ [2/5] 验证全量中文汉化词典 (1036+ 词条) 与动态正则引擎...');
+console.log('[2/5] 校验中文汉化词典与动态正则规则...');
 assert.ok(Object.keys(EXACT_DICT).length >= 1000, '精确词条数应不少于 1000 条');
 assert.equal(translateText('New Conversation', 'zh-CN'), '新建对话');
 assert.equal(translateText('Scheduled Tasks', 'zh-CN'), '定时任务');
 assert.equal(translateText('Skills & Customizations', 'zh-CN'), '技能与扩展定制');
-assert.equal(translateText('Always Proceed', 'zh-CN'), '始终自动执行 (Always Proceed)');
+assert.equal(translateText('Always Proceed', 'zh-CN'), '始终自动执行');
 assert.equal(
   translateText('New Conversation', 'bilingual'),
   '新建对话 · New Conversation',
@@ -69,15 +68,15 @@ assert.equal(translateText('New Conversation', 'en-US'), 'New Conversation');
 assert.equal(translateText('3 agents running', 'zh-CN'), '3 个智能体正在运行');
 assert.equal(translateText('15m ago', 'zh-CN'), '15 分钟前');
 assert.equal(translateText('Step 8', 'zh-CN'), '步骤 8');
-assert.equal(translateText('  Settings  ', 'zh-CN'), '  设置中心  ', '应保留首尾空格');
+assert.equal(translateText('  Settings  ', 'zh-CN'), '  设置  ', '应保留首尾空格');
 console.log(
-  `  ✅ 词典校验通过 (${Object.keys(EXACT_DICT).length} 条精确词条 + ${PATTERN_RULES.length} 条动态规则)！\n`
+  `  通过: 词典校验完成 (${Object.keys(EXACT_DICT).length} 条精确词条 + ${PATTERN_RULES.length} 条动态规则)。\n`
 );
 
 // ---------------------------------------------------------------------------
 // 3. 测试编译后的运行时引擎 agy-skin-i18n-runtime.js
 // ---------------------------------------------------------------------------
-console.log('▶ [3/5] 在隔离 VM 环境中验证运行时引擎 (agy-skin-i18n-runtime.js)...');
+console.log('[3/5] 校验运行时引擎 (agy-skin-i18n-runtime.js)...');
 const runtimePath = path.join(ROOT_DIR, 'src', 'runtime', 'agy-skin-i18n-runtime.js');
 assert.ok(fs.existsSync(runtimePath), 'agy-skin-i18n-runtime.js 应已构建');
 const runtimeCode = fs.readFileSync(runtimePath, 'utf8');
@@ -117,19 +116,18 @@ api.setSkin('aurora-glass');
 assert.equal(api.getState().skinId, 'aurora-glass');
 api.setLangMode('bilingual');
 assert.equal(api.getState().langMode, 'bilingual');
-console.log('  ✅ 运行时引擎 API 与安全隔离保护校验通过！\n');
+console.log('  通过: 运行时引擎 API 与代码块隔离校验完成。\n');
 
 // ---------------------------------------------------------------------------
-// 4. 在 /tmp 虚拟沙箱中测试 app.asar 注入与无损还原（绝不触碰真实软件）
+// 4. 在 /tmp 虚拟沙箱中测试 app.asar 注入与无损还原
 // ---------------------------------------------------------------------------
-console.log('▶ [4/5] 在 /tmp 独立虚拟沙箱中测试 app.asar 注入与 SHA-256 还原...');
+console.log('[4/5] 在 /tmp 沙箱中测试 app.asar 注入与 SHA-256 还原...');
 const tmpSandboxRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'agy-sandbox-verify-'));
 const mockAppSource = path.join(tmpSandboxRoot, 'mock-app-src');
 const mockResourcesDir = path.join(tmpSandboxRoot, 'Resources');
 fs.mkdirSync(path.join(mockAppSource, 'dist'), { recursive: true });
 fs.mkdirSync(mockResourcesDir, { recursive: true });
 
-// 创建模拟的 Electron app.asar 源文件
 fs.writeFileSync(
   path.join(mockAppSource, 'package.json'),
   JSON.stringify({ name: 'antigravity-mock-sandbox', version: '2.23.0', main: 'dist/main.js' }, null, 2)
@@ -154,13 +152,11 @@ const origSandboxSha = sha256File(mockAsarPath);
 const beforeStatus = checkPatchStatus(mockResourcesDir);
 assert.equal(beforeStatus.patched, false);
 
-// 执行沙箱注入
 const patchMeta = installPatchToResources(mockResourcesDir);
 assert.equal(patchMeta.patched, true);
 assert.equal(patchMeta.origSha256, origSandboxSha);
 assert.notEqual(patchMeta.patchedSha256, origSandboxSha);
 
-// 解包验证沙箱注入产物
 const verifyExtractDir = path.join(tmpSandboxRoot, 'verify-extracted');
 execFileSync('npx', ['--yes', '@electron/asar', 'extract', mockAsarPath, verifyExtractDir]);
 assert.ok(
@@ -170,21 +166,20 @@ assert.ok(
 const patchedPreload = fs.readFileSync(path.join(verifyExtractDir, 'dist', 'preload.js'), 'utf8');
 assert.ok(patchedPreload.includes(PATCH_MARKER_START), 'preload.js 应包含注入标记');
 const patchedMenu = fs.readFileSync(path.join(verifyExtractDir, 'dist', 'menu.js'), 'utf8');
-assert.ok(patchedMenu.includes('新建窗口 (New Window)'), 'menu.js 应完成原生菜单汉化');
+assert.ok(patchedMenu.includes("label: '新建窗口'"), 'menu.js 应完成原生菜单汉化');
 
-// 执行沙箱无损还原并校验 SHA-256
 const restoreRes = restoreResourcesFromBackup(mockResourcesDir);
 assert.equal(restoreRes.restored, true);
 assert.equal(restoreRes.verified, true);
-assert.equal(restoreRes.sha256, origSandboxSha, '还原后的 app.asar SHA-256 必须与原始文件 100% 一致');
+assert.equal(restoreRes.sha256, origSandboxSha, '还原后的 app.asar SHA-256 必须与原始文件一致');
 
 fs.rmSync(tmpSandboxRoot, { recursive: true, force: true });
-console.log('  ✅ /tmp 虚拟沙箱 app.asar 注入、解包验证与 100% 比特级无损还原测试通过！\n');
+console.log('  通过: /tmp 沙箱 app.asar 注入、解包与 SHA-256 还原校验完成。\n');
 
 // ---------------------------------------------------------------------------
-// 5. 验证パッケージ产物 (.vsix、Studio、Native Plugin) 完整性
+// 5. 验证构建产物 (.vsix、Studio、Native Plugin) 完整性
 // ---------------------------------------------------------------------------
-console.log('▶ [5/5] 验证 VSIX 扩展包、Studio 工作台与原生 Plugin 产物...');
+console.log('[5/5] 校验 VSIX 扩展包、Studio 预览台与插件产物...');
 const vsixFile = path.join(
   ROOT_DIR,
   'packages',
@@ -195,8 +190,8 @@ const studioFile = path.join(ROOT_DIR, 'studio', 'index.html');
 const pluginJsonFile = path.join(ROOT_DIR, 'plugins', 'antigravity-skin-i18n', 'plugin.json');
 
 assert.ok(fs.existsSync(vsixFile) && fs.statSync(vsixFile).size > 10000, 'VSIX 扩展包应存在且有效');
-assert.ok(fs.existsSync(studioFile) && fs.statSync(studioFile).size > 50000, 'Studio 预览工作台应存在');
+assert.ok(fs.existsSync(studioFile) && fs.statSync(studioFile).size > 50000, 'Studio 预览台应存在');
 assert.ok(fs.existsSync(pluginJsonFile), '原生 Plugin 清单应存在');
-console.log('  ✅ 全部构建产物完整性核验通过！\n');
+console.log('  通过: 全部构建产物核验完成。\n');
 
-console.log('🎉 ALL 5 SANDBOX TEST SUITES PASSED! (宿主机 Antigravity.app 保持 100% 原始未改动状态)');
+console.log('全部 5 项沙箱测试通过 (宿主机 Antigravity.app 保持原始未改动状态)。');

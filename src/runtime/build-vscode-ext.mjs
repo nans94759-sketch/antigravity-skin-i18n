@@ -216,12 +216,12 @@ fs.writeFileSync(
   path.join(EXT_DIR, 'package.nls.json'),
   JSON.stringify(
     {
-      displayName: 'Antigravity Skin & Chinese Localization Suite (反重力皮肤与汉化套件)',
+      displayName: 'Antigravity Skin & Chinese Localization (反重力皮肤与汉化)',
       description:
-        '12 designer Anti-Gravity themes + full Simplified Chinese / Bilingual UI localization for Antigravity & Antigravity IDE.',
-      'cmd.openStudio': 'Open Skin & Chinese Localization Studio (打开反重力皮肤与汉化控制台)',
-      'cmd.switchSkin': 'Switch Anti-Gravity Theme Skin (切换反重力主题皮肤)',
-      'cmd.switchLanguage': 'Switch UI Language Mode (切换界面汉化模式: 中文/双语/英文)',
+        '12 theme skins + Simplified Chinese / Bilingual UI localization for Antigravity & Antigravity IDE.',
+      'cmd.openStudio': 'Open Skin & i18n Settings (打开皮肤与汉化设置)',
+      'cmd.switchSkin': 'Switch Theme Skin (切换主题皮肤)',
+      'cmd.switchLanguage': 'Switch UI Language Mode (切换语言模式: 中文/双语/英文)',
     },
     null,
     2
@@ -232,12 +232,12 @@ fs.writeFileSync(
   path.join(EXT_DIR, 'package.nls.zh-cn.json'),
   JSON.stringify(
     {
-      displayName: '反重力 (Antigravity) 主题皮肤与全量汉化插件',
+      displayName: 'Antigravity 主题皮肤与汉化扩展',
       description:
-        '内置 12 款高定反重力主题皮肤与 1100+ 词条无损中文汉化/中英双语对照引擎，支持 Antigravity 2.0 与 Antigravity IDE。',
-      'cmd.openStudio': '打开反重力皮肤与汉化控制台 (Skin & i18n Studio)',
-      'cmd.switchSkin': '切换反重力主题皮肤 (Switch Skin)',
-      'cmd.switchLanguage': '切换界面汉化模式 (简体中文 / 中英双语 / English)',
+        '内置 12 款主题皮肤与中文汉化/双语对照支持，适用于 Antigravity 2.0 与 Antigravity IDE。',
+      'cmd.openStudio': '打开皮肤与汉化设置',
+      'cmd.switchSkin': '切换主题皮肤',
+      'cmd.switchLanguage': '切换界面语言模式 (中文 / 双语 / 英文)',
     },
     null,
     2
@@ -266,8 +266,8 @@ const SKINS = ${JSON.stringify(
 function activate(context) {
   // Create Status Bar Item
   const statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
-  statusBarItem.text = '$(paintcan) 反重力皮肤·汉化';
-  statusBarItem.tooltip = '点击打开 Antigravity 反重力皮肤与汉化控制台 (Cmd/Ctrl+Shift+L)';
+  statusBarItem.text = '反重力皮肤·汉化';
+  statusBarItem.tooltip = '打开 Antigravity 皮肤与汉化设置 (Cmd/Ctrl+Shift+L)';
   statusBarItem.command = 'antigravitySkinI18n.openStudio';
   statusBarItem.show();
   context.subscriptions.push(statusBarItem);
@@ -275,37 +275,37 @@ function activate(context) {
   // Command 1: Switch Skin QuickPick
   const switchSkinCmd = vscode.commands.registerCommand('antigravitySkinI18n.switchSkin', async () => {
     const items = SKINS.map((s) => ({
-      label: \`\${s.category === 'light' ? '☀️' : '🌙'} \${s.name} (\${s.nameEn})\`,
+      label: \`\${s.name} (\${s.nameEn})\`,
       description: \`[\${s.badge}]\`,
       detail: s.description,
       themeLabel: s.themeLabel,
     }));
     const picked = await vscode.window.showQuickPick(items, {
-      placeHolder: '选择一款 Antigravity 反重力高定主题皮肤（立即全局生效）',
+      placeHolder: '选择主题皮肤',
     });
     if (picked) {
       await vscode.workspace
         .getConfiguration('workbench')
         .update('colorTheme', picked.themeLabel, vscode.ConfigurationTarget.Global);
-      vscode.window.showInformationMessage(\`🎨 已切换至反重力皮肤：\${picked.label}\`);
+      vscode.window.showInformationMessage(\`已切换主题皮肤：\${picked.label}\`);
     }
   });
 
   // Command 2: Switch Language Mode
   const switchLangCmd = vscode.commands.registerCommand('antigravitySkinI18n.switchLanguage', async () => {
     const items = [
-      { label: '🇨🇳 简体中文 (zh-CN)', mode: 'zh-CN', detail: '全量汉化 Antigravity 侧边栏、设置、按钮与提示信息' },
-      { label: '🌗 中英双语对照 (Bilingual)', mode: 'bilingual', detail: '导航与核心操作采用「中文 · English」双语对照显示' },
-      { label: '🇺🇸 原生英文 (English)', mode: 'en-US', detail: '恢复 Antigravity 官方默认英文界面' },
+      { label: '简体中文 (zh-CN)', mode: 'zh-CN', detail: '纯中文界面' },
+      { label: '中英双语 (Bilingual)', mode: 'bilingual', detail: '导航与按钮采用「中文 · English」对照显示' },
+      { label: 'English (en-US)', mode: 'en-US', detail: '恢复官方默认英文界面' },
     ];
     const picked = await vscode.window.showQuickPick(items, {
-      placeHolder: '选择 Antigravity 界面语言模式',
+      placeHolder: '选择界面语言模式',
     });
     if (picked) {
       await vscode.workspace
         .getConfiguration('antigravitySkinI18n')
         .update('languageMode', picked.mode, vscode.ConfigurationTarget.Global);
-      vscode.window.showInformationMessage(\`🌐 已切换界面语言模式为：\${picked.label}\`);
+      vscode.window.showInformationMessage(\`已切换语言模式：\${picked.label}\`);
     }
   });
 
@@ -313,7 +313,7 @@ function activate(context) {
   const openStudioCmd = vscode.commands.registerCommand('antigravitySkinI18n.openStudio', () => {
     const panel = vscode.window.createWebviewPanel(
       'antigravitySkinStudio',
-      '🎨 反重力皮肤与汉化工作台',
+      '皮肤与汉化设置',
       vscode.ViewColumn.One,
       { enableScripts: true }
     );
@@ -323,22 +323,22 @@ function activate(context) {
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <title>反重力皮肤与汉化工作台</title>
+  <title>皮肤与汉化设置</title>
   <style>
     body { margin: 0; padding: 32px; background: var(--background, #090D16); color: var(--foreground, #E2E8F0); font-family: system-ui, -apple-system, sans-serif; }
     .card { background: var(--card, #111827); border: 1px solid var(--card-border, #1E293B); border-radius: 14px; padding: 24px; max-width: 820px; margin: 0 auto; }
-    h1 { margin-top: 0; color: var(--primary, #38BDF8); }
-    .btn { padding: 10px 18px; border-radius: 8px; border: none; background: var(--primary, #38BDF8); color: var(--primary-foreground, #030712); font-weight: 700; cursor: pointer; margin-right: 10px; }
+    h1 { margin-top: 0; font-size: 20px; color: var(--primary, #38BDF8); }
+    .btn { padding: 9px 16px; border-radius: 8px; border: none; background: var(--primary, #38BDF8); color: var(--primary-foreground, #030712); font-weight: 600; cursor: pointer; margin-right: 10px; }
   </style>
 </head>
 <body>
   <div class="card">
-    <h1>🚀 Antigravity 反重力皮肤与汉化中心</h1>
-    <p>欢迎使用反重力皮肤与全量汉化插件！点击右下角悬浮按钮或下方按钮即可实时预览并切换 12 款主题皮肤与中文/双语模式。</p>
+    <h1>Antigravity 皮肤与汉化设置</h1>
+    <p>点击右下角悬浮按钮或下方按钮，可预览并切换 12 款主题皮肤与中文/双语模式。</p>
     <p>
       <span>New Conversation</span> · <span>Scheduled Tasks</span> · <span>Skills & Customizations</span> · <span>Settings</span> · <span>Always Proceed</span>
     </p>
-    <button class="btn" onclick="window.AntigravitySkinI18n && window.AntigravitySkinI18n.togglePanel(true)">打开皮肤与汉化抽屉面板</button>
+    <button class="btn" onclick="window.AntigravitySkinI18n && window.AntigravitySkinI18n.togglePanel(true)">打开设置面板</button>
   </div>
   <script>\${runtimeCode}</script>
   <script>setTimeout(() => { if (window.AntigravitySkinI18n) window.AntigravitySkinI18n.togglePanel(true); }, 150);</script>
@@ -358,7 +358,7 @@ fs.writeFileSync(path.join(EXT_DIR, 'extension.js'), extensionJs);
 
 fs.writeFileSync(
   path.join(EXT_DIR, 'README.md'),
-  `# Antigravity Skin & Chinese Localization Extension (反重力皮肤与汉化扩展)\n\n提供 12 款反重力高定主题皮肤与全量简体中文/双语对照汉化支持，包含 \`${Object.keys(EXACT_DICT).length}\` 条精准 UI 词条。\n`
+  `# Antigravity 主题皮肤与汉化扩展\n\n提供 12 款主题皮肤与简体中文/双语对照支持，包含 \`${Object.keys(EXACT_DICT).length}\` 条 UI 词条。\n`
 );
 
 // Build standard .vsix package (ZIP archive with [Content_Types].xml & extension.vsixmanifest)
@@ -383,8 +383,8 @@ const vsixManifestXml = `<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
     <Identity Language="zh-CN" Id="antigravity-skin-i18n" Version="1.0.0" Publisher="combob" />
-    <DisplayName>Antigravity 反重力主题皮肤与全量汉化插件</DisplayName>
-    <Description xml:space="preserve">内置 12 款高定反重力主题皮肤与 1100+ 词条无损中文汉化/中英双语对照引擎，支持 Antigravity 2.0 与 Antigravity IDE。</Description>
+    <DisplayName>Antigravity 主题皮肤与汉化扩展</DisplayName>
+    <Description xml:space="preserve">内置 12 款主题皮肤与中文汉化/双语对照支持，适用于 Antigravity 2.0 与 Antigravity IDE。</Description>
     <Tags>antigravity,theme,skin,chinese,i18n,反重力,汉化,皮肤</Tags>
     <Categories>Themes,Language Packs</Categories>
     <GalleryFlags>Public</GalleryFlags>

@@ -596,18 +596,20 @@ body {
         gap: 10px;
       }
       .agy-logo {
-        width: 32px;
-        height: 32px;
-        border-radius: 10px;
+        width: 30px;
+        height: 30px;
+        border-radius: 8px;
         background: linear-gradient(135deg, #38BDF8, #818CF8);
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 17px;
-        box-shadow: 0 4px 12px rgba(56, 189, 248, 0.35);
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        color: #030712;
       }
       .agy-title {
-        font-size: 15px;
+        font-size: 14px;
         font-weight: 700;
         color: #F8FAFC;
         margin: 0;
@@ -860,7 +862,7 @@ body {
     const fab = document.createElement('button');
     fab.className = 'agy-fab';
     fab.id = 'agy-skin-i18n-fab';
-    fab.title = '打开反重力皮肤与汉化控制中心 (快捷键: Cmd/Ctrl + Shift + L)';
+    fab.title = '皮肤与汉化设置 (Cmd/Ctrl + Shift + L)';
     fab.addEventListener('click', () => {
       togglePanel(true);
     });
@@ -905,12 +907,12 @@ body {
 
     const currentSkin = getSkinById(state.skinId);
     const langLabel =
-      state.langMode === 'zh-CN' ? '简体中文' : state.langMode === 'bilingual' ? '双语对照' : 'EN';
+      state.langMode === 'zh-CN' ? '中文' : state.langMode === 'bilingual' ? '双语' : 'EN';
 
     fab.style.display = state.showFloatingButton ? 'inline-flex' : 'none';
     fab.innerHTML = \`
       <span class="agy-fab-dot" style="background:\${currentSkin.preview.primary};box-shadow:0 0 8px \${currentSkin.preview.primary}"></span>
-      <span>🎨 \${currentSkin.name}</span>
+      <span>\${currentSkin.name}</span>
       <span class="agy-fab-badge">\${langLabel}</span>
     \`;
 
@@ -923,26 +925,26 @@ body {
     if (activeTab === 'skins') {
       bodyHtml = \`
         <div class="agy-section-title">
-          <span>快速切换语言 (Instant i18n)</span>
-          <span style="color:#38BDF8;font-weight:600;">已汉化 \${translatedNodeCount} 处节点</span>
+          <span>界面语言</span>
+          <span style="color:#38BDF8;font-weight:600;">已翻译 \${translatedNodeCount} 处</span>
         </div>
         <div class="agy-lang-grid">
           <button class="agy-lang-btn \${state.langMode === 'zh-CN' ? 'active' : ''}" data-action="set-lang" data-lang="zh-CN">
-            <span class="agy-lang-btn-title">🇨🇳 简体中文</span>
-            <span class="agy-lang-btn-sub">全量界面汉化</span>
+            <span class="agy-lang-btn-title">简体中文</span>
+            <span class="agy-lang-btn-sub">纯中文界面</span>
           </button>
           <button class="agy-lang-btn \${state.langMode === 'bilingual' ? 'active' : ''}" data-action="set-lang" data-lang="bilingual">
-            <span class="agy-lang-btn-title">🌗 中英双语</span>
-            <span class="agy-lang-btn-sub">术语对照模式</span>
+            <span class="agy-lang-btn-title">中英双语</span>
+            <span class="agy-lang-btn-sub">中文 · English</span>
           </button>
           <button class="agy-lang-btn \${state.langMode === 'en-US' ? 'active' : ''}" data-action="set-lang" data-lang="en-US">
-            <span class="agy-lang-btn-title">🇺🇸 English</span>
-            <span class="agy-lang-btn-sub">还原官方英文</span>
+            <span class="agy-lang-btn-title">English</span>
+            <span class="agy-lang-btn-sub">原版英文</span>
           </button>
         </div>
 
         <div class="agy-section-title" style="margin-top:8px;">
-          <span>反重力高定主题皮肤 (\${SKIN_PRESETS.length} 款)</span>
+          <span>主题皮肤 (\${SKIN_PRESETS.length})</span>
           <div style="display:flex;gap:4px;">
             <button class="agy-btn \${skinCategoryFilter === 'all' ? '' : 'agy-btn-secondary'}" style="padding:2px 8px;font-size:11px;" data-action="filter-skin" data-filter="all">全部</button>
             <button class="agy-btn \${skinCategoryFilter === 'dark' ? '' : 'agy-btn-secondary'}" style="padding:2px 8px;font-size:11px;" data-action="filter-skin" data-filter="dark">深色</button>
@@ -982,46 +984,46 @@ body {
       const customEntries = Object.entries(state.customDict || {});
       bodyHtml = \`
         <div class="agy-section-title">
-          <span>语言模式设置</span>
+          <span>语言模式</span>
         </div>
         <div class="agy-lang-grid">
           <button class="agy-lang-btn \${state.langMode === 'zh-CN' ? 'active' : ''}" data-action="set-lang" data-lang="zh-CN">
-            <span class="agy-lang-btn-title">🇨🇳 简体中文</span>
-            <span class="agy-lang-btn-sub">全量界面汉化</span>
+            <span class="agy-lang-btn-title">简体中文</span>
+            <span class="agy-lang-btn-sub">纯中文界面</span>
           </button>
           <button class="agy-lang-btn \${state.langMode === 'bilingual' ? 'active' : ''}" data-action="set-lang" data-lang="bilingual">
-            <span class="agy-lang-btn-title">🌗 中英双语</span>
-            <span class="agy-lang-btn-sub">导航/按钮双语</span>
+            <span class="agy-lang-btn-title">中英双语</span>
+            <span class="agy-lang-btn-sub">中文 · English</span>
           </button>
           <button class="agy-lang-btn \${state.langMode === 'en-US' ? 'active' : ''}" data-action="set-lang" data-lang="en-US">
-            <span class="agy-lang-btn-title">🇺🇸 English</span>
-            <span class="agy-lang-btn-sub">原版英文界面</span>
+            <span class="agy-lang-btn-title">English</span>
+            <span class="agy-lang-btn-sub">原版英文</span>
           </button>
         </div>
 
         <div class="agy-control-row">
           <div>
-            <div style="font-weight:600;color:#F8FAFC;">内置词条库容量</div>
-            <div style="font-size:11px;color:#94A3B8;">精确词条 \${Object.keys(EXACT_DICT).length} 条 + 动态正则 \${PATTERN_RULES.length} 组</div>
+            <div style="font-weight:600;color:#F8FAFC;">内置词条库</div>
+            <div style="font-size:11px;color:#94A3B8;">精确词条 \${Object.keys(EXACT_DICT).length} 条 + 动态规则 \${PATTERN_RULES.length} 组</div>
           </div>
-          <button class="agy-btn" data-action="rescan-dom">立即重扫页面</button>
+          <button class="agy-btn" data-action="rescan-dom">重新扫描页面</button>
         </div>
 
         <div class="agy-section-title" style="margin-top:16px;">
-          <span>自定义术语覆盖 (Custom Glossary)</span>
+          <span>自定义词条覆盖</span>
         </div>
         <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px;">
-          <input class="agy-input" id="agy-custom-en" placeholder="输入英文原词 (例如: New Conversation)" />
+          <input class="agy-input" id="agy-custom-en" placeholder="英文原词 (如: New Conversation)" />
           <div style="display:flex;gap:8px;">
-            <input class="agy-input" id="agy-custom-zh" placeholder="输入自定义中文翻译 (例如: 开启新脑暴)" />
-            <button class="agy-btn" style="white-space:nowrap;" data-action="add-custom-term">添加词条</button>
+            <input class="agy-input" id="agy-custom-zh" placeholder="自定义中文翻译" />
+            <button class="agy-btn" style="white-space:nowrap;" data-action="add-custom-term">添加</button>
           </div>
         </div>
 
         <div style="display:flex;flex-direction:column;gap:6px;">
           \${
             customEntries.length === 0
-              ? '<div style="text-align:center;padding:18px;color:#64748B;border:1px dashed rgba(148,163,184,0.2);border-radius:10px;">暂未添加自定义词条，添加后将优先覆盖内置翻译</div>'
+              ? '<div style="text-align:center;padding:18px;color:#64748B;border:1px dashed rgba(148,163,184,0.2);border-radius:10px;">暂无自定义词条</div>'
               : customEntries
                   .map(
                     ([en, zh]) => \`
@@ -1041,41 +1043,41 @@ body {
       \`;
     } else if (activeTab === 'effects') {
       bodyHtml = \`
-        <div class="agy-section-title"><span>反重力视觉特效 (Visual Effects)</span></div>
+        <div class="agy-section-title"><span>视觉效果</span></div>
 
         <div class="agy-control-row">
           <div>
-            <div style="font-weight:600;color:#F8FAFC;">毛玻璃高透卡片 (Frosted Glass)</div>
-            <div style="font-size:11px;color:#94A3B8;">为对话卡片与侧边栏启用 backdrop-filter 高斯模糊</div>
+            <div style="font-weight:600;color:#F8FAFC;">毛玻璃卡片</div>
+            <div style="font-size:11px;color:#94A3B8;">为卡片与侧边栏启用背景模糊</div>
           </div>
           <input type="checkbox" \${state.enableGlass ? 'checked' : ''} data-action="toggle-glass" style="width:18px;height:18px;cursor:pointer;" />
         </div>
 
         <div class="agy-control-row">
           <div>
-            <div style="font-weight:600;color:#F8FAFC;">能量微发光边框 (Neon Card Glow)</div>
-            <div style="font-size:11px;color:#94A3B8;">为悬浮面板与活动卡片注入主题色环境辉光</div>
+            <div style="font-weight:600;color:#F8FAFC;">卡片微光边框</div>
+            <div style="font-size:11px;color:#94A3B8;">为卡片添加主题色阴影边框</div>
           </div>
           <input type="checkbox" \${state.enableGlow ? 'checked' : ''} data-action="toggle-glow" style="width:18px;height:18px;cursor:pointer;" />
         </div>
 
         <div class="agy-control-row">
           <div>
-            <div style="font-weight:600;color:#F8FAFC;">星云环境渐变光晕 (Ambient Nebula)</div>
-            <div style="font-size:11px;color:#94A3B8;">在窗口底层渲染柔和的双极光径向渐变</div>
+            <div style="font-weight:600;color:#F8FAFC;">背景渐变光晕</div>
+            <div style="font-size:11px;color:#94A3B8;">在窗口底层显示柔和径向渐变</div>
           </div>
           <input type="checkbox" \${state.enableAmbientBg ? 'checked' : ''} data-action="toggle-ambient" style="width:18px;height:18px;cursor:pointer;" />
         </div>
 
         <div class="agy-section-title" style="margin-top:16px;">
-          <span>自定义背景壁纸图层 (Wallpaper Overlay)</span>
+          <span>背景壁纸</span>
         </div>
         <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px;">
-          <input class="agy-input" id="agy-wallpaper-url" value="\${state.wallpaperUrl || ''}" placeholder="输入图片 URL 或 Base64 数据地址..." />
+          <input class="agy-input" id="agy-wallpaper-url" value="\${state.wallpaperUrl || ''}" placeholder="输入图片 URL 或 Base64 地址..." />
           <div style="display:flex;gap:8px;">
             <button class="agy-btn" style="flex:1;" data-action="apply-wallpaper">应用壁纸</button>
             <label class="agy-btn agy-btn-secondary" style="flex:1;text-align:center;">
-              上传本地图片
+              本地图片
               <input type="file" accept="image/*" id="agy-wallpaper-file" style="display:none;" />
             </label>
             <button class="agy-btn agy-btn-secondary" data-action="clear-wallpaper">清除</button>
@@ -1088,12 +1090,12 @@ body {
         </div>
 
         <div class="agy-control-row">
-          <span>壁纸高斯模糊 (\${state.wallpaperBlur ?? 8}px)</span>
+          <span>壁纸模糊度 (\${state.wallpaperBlur ?? 8}px)</span>
           <input type="range" min="0" max="32" step="1" value="\${state.wallpaperBlur ?? 8}" data-action="wallpaper-blur" />
         </div>
 
         <div class="agy-section-title" style="margin-top:16px;">
-          <span>字体与界面缩放 (Typography & Scale)</span>
+          <span>界面缩放</span>
         </div>
         <div class="agy-control-row">
           <span>全局字号缩放 (\${state.fontScale || 100}%)</span>
@@ -1102,26 +1104,26 @@ body {
       \`;
     } else {
       bodyHtml = \`
-        <div class="agy-section-title"><span>配置管理与快捷键</span></div>
+        <div class="agy-section-title"><span>配置与快捷键</span></div>
         <div class="agy-control-row">
           <div>
-            <div style="font-weight:600;color:#F8FAFC;">显示右下角悬浮球</div>
-            <div style="font-size:11px;color:#94A3B8;">隐藏后仍可通过 Cmd/Ctrl + Shift + L 呼出面板</div>
+            <div style="font-weight:600;color:#F8FAFC;">显示右下角悬浮按钮</div>
+            <div style="font-size:11px;color:#94A3B8;">隐藏后仍可通过 Cmd/Ctrl + Shift + L 打开面板</div>
           </div>
           <input type="checkbox" \${state.showFloatingButton ? 'checked' : ''} data-action="toggle-fab" style="width:18px;height:18px;cursor:pointer;" />
         </div>
 
         <div style="display:flex;gap:8px;margin-bottom:14px;">
-          <button class="agy-btn" style="flex:1;" data-action="export-config">导出配置 JSON</button>
-          <button class="agy-btn agy-btn-secondary" style="flex:1;" data-action="reset-config">恢复默认设置</button>
+          <button class="agy-btn" style="flex:1;" data-action="export-config">导出配置</button>
+          <button class="agy-btn agy-btn-secondary" style="flex:1;" data-action="reset-config">恢复默认</button>
         </div>
 
         <div style="padding:12px;border-radius:10px;background:rgba(15,23,42,0.75);border:1px solid rgba(148,163,184,0.16);font-size:12px;color:#94A3B8;line-height:1.7;">
-          <div style="color:#F8FAFC;font-weight:700;margin-bottom:4px;">⌨️ 全局快捷键指南</div>
-          <div>• <b>Cmd/Ctrl + Shift + L</b>：打开 / 关闭反重力皮肤与汉化面板</div>
-          <div>• <b>Alt + Shift + Z</b>：一键在「简体中文 / 双语 / 英文」间循环切换</div>
-          <div>• <b>Alt + Shift + S</b>：一键切换下一款反重力主题皮肤</div>
-          <div style="margin-top:8px;color:#38BDF8;">🛡️ 代码安全隔离保护已开启：所有代码块 (&lt;pre&gt;/&lt;code&gt;)、Monaco 编辑器与 XTerm 终端内容均受严格保护，绝不被误翻译。</div>
+          <div style="color:#F8FAFC;font-weight:700;margin-bottom:4px;">全局快捷键</div>
+          <div>• <b>Cmd/Ctrl + Shift + L</b>：打开 / 关闭设置面板</div>
+          <div>• <b>Alt + Shift + Z</b>：切换语言模式（中文 / 双语 / 英文）</div>
+          <div>• <b>Alt + Shift + S</b>：切换下一款主题皮肤</div>
+          <div style="margin-top:8px;color:#94A3B8;">说明：代码块 (&lt;pre&gt;/&lt;code&gt;)、Monaco 编辑器与终端区域默认跳过翻译。</div>
         </div>
       \`;
     }
@@ -1129,26 +1131,26 @@ body {
     drawer.innerHTML = \`
       <div class="agy-header">
         <div class="agy-title-wrap">
-          <div class="agy-logo">🚀</div>
+          <div class="agy-logo">AG</div>
           <div>
-            <h3 class="agy-title">反重力皮肤与汉化中心</h3>
-            <p class="agy-subtitle">Antigravity Skin &amp; Localization Studio v1.0</p>
+            <h3 class="agy-title">皮肤与汉化设置</h3>
+            <p class="agy-subtitle">Antigravity Skin &amp; i18n</p>
           </div>
         </div>
-        <button class="agy-close-btn" data-action="close-panel" title="关闭 (Esc)">✕</button>
+        <button class="agy-close-btn" data-action="close-panel" title="关闭 (Esc)">×</button>
       </div>
       <div class="agy-tabs">
-        <button class="agy-tab \${activeTab === 'skins' ? 'active' : ''}" data-action="switch-tab" data-tab="skins">🎨 主题皮肤</button>
-        <button class="agy-tab \${activeTab === 'i18n' ? 'active' : ''}" data-action="switch-tab" data-tab="i18n">🌐 界面汉化</button>
-        <button class="agy-tab \${activeTab === 'effects' ? 'active' : ''}" data-action="switch-tab" data-tab="effects">✨ 壁纸特效</button>
-        <button class="agy-tab \${activeTab === 'about' ? 'active' : ''}" data-action="switch-tab" data-tab="about">⚙️ 快捷键</button>
+        <button class="agy-tab \${activeTab === 'skins' ? 'active' : ''}" data-action="switch-tab" data-tab="skins">主题皮肤</button>
+        <button class="agy-tab \${activeTab === 'i18n' ? 'active' : ''}" data-action="switch-tab" data-tab="i18n">界面语言</button>
+        <button class="agy-tab \${activeTab === 'effects' ? 'active' : ''}" data-action="switch-tab" data-tab="effects">壁纸与特效</button>
+        <button class="agy-tab \${activeTab === 'about' ? 'active' : ''}" data-action="switch-tab" data-tab="about">快捷键</button>
       </div>
       <div class="agy-body">
         \${bodyHtml}
       </div>
       <div class="agy-footer">
-        <span>当前皮肤：<b style="color:#E2E8F0">\${currentSkin.name}</b></span>
-        <span>快捷键：<b>⌘/Ctrl + Shift + L</b></span>
+        <span>当前主题：<b style="color:#E2E8F0">\${currentSkin.name}</b></span>
+        <span>快捷键：<b>Cmd/Ctrl + Shift + L</b></span>
       </div>
     \`;
 

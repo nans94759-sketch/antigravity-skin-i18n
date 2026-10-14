@@ -1,7 +1,7 @@
 {
-  "displayName": "反重力 (Antigravity) 主题皮肤与全量汉化插件",
-  "description": "内置 12 款高定反重力主题皮肤与 1100+ 词条无损中文汉化/中英双语对照引擎，支持 Antigravity 2.0 与 Antigravity IDE。",
-  "cmd.openStudio": "打开反重力皮肤与汉化控制台 (Skin & i18n Studio)",
-  "cmd.switchSkin": "切换反重力主题皮肤 (Switch Skin)",
-  "cmd.switchLanguage": "切换界面汉化模式 (简体中文 / 中英双语 / English)"
+  "displayName": "Antigravity 主题皮肤与汉化扩展",
+  "description": "内置 12 款主题皮肤与中文汉化/双语对照支持，适用于 Antigravity 2.0 与 Antigravity IDE。",
+  "cmd.openStudio": "打开皮肤与汉化设置",
+  "cmd.switchSkin": "切换主题皮肤",
+  "cmd.switchLanguage": "切换界面语言模式 (中文 / 双语 / 英文)"
 }

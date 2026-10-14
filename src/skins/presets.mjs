@@ -1,16 +1,16 @@
 /**
- * Antigravity Skin Presets (反重力高定主题皮肤库)
- * 覆盖 Antigravity 2.0 (Electron Desktop / Web UI) 与 Antigravity IDE (VS Code Workbench) 全量 CSS 变量与语法高亮令牌。
+ * Antigravity Skin Presets (反重力主题皮肤预设)
+ * 覆盖 Antigravity 2.0 与 Antigravity IDE 全量 CSS 变量与语法高亮配置。
  */
 
 export const SKIN_PRESETS = [
   {
     id: 'nebula-zero-g',
-    name: '深空反重力',
+    name: '深空蓝',
     nameEn: 'Nebula Zero-G',
     category: 'dark',
-    badge: '旗舰推荐',
-    description: '深邃宇宙靛蓝底色搭配悬浮星云毛玻璃卡片与极光青蓝高亮，专为沉浸式 AI 结对编程打造。',
+    badge: '默认深色',
+    description: '深空蓝底色配青蓝高亮与毛玻璃面板。',
     preview: {
       bg: '#090D16',
       sidebar: '#060911',
@@ -74,8 +74,8 @@ export const SKIN_PRESETS = [
     name: '赛博霓虹',
     nameEn: 'Cyberpunk Matrix',
     category: 'dark',
-    badge: '高能炫酷',
-    description: '暗夜黑曜石底色碰撞电光洋红与赛博青，微发光能量边框带来未来感十足的终端体验。',
+    badge: '高对比',
+    description: '深黑底色配洋红与青色高亮边框。',
     preview: {
       bg: '#08070F',
       sidebar: '#05040A',
@@ -137,10 +137,10 @@ export const SKIN_PRESETS = [
   {
     id: 'aurora-glass',
     name: '极光琉璃',
-    nameEn: 'Aurora Glassmorphism',
+    nameEn: 'Aurora Glass',
     category: 'dark',
-    badge: '毛玻璃高透',
-    description: '北欧极光翡翠绿与冰川蓝交织的通透毛玻璃界面，呼吸感十足，轻盈如失重悬浮。',
+    badge: '毛玻璃',
+    description: '深蓝底色配极光绿与冰川蓝半透明面板。',
     preview: {
       bg: '#0A131A',
       sidebar: '#070E14',
@@ -202,10 +202,10 @@ export const SKIN_PRESETS = [
   {
     id: 'tokyo-night',
     name: '东京夜色',
-    nameEn: 'Tokyo Night Pro',
+    nameEn: 'Tokyo Night',
     category: 'dark',
-    badge: '极客最爱',
-    description: '致敬经典 Tokyo Night 风暴蓝紫配色，低对比度柔和语法高亮，深夜长效编码不伤眼。',
+    badge: '柔和深色',
+    description: '经典 Tokyo Night 蓝紫配色，低对比度柔和语法高亮。',
     preview: {
       bg: '#1A1B26',
       sidebar: '#16161E',
@@ -266,11 +266,11 @@ export const SKIN_PRESETS = [
   },
   {
     id: 'catppuccin-mocha',
-    name: '猫爪摩卡',
+    name: '摩卡暖灰',
     nameEn: 'Catppuccin Mocha',
     category: 'dark',
-    badge: '温润舒适',
-    description: '温暖丝滑的摩卡可可暗色调搭配薰衣草紫与奶油蜜桃色，兼顾颜值与长时间阅读舒适度。',
+    badge: '暖调深色',
+    description: '温暖摩卡暗色调配薰衣草紫高亮，适合长时间阅读。',
     preview: {
       bg: '#1E1E2E',
       sidebar: '#181825',
@@ -331,11 +331,11 @@ export const SKIN_PRESETS = [
   },
   {
     id: 'morandi-forest',
-    name: '莫兰迪森系',
+    name: '莫兰迪绿',
     nameEn: 'Morandi Emerald',
     category: 'dark',
-    badge: '深度护眼',
-    description: '低饱和度松针墨绿与苔藓灰绿交融，辅以暖羊皮纸文字，极大缓解视觉疲劳。',
+    badge: '护眼深色',
+    description: '低饱和松针绿底色配暖灰文字，缓解视觉疲劳。',
     preview: {
       bg: '#101815',
       sidebar: '#0B110F',
@@ -396,11 +396,11 @@ export const SKIN_PRESETS = [
   },
   {
     id: 'obsidian-gold',
-    name: '黑金尊享',
-    nameEn: 'Obsidian Champagne Gold',
+    name: '曜石黑金',
+    nameEn: 'Obsidian Gold',
     category: 'dark',
-    badge: '奢华质感',
-    description: '碳纤黑丝绒质感机身搭配香槟流金高亮，沉稳内敛的旗舰商务美学。',
+    badge: '纯黑深色',
+    description: '纯黑底色配香槟金高亮边框。',
     preview: {
       bg: '#0E0E10',
       sidebar: '#09090B',
@@ -461,11 +461,11 @@ export const SKIN_PRESETS = [
   },
   {
     id: 'retro-amber',
-    name: '复古琥珀终端',
+    name: '琥珀终端',
     nameEn: 'Retro CRT Amber',
     category: 'dark',
-    badge: '复古极客',
-    description: '致敬 80 年代 IBM 琥珀磷光显像管终端，温暖复古的纯正 Hacker 氛围。',
+    badge: '复古深色',
+    description: '经典琥珀色 CRT 终端配色。',
     preview: {
       bg: '#120D07',
       sidebar: '#0C0804',
@@ -526,11 +526,11 @@ export const SKIN_PRESETS = [
   },
   {
     id: 'oriental-ink',
-    name: '东方水墨·宣纸',
-    nameEn: 'Oriental Ink & Rice Paper',
+    name: '水墨宣纸',
+    nameEn: 'Oriental Ink',
     category: 'light',
-    badge: '国风浅色',
-    description: '宋式温润宣纸底色配松烟墨字与朱砂印泥红点缀，书卷气十足的日间阅读与创作体验。',
+    badge: '暖调浅色',
+    description: '温润宣纸米白底色配松烟墨黑文字与朱砂红点缀。',
     preview: {
       bg: '#F7F4ED',
       sidebar: '#EFECE4',
@@ -594,8 +594,8 @@ export const SKIN_PRESETS = [
     name: '樱花微风',
     nameEn: 'Sakura Breeze',
     category: 'light',
-    badge: '清新浅色',
-    description: '春日柔光象牙白与樱花粉渐变卡片，轻柔明亮，让高强度工作也拥有好心情。',
+    badge: '柔和浅色',
+    description: '象牙白底色配樱花粉高亮卡片。',
     preview: {
       bg: '#FDF8FA',
       sidebar: '#F8EFF3',
@@ -656,11 +656,11 @@ export const SKIN_PRESETS = [
   },
   {
     id: 'cupertino-light',
-    name: '果味极简·云母白',
-    nameEn: 'Cupertino Studio Light',
+    name: '云母浅白',
+    nameEn: 'Cupertino Light',
     category: 'light',
-    badge: 'macOS 原生感',
-    description: '遵循 Apple HIG 视觉规范的云母暖灰白与经典系统蓝，干净利落，层次分明。',
+    badge: '原生浅色',
+    description: 'macOS 原生浅灰白底色配系统蓝。',
     preview: {
       bg: '#F5F5F7',
       sidebar: '#EBEBED',
@@ -720,11 +720,11 @@ export const SKIN_PRESETS = [
   },
   {
     id: 'native-default',
-    name: '原生经典',
+    name: '官方默认',
     nameEn: 'Antigravity Native',
     category: 'dark',
-    badge: '官方原版',
-    description: '保持 Antigravity 官方默认深/浅色外观，仅开启全量中文汉化或自定义背景壁纸。',
+    badge: '原版配色',
+    description: '保留官方默认配色，仅启用汉化或自定义壁纸。',
     preview: {
       bg: '#101010',
       sidebar: '#151515',

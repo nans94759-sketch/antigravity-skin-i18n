@@ -290,7 +290,7 @@ const html = `<!DOCTYPE html>
           <button class="pill-btn" title="Toggle Sidebar"><span>Toggle Sidebar</span></button>
           <button class="pill-btn" title="Toggle Auxiliary Pane"><span>Toggle Auxiliary Pane</span></button>
           <button class="pill-btn primary" onclick="window.AntigravitySkinI18n && window.AntigravitySkinI18n.togglePanel(true)">
-            🎨 打开皮肤与汉化控制台
+            皮肤与汉化设置
           </button>
         </div>
       </header>
@@ -366,7 +366,7 @@ const html = `<!DOCTYPE html>
         <!-- Code Protection Verification Card -->
         <div class="bg-card">
           <div style="display:flex;align-items:center;justify-content:space-between;">
-            <strong style="font-size:14px;"><span>Agent Edits</span> · 代码块安全隔离测试（下方代码永不被误翻译）</strong>
+            <strong style="font-size:14px;"><span>Agent Edits</span> · 代码块隔离保护预览（下方代码跳过翻译）</strong>
             <div style="display:flex;gap:6px;">
               <button class="pill-btn"><span>Accept Step</span></button>
               <button class="pill-btn"><span>Reject Step</span></button>
